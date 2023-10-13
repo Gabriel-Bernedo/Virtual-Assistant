@@ -1,3 +1,4 @@
+/* /* 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -66,4 +67,20 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+/* */
+@media(min-width: 600px){
+  img {
+    width: 30%
+  }
+}
+
+@media(max-width: 600px){
+  img {
+    width: 75%
+  }
+}
+
+nav{
+  position: sticky
 }
