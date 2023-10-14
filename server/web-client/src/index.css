@@ -84,3 +84,11 @@ button:focus-visible {
 nav{
   position: sticky
 }
+
+html, body{
+  background-color: darkslategray;
+}
+
+h1{
+  color: white
+}
