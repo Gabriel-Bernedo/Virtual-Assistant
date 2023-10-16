@@ -59,9 +59,6 @@ def enviar_voz():
 #BASE DE DATOS DONDE SE ENCUENTRA TODA LA INFORMACION CONCERNIENTE
 #Migrado a data.py para mejor manejo y posible mejora futura
 
-#Acceder a la parte especifica que se desea imprimir
-
-
 #INICIO
 if __name__ == "__main__":
 
