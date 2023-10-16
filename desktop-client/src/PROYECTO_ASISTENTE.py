@@ -125,7 +125,7 @@ if __name__ == "__main__":
 
             def main():
                 root = tk.Tk()
-                image_path = "computador.jpg"  # Ruta de la imagen que deseas abrir
+                image_path = "img/computador.jpg"  # Ruta de la imagen que deseas abrir
                 
                 image_window = ImageWindow(root, image_path)
                 image_window.update()  # Iniciar la función de actualización
@@ -138,7 +138,7 @@ if __name__ == "__main__":
             texto_a_audio(datos['aprendizaje'])
             
             try:
-                img = Image.open("arquitectura.png")
+                img = Image.open("img/arquitectura.png")
             except:
                 print("No se pudo cargar la imagen.")
                 sys.exit(1)
@@ -166,7 +166,7 @@ if __name__ == "__main__":
                     if respuesta == "unidad central de proceso":
 
                         try:
-                            img = Image.open("CPU.png")
+                            img = Image.open("img/CPU.png")
                         except:
                             print("No se pudo cargar la imagen.")
                             sys.exit(1)
@@ -209,7 +209,7 @@ if __name__ == "__main__":
                     elif respuesta == "memoria":
 
                         try:
-                            img = Image.open("memoria.png")
+                            img = Image.open("img/memoria.png")
                         except:
                             print("No se pudo cargar la imagen.")
                             sys.exit(1)
@@ -253,7 +253,7 @@ if __name__ == "__main__":
                     elif respuesta == "entrada salida":
 
                         try:
-                            img = Image.open("entrada salida.png")
+                            img = Image.open("img/entrada salida.png")
                         except:
                             print("No se pudo cargar la imagen.")
                             sys.exit(1)
@@ -297,7 +297,7 @@ if __name__ == "__main__":
                     elif respuesta == "sistemas de interconexión buses":
 
                         try:
-                            img = Image.open("buses.png")
+                            img = Image.open("img/buses.png")
                         except:
                             print("No se pudo cargar la imagen.")
                             sys.exit(1)
@@ -343,7 +343,7 @@ if __name__ == "__main__":
                     elif respuesta == "periféricos":
 
                         try:
-                            img = Image.open("perifericos.jpg")
+                            img = Image.open("img/perifericos.jpg")
                         except:
                             print("No se pudo cargar la imagen.")
                             sys.exit(1)
@@ -560,7 +560,7 @@ if __name__ == "__main__":
                     self.correct_answer = 0  # Respuesta correcta en la posición 0 (RAM)
 
                     for i in range(4):
-                        image_path = f"option_{i+1}.png"
+                        image_path = f"img/option_{i+1}.png"
                         image = Image.open(image_path)
                         image = image.resize((200, 200))
                         photo = ImageTk.PhotoImage(image)
