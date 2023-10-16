@@ -7,6 +7,8 @@ import random
 import json
 from tkinter import messagebox
 from PIL import Image, ImageTk
+#New imports
+from datos import datos 
 
 #CONVERTIR CADENAS DE TEXTO A AUDIO Y REPRODUCIRLAS
 def texto_a_audio(comando):
@@ -55,9 +57,7 @@ def enviar_voz():
     return palabra["mensaje"].lower()
 
 #BASE DE DATOS DONDE SE ENCUENTRA TODA LA INFORMACION CONCERNIENTE
-
-with open('basedatos.json', 'r') as archivo:
-    datos = json.load(archivo)
+#Migrado a data.py para mejor manejo y posible mejora futura
 
 #Acceder a la parte especifica que se desea imprimir
 
