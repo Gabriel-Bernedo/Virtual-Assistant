@@ -51,4 +51,4 @@ def aprender(tema): # aprende tema y devuelve si continaur o no
         print( "Estimado, creo que no has respondido con alguna de las instrucciones indicadas anteriormente")
         texto_a_audio("Estimado, creo que no has respondido con alguna de las instrucciones indicadas anteriormente")
         print("Responde con:\n1) Esta bien.\n2) No gracias")
-        return False
+        return True

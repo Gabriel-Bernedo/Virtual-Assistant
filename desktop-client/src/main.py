@@ -98,6 +98,7 @@ if __name__ == "__main__":
                     if respuesta == "unidad central de proceso" or respuesta == "memoria" or respuesta == "entrada salida" or respuesta == "sistemas de interconexion buses" or respuesta == "perifericos":
                         continuar= aprender(respuesta)
                         if not continuar:
+                            salir = True
                             break
                     elif respuesta != "unidad central de proceso" or respuesta != "memoria" or respuesta != "entrada salida" or respuesta != "sistemas de interconexion buses" or respuesta != "perifericos":
                         print("Perdona, pero por el momento no tengo informacion sobre {}. Prueba con otra OPCION".format(respuesta))
@@ -130,69 +131,30 @@ if __name__ == "__main__":
                     
                     respuesta = enviar_voz()
                     if respuesta == "prueba de entrada pensamiento computacional":
-                        
-                        
+
                         print("Tu respuesta " + respuesta)
                         print("Escogiste: Prueba de entrada de Pensamiento Computacional")
                         texto_a_audio("Escogiste: Prueba de entrada de Pensamiento Computacional")
                         print("Empezemos con la prueba:")
                         texto_a_audio("Empezemos con la prueba:")
-
-                        print("------------------------------------------------------------------------------------")
-                        texto_a_audio(datos['PE PREGUNTA 01'])
-                        print("PRIMERA PREGUNTA: 1. ¿Cuál es el objetivo principal del pensamiento computacional?")
-                        print("     \na) Resolver problemas utilizando algoritmos y abstracción.     \nb) Programar robots y sistemas autónomos.     \nc) Diseñar hardware de computadoras.\n")
-
-                        print("¿Cual es tu respuesta?")
-                        texto_a_audio("¿Cual es tu respuesta?")
-                        texto_a_audio("¿a? ¿b? o ¿c?")
-                            
-                        respuesta = enviar_voz()
-                        print("Tu respuesta " + respuesta)
-                        cont = 0
-                            
-                        if respuesta == "a":
-                            print("Tu respuesta es correcta. Muy bien.")
-                            texto_a_audio("Tu respuesta es correcta. Muy bien.")
-                            print("TU PUNTAJE ES DE 1 PUNTO")
-                        elif respuesta == "b" or respuesta =="c":
-                            print("Tu respuesta es incorrecta.")
-                            texto_a_audio("Tu respuesta es incorrecta.")
-                        time.sleep(0.5)
-
-                        print("------------------------------------------------------------------------------------")
-                        texto_a_audio(datos['PE PREGUNTA 02'])
-                        print("SEGUNDA PREGUNTA: 2. El primer paso del pensamiento computacional es: identificar el problema.")
-                        print("     \na) V     \nb) F\n")
-                        print("¿Cual es tu respuesta?")
-                        texto_a_audio("¿Cual es tu respuesta?")
-                        respuesta = enviar_voz()
-                        print("Tu respuesta " + respuesta)
-
-                        if respuesta == "verdadero":
-                            print("Tu respuesta es correcta. Muy bien.")
-                            texto_a_audio("Tu respuesta es correcta. Muy bien.")
-                            print("TU PUNTAJE ES DE 2 PUNTOS")
-                        elif respuesta == "falso":
-                            print("Tu respuesta es incorrecta.")
-                            texto_a_audio("Tu respuesta es incorrecta.")
-                        
-                        print("------------------------------------------------------------------------------------")
-                            
+                        puntaje = 0
                         def escribir_respuesta(pregunta, alternativas, respuesta_correcta):
+                            print("------------------------------------------------------------------------------------")
                             print(pregunta)
                             for i, alternativa in enumerate(alternativas, start = 1):
                                 print(f"{i}. {alternativa}")
-                            
-                            respuesta_usuario =input("Escribe el número de la alternativa que crees correcta: ")
+                            texto_a_audio("Escribe el número de la alternativa que crees correcta: ")
+                            print("Escribe el número de la alternativa que crees correcta: ")
+                            respuesta_usuario = enviar_voz()
+                            print("Tu respuesta " + respuesta)
 
                             if respuesta_usuario.isdigit():
                                 opcion_elegida = int(respuesta_usuario)
                                 if 1 <= opcion_elegida <= len(alternativas):
-                                    if alternativas[opcion_elegida - 1] == respuesta_correcta:
+                                    if alternativas[opcion_elegida - 1] == alternativas[respuesta_correcta-1]:
                                         print("¡Respuesta correcta!")
                                         texto_a_audio("Respuesta correcta.")
-                                        print("TU PUNTAJE ES DE 3 PUNTOS")
+                                        puntaje +=1
                                     else:
                                         print("Respuesta incorrecta.")
                                         texto_a_audio("Respuesta incorrecta.")
@@ -200,14 +162,11 @@ if __name__ == "__main__":
                                     print("Opción inválida.")
                             else:
                                 print("Entrada inválida. Por favor, ingresa el número de la alternativa.")
-
-                        pregunta = "¿Qué es un algoritmo en términos de pensamiento computacional?"
-                        
-                        texto_a_audio(datos['PE PREGUNTA 03'])
-                        print("TERCERA PREGUNTA: ¿Qué es un algoritmo en términos de pensamiento computacional?")
-                        alternativas = ["Un patrón de diseño visual","Un lenguaje de programación", "Una secuencia de pasos para resolver un problema", "Una representación gráfica de datos"]
-                        respuesta_correcta ="Una secuencia de pasos para resolver un problema"
-                        escribir_respuesta(pregunta, alternativas, respuesta_correcta)       
+                            print("TU PUNTAJE ES DE "+puntaje+" PUNTOS")
+                            texto_a_audio("TU PUNTAJE ES DE "+puntaje+" PUNTOS")
+                        for pregunta in datos['preguntas']:
+                            texto_a_audio([pregunta['pregunta'],pregunta['alternativas']])
+                            escribir_respuesta(pregunta['pregunta'], pregunta['alternativas_arr'], pregunta['respuesta_correcta'])       
 
                         print("¿Quieres seguir aprendiendo?")
                         texto_a_audio("¿Quieres seguir aprendiendo?")
@@ -223,6 +182,7 @@ if __name__ == "__main__":
                             print("Elige la opcion que desees aprender: ")
                             texto_a_audio("Elige la opcion que desees aprender: ")
                             print("\n1) Aprendizaje\n2) Test\n3) Juegos\n")
+                            salir = True
                             break
                         elif respuesta == "no gracias":
                             print("Oh. es una lástima. En ese caso nos veremos en otra ocasión.")
@@ -257,13 +217,3 @@ if __name__ == "__main__":
             texto_a_audio(nombre + " creo que no has respondido con alguna de las instrucciones indicadas anteriormente")
             print("Responde con una de las alternativas mencionadas.")
             texto_a_audio("Responde con una de las alternativas mencionadas.")
-
-    
-
-
-
-
-        
-            
-             
-
