@@ -1,6 +1,6 @@
 ECHO OFF
 CLS
 TITLE UPDATING PACKAGES
-python3 -m pip install ../requirements.txt
+pip install -r ../requirements.txt
 PAUSE
 exit
