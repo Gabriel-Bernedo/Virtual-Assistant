@@ -17,9 +17,9 @@
         },
         {
             "pregunta":"CUARTA PREGUNTA: ¿Cual es el objetivo principal del pensamiento computacional?",
-"alternativas":,
-"alternativas_arr":,
-"respuesta_correcta":,
+            "alternativas":"1)El concepto introducido al inicio de este estudio es el de tecnología de vanguardia. 2)El concepto introducido al inicio de este estudio es el de instrucción máquina. 3) El concepto introducido al inicio de este estudio es el de métodos tradicionales de enseñanza. 4) El concepto introducido al inicio de este estudio es el de teoría de la relatividad.",
+            "alternativas_arr":["El concepto introducido al inicio de este estudio es el de tecnología de vanguardia.", "El concepto introducido al inicio de este estudio es el de instrucción máquina.", "El concepto introducido al inicio de este estudio es el de métodos tradicionales de enseñanza.","El concepto introducido al inicio de este estudio es el de teoría de la relatividad."],
+            "respuesta_correcta":2
         }
     ]
 }

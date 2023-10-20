@@ -5,6 +5,8 @@
                      "Para empezar a describir la estructura basica de un computador, cabe definir las funciones que se espera que pueda realizar una maquina denominada como tal. En terminos generales un computador tiene que realizar tres funciones: ",
                      "Procesamiento de datos. Almacenamiento de datos. Transferencia de datos",
                      "El computador debe procesar datos, transformando la informacion recibida. Asi mismo debe almacenar datos. tanto resultados de computaciones intermedias, como el resultado final de estas. De la misma manera el computador debe realizar transferencia de datos entre su entorno y el mismo. Para realizar estas tres funciones es necesario un mecanismo de control que gobierne el flujo de datos entre los diversos modulos.",
+                     "Para iniciar este estudio se introduce el concepto de instrucción máquina desde el punto de vista de la información que debe contener y cómo se divide en los diversos campos que definen su formato. También se analiza brevemente el funcionamiento de los registros, pieza clave en la construcción del computador, mostrando cómo se realiza el transvase de la información desde unos registros a otros.",
+                     "Para representar gráficamente el secuenciamiento de las instrucciones se utilizan los cronogramas de ejecución, en los que se muestra la secuencia de activación de las señales de control de todos los elementos internos de computador."
                     ],
     
     
@@ -28,12 +30,7 @@
                                         "Los buses de alimentacion son los cables o conexiones que suministran energia electrica a los componentes internos del equipo, como la placa madre, la CPU, las tarjetas de expansion y los dispositivos de almacenamiento."],
     "perifericos": ["Los perifericos son todos aquellos dispositivos que sin ser imprescindibles en la estructura de un computador, son necesarios para suministrar datos a la maquina o visualizar los resultados.",
                     "Los periféricos de entrada de datos son interruptores, teclados, ratones, pantallas graficas interactivas y digitalizadores de imagenes (escaners)."],
-    "PE PREGUNTA 01": ["PRIMERA PREGUNTA: ¿Cual es el objetivo principal del pensamiento computacional?",
-                       "1) Resolver problemas utilizando algoritmos y abstraccion. 2) Programar robots y sistemas autonomos. 3) Diseñar hardware de computadoras."],
-    "PE PREGUNTA 02": ["SEGUNDA PREGUNTA: 2. El primer paso del pensamiento computacional es: identificar el problema.",
-                       "¿VERDADERO? o ¿FALSO?"],
-    "PE PREGUNTA 03": ["TERCERA PREGUNTA: ¿Qué es un algoritmo en terminos de pensamiento computacional?",
-                       "1) Un patron de diseño visual 2) Un lenguaje de programacion 3) Una secuencia de pasos para resolver un problema 4) Una representacion grafica de datos"]
+    
 }
 
 
