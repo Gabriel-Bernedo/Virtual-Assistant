@@ -2,14 +2,20 @@
 Trabajo Final de Arquitectura de Computadoras
 Toda la documentación se encontrara en la carpeta *docs* aqui un pequeño resumen de los entregables
 
-* Un servidor web con el que se pueda interactuar sin necesidad de descargar la aplicacion
-    * Se usara Django para el back-end debido a la compatibilidad con el codigo fuente y la extensa cantidad de librerias que posee
-    * Se usara React + Vite para el front-end debido a la gran adaptabilidad y versatibilidad que tiene
-* Un cliente o aplicacion de escritorio donde el usuario pueda utilizarlo sin necesidad de permanecer en el navegador
-    * Se usaran las librerias immplementadas en el documento, junto con los requerimientos que se especifica
-* Informes para el supervisor:
-    * Una guía de usuario del sistema implementado: como funciona, para que sirve y como usarlo
-    * Un Reporte de Trabajo en el que se definan nuestros avances a la par que se desarrolla el proyecto
-    * El informe del trabajo final
 
-Con ello, espero poder trabajar a gusto con ustedes
+Prototipo 0.2
+Implementar preguntas 
+Estructurar el proyecto
+Cambiar funciones en base a la nueva estructura
+Externalizar funciones
+Formatear codigo
+Buscar imagenes en relacion a los temas
+Implementar pygame para los juegos
+
+#Preguntas 2.2 (Gabo)
+* P: ¿Qué tipos de instrucciones existen?
+    * R: Existen varios tipos de instrucciones, entre ellas se encuentran las instrucciones de transferencias de datos, instrucciones aritmeticas y lógicas, instrucciones que modifican la secuencia del programa, instrucciones de espera (NOP) e instrucciones de interrupcion de la ejecucion del programa (HALT e INT).
+* P: ¿Cuales son las instrucciones aritmeticas?
+    * R: Las instrucciones aritmeticas efectuan una de las cuatro formas
+* P: ¿Cuales son las instrucciones lógicas?
+
