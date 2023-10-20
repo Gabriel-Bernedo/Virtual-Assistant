@@ -5,9 +5,7 @@ recognizer = sr.Recognizer()
 microphone = sr.Microphone()
 
 #CONVERTIR CADENAS DE TEXTO A AUDIO Y REPRODUCIRLAS
-def texto_a_audio(comando, doPrint = True):
-    if doPrint:
-        print(comando)
+def texto_a_audio(comando):
     palabra = pyttsx3.init()
     palabra.say(comando)
     palabra.runAndWait()
@@ -20,10 +18,13 @@ def capturar_voz(reconocer=recognizer, microfono=microphone, tiempo_ruido = 1.0)
     if not isinstance(microfono, sr.Microphone):
         raise TypeError("'reconocer' no es de la instacia 'Recognizer'")
     
+   
     with microfono as fuente:
         reconocer.adjust_for_ambient_noise(fuente, duration = tiempo_ruido)
+        print('Habla:')        
         audio = reconocer.listen(fuente)
-
+        print('fin')
+        
     respuesta = {
         "suceso": True,
         "error": None,
