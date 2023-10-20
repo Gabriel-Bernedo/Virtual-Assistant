@@ -1,0 +1,29 @@
+{
+    "preguntas":[
+        {   "pregunta":"PRIMERA PREGUNTA: ¿Cual es el objetivo principal del pensamiento computacional?",
+            "alternativas":"1) Resolver problemas utilizando algoritmos y abstraccion. 2) Programar robots y sistemas autonomos. 3) Diseñar hardware de computadoras.",
+            "alternativas_arr":["Resolver problemas utilizando algoritmos y abstraccion.","Programar robots y sistemas autonomos."," Diseñar hardware de computadoras."],
+            "respuesta_correcta":1
+        },                        
+        {   "pregunta":"SEGUNDA PREGUNTA: 2. El primer paso del pensamiento computacional es: identificar el problema.",
+            "alternativas":"¿VERDADERO? o ¿FALSO?",
+            "alternativas_arr":["¿VERDADERO? ","¿FALSO?"],
+            "respuesta_correcta":1
+        },
+        {   "pregunta":"TERCERA PREGUNTA: ¿Qué es un algoritmo en terminos de pensamiento computacional?",
+            "alternativas":"1) Un patron de diseño visual 2) Un lenguaje de programacion 3) Una secuencia de pasos para resolver un problema 4) Una representacion grafica de datos",
+            "alternativas_arr":["Un patron de diseño visual","Un lenguaje de programacion","Una secuencia de pasos para resolver un problema","Una representacion grafica de datos"],
+            "respuesta_correcta":3
+        },
+        {
+            "pregunta":"CUARTA PREGUNTA: ¿Cual es el objetivo principal del pensamiento computacional?",
+"alternativas":,
+"alternativas_arr":,
+"respuesta_correcta":,
+        }
+    ]
+}
+
+
+
+

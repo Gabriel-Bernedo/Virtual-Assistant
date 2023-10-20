@@ -4,7 +4,7 @@ import sys
 import tkinter as tk
 from PIL import Image, ImageTk
 #New imports
-from datos import datos 
+from datos import datos, preguntas
 from aprendizaje.imageWindow import ImageWindow
 from aprendizaje.process import aprender
 from juegos.quizApp import ComputerStructureQuizApp
@@ -141,7 +141,7 @@ if __name__ == "__main__":
                             else:
                                 print("Entrada inválida. Por favor, ingresa el número de la alternativa.")
                             texto_a_audio("TU PUNTAJE ES DE "+puntaje+" PUNTOS")
-                        for pregunta in datos['preguntas']:
+                        for pregunta in preguntas['preguntas']:
                             texto_a_audio([pregunta['pregunta'],pregunta['alternativas']], False)
                             escribir_respuesta(pregunta['pregunta'], pregunta['alternativas_arr'], pregunta['respuesta_correcta'])       
 
