@@ -116,7 +116,73 @@
             "explicacion":"El direccionamiento indirecto es un modo de direccionamiento flexible, pero no es el más flexible. El direccionamiento indexado es un modo de direccionamiento más flexible, ya que permite acceder a datos que se encuentran en posiciones contiguas en memoria."
         }
         ],
-        [],
+        [
+            {	"pregunta":"¿Cuáles son los dos tipos de operandos en las instrucciones de transferencia de datos?",
+                "alternativas":"1) Valor y dirección 2) Fuente y destino 3) Origen y destino 4) Dato y registro ",
+                "alternativas_arr":["Valor y dirección","Fuente y destino","Origen y destino","Dato y registro"],
+                "respuesta_correcta": 3
+            },
+            {	"pregunta":"PREGUNTA:Pregunta ¿Qué es la longitud del dato a transferir?",
+                "alternativas":"1) La cantidad de bytes que ocupa el dato 2) La cantidad de bits que ocupa el dato 3) La cantidad de palabras que ocupa el dato 4) La cantidad de bytes que ocupa la dirección del dato ",
+                "alternativas_arr":["La cantidad de bytes que ocupa el dato","La cantidad de bits que ocupa el dato","La cantidad de palabras que ocupa el dato","La cantidad de bytes que ocupa la dirección del dato"],
+                "respuesta_correcta": 2
+            },
+            {	"pregunta":"¿Qué instrucción se utiliza para copiar un dato de una posición de memoria a un registro?",
+                "alternativas":"1) MOVE 2) COPY 3) LOAD 4) STORE ",
+                "alternativas_arr":["MOVE","COPY","LOAD","STORE"],
+                "respuesta_correcta": 1
+            },
+            {	"pregunta":"¿Cuáles son las cuatro operaciones aritméticas básicas?",
+                "alternativas":"1) Suma, resta, multiplicación, potencia 2) Suma, resta, producto, cociente 3) Suma, resta, multiplicación, residuo 4) Suma, resta, multiplicación, división ",
+                "alternativas_arr":["Suma, resta, multiplicación, potencia","Suma, resta, producto, cociente","Suma, resta, multiplicación, residuo","Suma, resta, multiplicación, división"],
+                "respuesta_correcta": 4
+            },
+            {	"pregunta":"PREGUNTA:Pregunta ¿Cuáles son las operaciones lógicas bit a bit más comunes?",
+                "alternativas":"1) AND, OR, XOR, NAND 2) AND, OR, XOR, NOT 3) AND, OR, XOR, NOR 4) AND, OR, XOR, XNOR ",
+                "alternativas_arr":["AND, OR, XOR, NAND","AND, OR, XOR, NOT","AND, OR, XOR, NOR","AND, OR, XOR, XNOR"],
+                "respuesta_correcta": 2
+            },
+            {	"pregunta":"¿Qué instrucción se utiliza para sumar dos números enteros?",
+                "alternativas":"1) ADD 2) SUB 3) MUL 4) DIV ",
+                "alternativas_arr":["ADD","SUB","MUL","DIV"],
+                "respuesta_correcta": 1
+            },
+            {	"pregunta":"¿Qué tipos de instrucciones modifican la secuencia normal de ejecución de un programa?",
+                "alternativas":"1) Instrucciones de bifurcación 2) Instrucciones de control de flujo 3) Instrucciones de salto 4) Instrucciones de retorno ",
+                "alternativas_arr":["Instrucciones de bifurcación","Instrucciones de control de flujo","Instrucciones de salto","Instrucciones de retorno"],
+                "respuesta_correcta": 3
+            },
+            {	"pregunta":"¿Qué es una bifurcación incondicional?",
+                "alternativas":"1) Un salto al final del programa 2) Un salto a la siguiente instrucción 3) Un salto a la instrucción anterior 4) Un salto a una dirección específica ",
+                "alternativas_arr":["Un salto al final del programa","Un salto a la siguiente instrucción","Un salto a la instrucción anterior","Un salto a una dirección específica"],
+                "respuesta_correcta": 4
+            },
+            {	"pregunta":"PREGUNTA:Pregunta ¿Qué es una bifurcación condicional?",
+                "alternativas":"1) Un salto que se produce si se cumple una condición 2) Un salto que se produce si no se cumple una condición 3) Un salto que se produce si el resultado de una operación es cero 4) Un salto que se produce si el resultado de una operación es no cero ",
+                "alternativas_arr":["Un salto que se produce si se cumple una condición","Un salto que se produce si no se cumple una condición","Un salto que se produce si el resultado de una operación es cero","Un salto que se produce si el resultado de una operación es no cero"],
+                "respuesta_correcta": 1
+            },
+            {	"pregunta":" ¿Qué instrucción se utiliza para saltar a una subrutina?",
+                "alternativas":"1) PROC 2) JUMP 3) CALL 4) ENDP ",
+                "alternativas_arr":["PROC","JUMP","CALL","ENDP"],
+                "respuesta_correcta": 3
+            },
+            {	"pregunta":" ¿Qué instrucción no hace nada?",
+                "alternativas":"1) HALT 2) NOP 3) INT 4) RET ",
+                "alternativas_arr":["HALT","NOP","INT","RET"],
+                "respuesta_correcta": 2
+            },
+            {	"pregunta":" ¿Qué instrucción detiene la ejecución de instrucciones?",
+                "alternativas":"1) RET 2) NOP 3) INT 4) HALT ",
+                "alternativas_arr":["RET","NOP","INT","HALT"],
+                "respuesta_correcta": 4
+            },
+            {	"pregunta":"PREGUNTA:Pregunta ¿Qué instrucción activa una interrupción software?",
+                "alternativas":"1) INT 2) NOP 3) HALT 4) RET ",
+                "alternativas_arr":["INT","NOP","HALT","RET"],
+                "respuesta_correcta": 1
+            }
+        ],
         [
             {	"pregunta":"¿Cuál es el tipo de direccionamiento que se utiliza para acceder a un dato que se encuentra en una posición relativa a la instrucción actual?",
                 "alternativas":"1) Direccionamiento directo 2) Direccionamiento relativo a registro 3) Direccionamiento relativo a pila 4) Direccionamiento indexado ",
