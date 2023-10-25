@@ -23,41 +23,67 @@
         }
     ],
     "preguntas2":[
-        [{	"pregunta":"¿Cómo se definen las instrucciones de máquina en un computador?",
-            "alternativas":"1) Son definidas por el usuario. 2) Son comandos en lenguaje binario que el procesador puede entender y ejecutar. 3) Son interpretaciones de alto nivel de las operaciones del procesador. 4) Son exclusivas de los lenguajes de programación de alto nivel. ",
-            "alternativas_arr":["Son definidas por el usuario.","Son comandos en lenguaje binario que el procesador puede entender y ejecutar. ","Son interpretaciones de alto nivel de las operaciones del procesador.","Son exclusivas de los lenguajes de programación de alto nivel."],
-            "respuesta_correcta": 2
-        },
-        {	"pregunta":"¿Qué significa el término repertorio de instrucciones en relación con un computador?",
-            "alternativas":"1) Se refiere al conjunto de programas de software en el computador. 2) Es el listado de comandos en lenguaje humano utilizados en la programación. 3) Es el conjunto completo de todas las instrucciones de máquina que una CPU puede ejecutar.  4) Indica las instrucciones para ensamblar el hardware del computador. ",
-            "alternativas_arr":["Se refiere al conjunto de programas de software en el computador.","Es el listado de comandos en lenguaje humano utilizados en la programación.","Es el conjunto completo de todas las instrucciones de máquina que una CPU puede ejecutar. ","Indica las instrucciones para ensamblar el hardware del computador."],
-            "respuesta_correcta": 3
-        },
-        {	"pregunta":"¿Cuáles son los dos requisitos clave que debe cumplir el conjunto de instrucciones de un computador?",
-            "alternativas":"1) Eficiencia y flexibilidad. 2) Completitud y eficacia.  3) Facilidad de uso y capacidad de expansión. 4) Velocidad y diversidad. ",
-            "alternativas_arr":["Eficiencia y flexibilidad.","Completitud y eficacia. ","Facilidad de uso y capacidad de expansión.","Velocidad y diversidad."],
-            "respuesta_correcta": 2
-        },
-        {	"pregunta":"¿Cuáles son las características generales que deben cumplir las instrucciones de máquina en un repertorio de instrucciones?",
-            "alternativas":"1) Realizan múltiples funciones complejas. 2) Emplean un número variable de operandos en cada instrucción. 3) Realizan una función única y sencilla, emplean un número fijo de operandos y tienen una codificación sistemática.  4) Son exclusivas de los lenguajes de programación de alto nivel. ",
-            "alternativas_arr":["Realizan múltiples funciones complejas.","Emplean un número variable de operandos en cada instrucción.","Realizan una función única y sencilla, emplean un número fijo de operandos y tienen una codificación sistemática. ","Son exclusivas de los lenguajes de programación de alto nivel."],
-            "respuesta_correcta": 3
-        },
-        {	"pregunta":"¿Cómo se simplifica la identificación de las instrucciones de máquina en un lenguaje de programación?",
-            "alternativas":"1) A través del uso de códigos nemónicos, que son nombres en lenguaje humano para las instrucciones.  2) Usando únicamente lenguaje binario en la programación. 3) No hay forma de simplificar la identificación de las instrucciones de máquina. 4) A través del uso de nombres de archivos en lugar de instrucciones. ",
-            "alternativas_arr":["A través del uso de códigos nemónicos, que son nombres en lenguaje humano para las instrucciones. ","Usando únicamente lenguaje binario en la programación.","No hay forma de simplificar la identificación de las instrucciones de máquina.","A través del uso de nombres de archivos en lugar de instrucciones."],
-            "respuesta_correcta": 1
-        }
+        [
+            {	"pregunta":"¿Cómo se definen las instrucciones de máquina en un computador?",
+                "alternativas":"1) Son definidas por el usuario. 2) Son comandos en lenguaje binario que el procesador puede entender y ejecutar. 3) Son interpretaciones de alto nivel de las operaciones del procesador. 4) Son exclusivas de los lenguajes de programación de alto nivel. ",
+                "alternativas_arr":["Son definidas por el usuario.","Son comandos en lenguaje binario que el procesador puede entender y ejecutar. ","Son interpretaciones de alto nivel de las operaciones del procesador.","Son exclusivas de los lenguajes de programación de alto nivel."],
+                "respuesta_correcta": 2
+            },
+            {	"pregunta":"¿Qué significa el término repertorio de instrucciones en relación con un computador?",
+                "alternativas":"1) Se refiere al conjunto de programas de software en el computador. 2) Es el listado de comandos en lenguaje humano utilizados en la programación. 3) Es el conjunto completo de todas las instrucciones de máquina que una CPU puede ejecutar.  4) Indica las instrucciones para ensamblar el hardware del computador. ",
+                "alternativas_arr":["Se refiere al conjunto de programas de software en el computador.","Es el listado de comandos en lenguaje humano utilizados en la programación.","Es el conjunto completo de todas las instrucciones de máquina que una CPU puede ejecutar. ","Indica las instrucciones para ensamblar el hardware del computador."],
+                "respuesta_correcta": 3
+            },
+            {	"pregunta":"¿Cuáles son los dos requisitos clave que debe cumplir el conjunto de instrucciones de un computador?",
+                "alternativas":"1) Eficiencia y flexibilidad. 2) Completitud y eficacia.  3) Facilidad de uso y capacidad de expansión. 4) Velocidad y diversidad. ",
+                "alternativas_arr":["Eficiencia y flexibilidad.","Completitud y eficacia. ","Facilidad de uso y capacidad de expansión.","Velocidad y diversidad."],
+                "respuesta_correcta": 2
+            },
+            {	"pregunta":"¿Cuáles son las características generales que deben cumplir las instrucciones de máquina en un repertorio de instrucciones?",
+                "alternativas":"1) Realizan múltiples funciones complejas. 2) Emplean un número variable de operandos en cada instrucción. 3) Realizan una función única y sencilla, emplean un número fijo de operandos y tienen una codificación sistemática.  4) Son exclusivas de los lenguajes de programación de alto nivel. ",
+                "alternativas_arr":["Realizan múltiples funciones complejas.","Emplean un número variable de operandos en cada instrucción.","Realizan una función única y sencilla, emplean un número fijo de operandos y tienen una codificación sistemática. ","Son exclusivas de los lenguajes de programación de alto nivel."],
+                "respuesta_correcta": 3
+            },
+            {	"pregunta":"¿Cómo se simplifica la identificación de las instrucciones de máquina en un lenguaje de programación?",
+                "alternativas":"1) A través del uso de códigos nemónicos, que son nombres en lenguaje humano para las instrucciones.  2) Usando únicamente lenguaje binario en la programación. 3) No hay forma de simplificar la identificación de las instrucciones de máquina. 4) A través del uso de nombres de archivos en lugar de instrucciones. ",
+                "alternativas_arr":["A través del uso de códigos nemónicos, que son nombres en lenguaje humano para las instrucciones. ","Usando únicamente lenguaje binario en la programación.","No hay forma de simplificar la identificación de las instrucciones de máquina.","A través del uso de nombres de archivos en lugar de instrucciones."],
+                "respuesta_correcta": 1
+            }
         ],
-        []
+        [
+            {
+                "pregunta":"¿Qué es el direccionamiento mediante registro?",
+                "alternativas":"1) Un modo de direccionamiento que utiliza memoria principal. 2) El proceso de lectura de una instrucción. 3) Un modo de direccionamiento donde los operandos se almacenan en registros internos de la CPU. 4) La forma en que se calculan las direcciones de memoria.",
+                "alternativas_arr":["Un modo de direccionamiento que utiliza memoria principal."," El proceso de lectura de una instrucción. ","Un modo de direccionamiento donde los operandos se almacenan en registros internos de la CPU. "," La forma en que se calculan las direcciones de memoria."],
+                "respuesta_correcta": 3
+            },
+            {                
+                "pregunta":"¿Cuál es una ventaja del direccionamiento mediante registro?",
+                "alternativas":"1) Requiere ciclos adicionales para acceder a los datos. 2) Es más lento que la lectura desde la memoria principal. 3) Elimina la necesidad de acceder a la memoria principal. 4) Utiliza un campo grande de direcciones en la instrucción.",
+                "alternativas_arr":["Requiere ciclos adicionales para acceder a los datos.","Es más lento que la lectura desde la memoria principal.","Elimina la necesidad de acceder a la memoria principal.", "Utiliza un campo grande de direcciones en la instrucción."],
+                "respuesta_correcta": 3
+            },
+            {                
+                "pregunta":"¿Por qué el direccionamiento relativo a registro puede introducir un pequeño retraso en la ejecución de una instrucción?",
+                "alternativas":"1) Porque requiere ciclos adicionales para acceder a la memoria principal. 2) Porque el desplazamiento debe calcularse antes de obtener la dirección del operando. 3) Porque utiliza un campo grande de direcciones en la instrucción. 4) Porque solo funciona con registros internos de la CPU.",
+                "alternativas_arr":["Porque requiere ciclos adicionales para acceder a la memoria principal.","Porque el desplazamiento debe calcularse antes de obtener la dirección del operando.","Porque utiliza un campo grande de direcciones en la instrucción.", "Porque solo funciona con registros internos de la CPU."],
+                "respuesta_correcta": 2
+            },
+            {                
+                "pregunta":"¿Cuál es una característica del direccionamiento relativo a registro?",
+                "alternativas":"1) Siempre utiliza desplazamientos positivos. 2) Utiliza un número de bits en el campo de dirección mucho mayor que el direccionamiento absoluto. 3) Siempre es más lento que el direccionamiento absoluto. 4) Permite acceder a un conjunto de posiciones de memoria a partir de una dirección de referencia.",
+                "alternativas_arr":["Siempre utiliza desplazamientos positivos.","Utiliza un número de bits en el campo de dirección mucho mayor que el direccionamiento absoluto.","Siempre es más lento que el direccionamiento absoluto.", "Permite acceder a un conjunto de posiciones de memoria a partir de una dirección de referencia."],
+                "respuesta_correcta": 4
+            }
+        ]
     ],
     "preguntas3":[
         [
         {   "pregunta":"¿Cuál de los siguientes es un modo de direccionamiento?",
-	"alternativas":"1) Registro 2) Inmediato 3) Directo 4) Indirecto 5) Todos los anteriores ",
-	"alternativas_arr":["Registro","Inmediato","Directo","Indirecto","Todos los anteriores"],
-	"respuesta_correcta": 5,
-    "explicacion": "Todos los anteriores. Los modos de direccionamiento registro, inmediato, directo e indirecto son los modos de direccionamiento más comunes."
+            "alternativas":"1) Registro 2) Inmediato 3) Directo 4) Indirecto 5) Todos los anteriores ",
+            "alternativas_arr":["Registro","Inmediato","Directo","Indirecto","Todos los anteriores"],
+            "respuesta_correcta": 5,
+            "explicacion": "Todos los anteriores. Los modos de direccionamiento registro, inmediato, directo e indirecto son los modos de direccionamiento más comunes."
         },
         {	"pregunta":"¿Cuál de los siguientes es una ventaja del direccionamiento inmediato?",
             "alternativas":"1) El rango de direcciones al cual se puede acceder es muy grande. 2) Es un modo de direccionamiento flexible. 3) No se requiere una referencia a memoria para obtener el operando. 4) Todas las anteriores ",
