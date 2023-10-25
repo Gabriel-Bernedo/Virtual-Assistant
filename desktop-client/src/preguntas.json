@@ -120,25 +120,25 @@
         ],
         [
             {	"pregunta":"PREGUNTA:1. ¿Qué factores se deben considerar al determinar el tamaño de las instrucciones en el diseño de un formato de instrucciones?",
-	"alternativas":"1) El tipo de CPU. 2) La velocidad del sistema. 3) El tamaño de la memoria disponible. 4) El sistema operativo utilizado. ",
-	"alternativas_arr":["El tipo de CPU.","La velocidad del sistema.","El tamaño de la memoria disponible.","El sistema operativo utilizado."],
-	"respuesta_correcta": 3
-},
-{	"pregunta":"PREGUNTA:2. ¿Cuál es el compromiso fundamental al diseñar el formato de las instrucciones de una CPU?",
-	"alternativas":"1) Maximizar la complejidad de la CPU. 2) Minimizar la riqueza de las instrucciones máquina. 3) Encontrar un equilibrio entre instrucciones poderosas y simplificación de decodificación. 4) Priorizar la velocidad de ejecución sin importar la complejidad. ",
-	"alternativas_arr":["Maximizar la complejidad de la CPU.","Minimizar la riqueza de las instrucciones máquina.","Encontrar un equilibrio entre instrucciones poderosas y simplificación de decodificación.","Priorizar la velocidad de ejecución sin importar la complejidad."],
-	"respuesta_correcta": 3
-},
-{	"pregunta":"PREGUNTA:3. ¿Cuáles son los dos campos básicos presentes en un formato de instrucciones?",
-	"alternativas":"1) Campo de dirección y campo de control. 2) Campo de operación y campo de dición. 3) Campo de modo y campo de registro. 4) Campo de salto y campo de comparación. ",
-	"alternativas_arr":["Campo de dirección y campo de control.","Campo de operación y campo de dición.","Campo de modo y campo de registro.","Campo de salto y campo de comparación."],
-	"respuesta_correcta": 2
-},
-{	"pregunta":"PREGUNTA:4. ¿Por qué se dividen las instrucciones en una serie de campos en el diseño del formato de instrucciones?",
-	"alternativas":"1) Para complicar la decodificación. 2) Para acelerar la ejecución. 3) Para aumentar la confusión en la CPU. 4) Para simplificar la decodificación y ejecución. ",
-	"alternativas_arr":["Para complicar la decodificación.","Para acelerar la ejecución.","Para aumentar la confusión en la CPU.","Para simplificar la decodificación y ejecución."],
-	"respuesta_correcta": 4
-}
+                "alternativas":"1) El tipo de CPU. 2) La velocidad del sistema. 3) El tamaño de la memoria disponible. 4) El sistema operativo utilizado. ",
+                "alternativas_arr":["El tipo de CPU.","La velocidad del sistema.","El tamaño de la memoria disponible.","El sistema operativo utilizado."],
+                "respuesta_correcta": 3
+            },
+            {	"pregunta":"PREGUNTA:2. ¿Cuál es el compromiso fundamental al diseñar el formato de las instrucciones de una CPU?",
+                "alternativas":"1) Maximizar la complejidad de la CPU. 2) Minimizar la riqueza de las instrucciones máquina. 3) Encontrar un equilibrio entre instrucciones poderosas y simplificación de decodificación. 4) Priorizar la velocidad de ejecución sin importar la complejidad. ",
+                "alternativas_arr":["Maximizar la complejidad de la CPU.","Minimizar la riqueza de las instrucciones máquina.","Encontrar un equilibrio entre instrucciones poderosas y simplificación de decodificación.","Priorizar la velocidad de ejecución sin importar la complejidad."],
+                "respuesta_correcta": 3
+            },
+            {	"pregunta":"PREGUNTA:3. ¿Cuáles son los dos campos básicos presentes en un formato de instrucciones?",
+                "alternativas":"1) Campo de dirección y campo de control. 2) Campo de operación y campo de dición. 3) Campo de modo y campo de registro. 4) Campo de salto y campo de comparación. ",
+                "alternativas_arr":["Campo de dirección y campo de control.","Campo de operación y campo de dición.","Campo de modo y campo de registro.","Campo de salto y campo de comparación."],
+                "respuesta_correcta": 2
+            },
+            {	"pregunta":"PREGUNTA:4. ¿Por qué se dividen las instrucciones en una serie de campos en el diseño del formato de instrucciones?",
+                "alternativas":"1) Para complicar la decodificación. 2) Para acelerar la ejecución. 3) Para aumentar la confusión en la CPU. 4) Para simplificar la decodificación y ejecución. ",
+                "alternativas_arr":["Para complicar la decodificación.","Para acelerar la ejecución.","Para aumentar la confusión en la CPU.","Para simplificar la decodificación y ejecución."],
+                "respuesta_correcta": 4
+            }
         ]
     ]
 }
