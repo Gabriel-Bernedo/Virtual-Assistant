@@ -20,7 +20,32 @@
             "alternativas":"1)El concepto introducido al inicio de este estudio es el de tecnología de vanguardia. 2)El concepto introducido al inicio de este estudio es el de instrucción máquina. 3) El concepto introducido al inicio de este estudio es el de métodos tradicionales de enseñanza. 4) El concepto introducido al inicio de este estudio es el de teoría de la relatividad.",
             "alternativas_arr":["El concepto introducido al inicio de este estudio es el de tecnología de vanguardia.", "El concepto introducido al inicio de este estudio es el de instrucción máquina.", "El concepto introducido al inicio de este estudio es el de métodos tradicionales de enseñanza.","El concepto introducido al inicio de este estudio es el de teoría de la relatividad."],
             "respuesta_correcta":2
-        }
+        },
+        {	"pregunta":"QUINTA PREGUNTA:¿Cómo se definen las instrucciones de máquina en un computador?",
+            "alternativas":"1) Son definidas por el usuario. 2) Son comandos en lenguaje binario que el procesador puede entender y ejecutar. 3) Son interpretaciones de alto nivel de las operaciones del procesador. 4) Son exclusivas de los lenguajes de programación de alto nivel. ",
+            "alternativas_arr":["Son definidas por el usuario.","Son comandos en lenguaje binario que el procesador puede entender y ejecutar. ","Son interpretaciones de alto nivel de las operaciones del procesador.","Son exclusivas de los lenguajes de programación de alto nivel."],
+            "respuesta_correcta": 2
+        },
+        {	"pregunta":"SEXTA PREGUNTA:¿Qué significa el término \"repertorio de instrucciones\" en relación con un computador?",
+		"alternativas":"1) Se refiere al conjunto de programas de software en el computador. 2) Es el listado de comandos en lenguaje humano utilizados en la programación. 3) Es el conjunto completo de todas las instrucciones de máquina que una CPU puede ejecutar.  4) Indica las instrucciones para ensamblar el hardware del computador. ",
+	"alternativas_arr":["Se refiere al conjunto de programas de software en el computador.","Es el listado de comandos en lenguaje humano utilizados en la programación.","Es el conjunto completo de todas las instrucciones de máquina que una CPU puede ejecutar. ","Indica las instrucciones para ensamblar el hardware del computador."],
+	"respuesta_correcta": 3
+},
+{	"pregunta":"SEPTIMA PREGUNTA:¿Cuáles son los dos requisitos clave que debe cumplir el conjunto de instrucciones de un computador?",
+	"alternativas":"1) Eficiencia y flexibilidad. 2) Completitud y eficacia.  3) Facilidad de uso y capacidad de expansión. 4) Velocidad y diversidad. ",
+	"alternativas_arr":["Eficiencia y flexibilidad.","Completitud y eficacia. ","Facilidad de uso y capacidad de expansión.","Velocidad y diversidad."],
+	"respuesta_correcta": 2
+},
+{	"pregunta":"OCTAVA PREGUNTA:¿Cuáles son las características generales que deben cumplir las instrucciones de máquina en un repertorio de instrucciones?",
+	"alternativas":"1) Realizan múltiples funciones complejas. 2) Emplean un número variable de operandos en cada instrucción. 3) Realizan una función única y sencilla, emplean un número fijo de operandos y tienen una codificación sistemática.  4) Son exclusivas de los lenguajes de programación de alto nivel. ",
+	"alternativas_arr":["Realizan múltiples funciones complejas.","Emplean un número variable de operandos en cada instrucción.","Realizan una función única y sencilla, emplean un número fijo de operandos y tienen una codificación sistemática. ","Son exclusivas de los lenguajes de programación de alto nivel."],
+	"respuesta_correcta": 3
+},
+{	"pregunta":"NOVENA PREGUNTA:¿Cómo se simplifica la identificación de las instrucciones de máquina en un lenguaje de programación?",
+	"alternativas":"1) A través del uso de códigos nemónicos, que son nombres en lenguaje humano para las instrucciones.  2) Usando únicamente lenguaje binario en la programación. 3) No hay forma de simplificar la identificación de las instrucciones de máquina. 4) A través del uso de nombres de archivos en lugar de instrucciones. ",
+	"alternativas_arr":["A través del uso de códigos nemónicos, que son nombres en lenguaje humano para las instrucciones. ","Usando únicamente lenguaje binario en la programación.","No hay forma de simplificar la identificación de las instrucciones de máquina.","A través del uso de nombres de archivos en lugar de instrucciones."],
+	"respuesta_correcta": 1
+}
     ]
 }
 
