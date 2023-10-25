@@ -13,7 +13,7 @@ def texto_a_audio(comando, doPrint = True):
     palabra.runAndWait()
 
 #CAPTURA AUDIO DESDE EL MICROFONO Y ANALIZA POSIBLES ERRORES
-def capturar_voz(reconocer=recognizer, microfono=microphone, tiempo_ruido = 1.0):
+def capturar_voz(reconocer=recognizer, microfono=microphone, tiempo_ruido = 3.0):
     if not isinstance(reconocer, sr.Recognizer):
         raise TypeError("'reconocer' no es de la instacia 'Recognizer'")
 
@@ -22,8 +22,8 @@ def capturar_voz(reconocer=recognizer, microfono=microphone, tiempo_ruido = 1.0)
     
     with microfono as fuente:
         reconocer.adjust_for_ambient_noise(fuente, duration = tiempo_ruido)
+        print("iniciando reconcimiento")
         audio = reconocer.listen(fuente)
-
     respuesta = {
         "suceso": True,
         "error": None,
@@ -36,6 +36,7 @@ def capturar_voz(reconocer=recognizer, microfono=microphone, tiempo_ruido = 1.0)
         respuesta["error"] = "API no disponible"
     except sr.UnknownValueError:
         respuesta["error"] = "Habla inteligible"
+    print("termino reconocimiento")
     return respuesta
 
 #CONVIERTE A UNA CADENA DE TEXTO EN MINUSCULA EL AUDIO ENVIADO POR MICROFONO
@@ -48,6 +49,5 @@ def enviar_voz():
             print("Algo no está bien. No puedo reconocer tu micrófono o no lo tienes enchufado. <", palabra["error"],">")
             texto_a_audio("Algo no está bien. No puedo reconocer tu micrófono o no lo tienes enchufado.")
             exit(1)
-        print("No pude escucharte, ¿podrias repetirlo?\n")
         texto_a_audio("No pude escucharte, ¿podrias repetirlo?")
     return palabra["mensaje"].lower()

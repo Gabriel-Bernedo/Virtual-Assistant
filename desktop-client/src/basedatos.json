@@ -29,7 +29,7 @@
                                         "Los buses de control agrupan todas las señales de control que gobiernan el acceso al bus de datos y direcciones. Agrupa señales de lectura, escritura, arbitraje, entre otros.",
                                         "Los buses de alimentacion son los cables o conexiones que suministran energia electrica a los componentes internos del equipo, como la placa madre, la CPU, las tarjetas de expansion y los dispositivos de almacenamiento."],
     "perifericos": ["Los perifericos son todos aquellos dispositivos que sin ser imprescindibles en la estructura de un computador, son necesarios para suministrar datos a la maquina o visualizar los resultados.",
-                    "Los periféricos de entrada de datos son interruptores, teclados, ratones, pantallas graficas interactivas y digitalizadores de imagenes (escaners)."],
+                    "Los periféricos de entrada de datos son interruptores, teclados, ratones, pantallas graficas interactivas y digitalizadores de imagenes (escaners)."]
     
 }
 

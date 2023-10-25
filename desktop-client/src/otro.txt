@@ -1,4 +1,7 @@
 QUINTA HASTA 10MA -> GERALDINE
+1ra parte taylor
+2da -> geraldine - gabo
+3ra -> lucho- daniel-jorge-carlo
 
 
         "PE PREGUNTA 01": ["PRIMERA PREGUNTA: ¿Cual es el objetivo principal del pensamiento computacional?",
