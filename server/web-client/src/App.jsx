@@ -4,6 +4,7 @@ import {Routes, Route, BrowserRouter, Navigate} from 'react-router-dom'
 import Navigation from './components/Navigation'
 import Index from './pages/Index'
 import Assistant from './pages/Assistant'
+import Questionary from './pages/Questionary'
 
 export default function App() {
   const [count, setCount] = useState(0)
@@ -20,6 +21,10 @@ export default function App() {
 
           <Route path="/demo/" element={
             <Assistant />
+          } />
+
+          <Route path="/questions/" element={
+            <Questionary />
           } />
 
           <Route path="/" element={
