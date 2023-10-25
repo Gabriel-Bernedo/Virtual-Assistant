@@ -10,4 +10,3 @@ Externalizar funciones
 Formatear codigo
 Buscar imagenes en relacion a los temas
 Implementar pygame para los juegos
-# Puto el q lo lea
