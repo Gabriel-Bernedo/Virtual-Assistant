@@ -26,6 +26,9 @@ export default function Navigation() {
                     <li>
                         <Link to="/questions/" className="nav-link active"> Cuestionario </Link>
                     </li>
+                    <li>
+                        <Link to="http://localhost:8000/admin/" className="nav-link"> ADMIN </Link>
+                    </li>
                 </ul>
             </div>
         </nav>

@@ -19,6 +19,10 @@ export default function CreateQuestion({newQuestion}) {
         setFormMode(!formMode)
     }
 
+    function ParseData(){
+        
+    }
+
     function SubmitQuestion(){
         let requestData
         if(formMode){
@@ -57,6 +61,7 @@ export default function CreateQuestion({newQuestion}) {
                 explanation.current.value = ""
                 type.current.value = ""
                 subject.current.value = ""
+                parser.current.value = ""
             }
         })
     }
