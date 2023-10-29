@@ -24,6 +24,7 @@ def capturar_voz(reconocer=recognizer, microfono=microphone, tiempo_ruido = 3.0)
         reconocer.adjust_for_ambient_noise(fuente, duration = tiempo_ruido)
         print("iniciando reconcimiento")
         audio = reconocer.listen(fuente)
+        print("termino reconocimiento")
     respuesta = {
         "suceso": True,
         "error": None,
@@ -36,7 +37,6 @@ def capturar_voz(reconocer=recognizer, microfono=microphone, tiempo_ruido = 3.0)
         respuesta["error"] = "API no disponible"
     except sr.UnknownValueError:
         respuesta["error"] = "Habla inteligible"
-    print("termino reconocimiento")
     return respuesta
 
 #CONVIERTE A UNA CADENA DE TEXTO EN MINUSCULA EL AUDIO ENVIADO POR MICROFONO

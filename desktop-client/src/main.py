@@ -13,11 +13,32 @@ from utils_audio import enviar_voz, texto_a_audio
 
 #BASE DE DATOS DONDE SE ENCUENTRA TODA LA INFORMACION CONCERNIENTE
 #Migrado a datos.py para mejor manejo y posible mejora futura
+dict = {"puntaje":0}
+def escribir_respuesta(pregunta, alternativas, respuesta_correcta):
+    print("------------------------------------------------------------------------------------")
+    print(pregunta)
+    for i, alternativa in enumerate(alternativas, start = 1):
+        print(f"{i}. {alternativa}")
+    texto_a_audio("Escoge el número de la alternativa que crees correcta: ")
+    respuesta_usuario = enviar_voz()
+    print("Tu respuesta " + respuesta)
 
+    if respuesta_usuario.isdigit():
+        opcion_elegida = int(respuesta_usuario)
+        if 1 <= opcion_elegida <= len(alternativas):
+            if alternativas[opcion_elegida - 1] == alternativas[respuesta_correcta-1]:
+                dict['puntaje'] +=1
+                texto_a_audio("Respuesta correcta.")
+            else:
+                texto_a_audio("Respuesta incorrecta.")
+        else:
+            print("Opción inválida.")
+    else:
+        print("Entrada inválida. Por favor, ingresa el número de la alternativa.")
+    texto_a_audio("TU PUNTAJE ES DE "+str(dict['puntaje'])+" PUNTOS")
 #INICIO
 if __name__ == "__main__":
     salir = False
-
     #USANDO LA FUNCION TEXTO_A_AUDIO SE HACE LEER CADENAS DE TEXTO, COMO SI LA COMPUTADORA TE ESTUVIERA HABLANDO
     '''texto_a_audio(datos['bienvenida'])
     print("Di tu nombre: ")
@@ -28,6 +49,8 @@ if __name__ == "__main__":
     texto_a_audio("\n 1) Aprendizaje\n 2) Pruebas\n 3) Juegos\n")
     texto_a_audio("La opción Aprendizaje es donde podrás aprender todo con respecto a la Estructura de un computador. La opción Pruebas es donde podrás poner en práctica lo que aprendiste mediante exámenes. Y por último, la tercer opción, es Juegos, donde tambien podrás demostrar lo que aprendiste jugando.")
     '''
+    texto_a_audio("TU PUNTAJE ES DE "+str(dict['puntaje'])+" PUNTOS")
+    print("PRUEBAS")
     texto_a_audio("¿Qué opción eliges? ")
     #texto_a_audio("¿Aprendizaje? ¿Pruebas? ¿Juegos?", False)
     
@@ -97,50 +120,61 @@ if __name__ == "__main__":
             break
         elif respuesta == "pruebas":
             texto_a_audio("Elegiste la opción PRUEBAS.")
-            texto_a_audio("Deseas dar una prueba sobre\n 1) Introduccion\n 2) Repertorio de instrucciones\n 3) Modos de direccionamiento\n 4) Salir")
-            while(not salir):
-                texto_a_audio("¿Por cual deseas empezar?")
-                #COMPRUEBA QUE EL MENSAJE ENVIADO SEA VALIDO
-                while (1):
-                    respuesta = enviar_voz()
-                    print("rpta "+respuesta)
-                    if respuesta == "introducción":
-                        print("Tu respuesta " + respuesta)
-                        texto_a_audio("Escogiste introduccion")
-                        texto_a_audio("Empezemos con la prueba:")
-                        dict = {"puntaje":0}
-                        def escribir_respuesta(pregunta, alternativas, respuesta_correcta):
-                            print("------------------------------------------------------------------------------------")
-                            print(pregunta)
-                            for i, alternativa in enumerate(alternativas, start = 1):
-                                print(f"{i}. {alternativa}")
-                            texto_a_audio("Escribe el número de la alternativa que crees correcta: ")
-                            respuesta_usuario = enviar_voz()
-                            print("Tu respuesta " + respuesta)
-
-                            if respuesta_usuario.isdigit():
-                                opcion_elegida = int(respuesta_usuario)
-                                if 1 <= opcion_elegida <= len(alternativas):
-                                    if alternativas[opcion_elegida - 1] == alternativas[respuesta_correcta-1]:
-                                        dict['puntaje'] +=1
-                                        texto_a_audio("Respuesta correcta.")
-                                    else:
-                                        texto_a_audio("Respuesta incorrecta.")
-                                else:
-                                    print("Opción inválida.")
-                            else:
-                                print("Entrada inválida. Por favor, ingresa el número de la alternativa.")
-                            texto_a_audio("TU PUNTAJE ES DE ",dict['puntaje']," PUNTOS")
-                        for pregunta in preguntas['preguntas1']:
-                            texto_a_audio([pregunta['pregunta'],pregunta['alternativas']])
-                            escribir_respuesta(pregunta['pregunta'], pregunta['alternativas_arr'], pregunta['respuesta_correcta'])       
-                    elif respuesta == "repertorio de instrucciones":
-                        texto_a_audio("escogiste Repertorio de instrucciones")
-                    elif respuesta == "modos de direccionamiento":
-                        texto_a_audio("escogiste modos de direccionamiento")
-                    elif respuesta == "salir":
-                        break
-                    else:
+            texto_a_audio("¿Por cual deseas empezar?")
+            #COMPRUEBA QUE EL MENSAJE ENVIADO SEA VALIDO
+            while (1):
+                texto_a_audio("Deseas dar una prueba sobre\n 1) Introduccion\n 2) Repertorio de instrucciones\n 3) Modos de direccionamiento\n 4) Salir")
+                respuesta = enviar_voz()
+                print("rpta "+respuesta)
+                if respuesta == "introducción":
+                    texto_a_audio("Escogiste introduccion")
+                    texto_a_audio("Empezemos con la prueba:")
+                    for pregunta in preguntas['preguntas1']:
+                        texto_a_audio([pregunta['pregunta'],pregunta['alternativas']])
+                        escribir_respuesta(pregunta['pregunta'], pregunta['alternativas_arr'], pregunta['respuesta_correcta'])       
+                elif respuesta == "repertorio de instrucciones":
+                    texto_a_audio("Escogiste Repertorio de instrucciones")
+                    while(1):
+                        texto_a_audio("Deseas la seccion\n 1) General\n 2) Instrucciones\n 3) Salir")
+                        respuesta = enviar_voz()
+                        if(respuesta == "general"):
+                            for pregunta in preguntas['preguntas2'][0]:
+                                texto_a_audio([pregunta['pregunta'],pregunta['alternativas']])
+                                escribir_respuesta(pregunta['pregunta'], pregunta['alternativas_arr'], pregunta['respuesta_correcta'])
+                        elif(respuesta == "instrucciones"):
+                            for pregunta in preguntas['preguntas2'][1]:
+                                texto_a_audio([pregunta['pregunta'],pregunta['alternativas']])
+                                escribir_respuesta(pregunta['pregunta'], pregunta['alternativas_arr'], pregunta['respuesta_correcta'])
+                        elif(respuesta == "salir"):
+                            break
+                        else: texto_a_audio("repite la opcion por favor")
+                elif respuesta == "modos de direccionamiento":
+                    while(1):
+                        texto_a_audio("Escogiste Repertorio de instrucciones")
+                        texto_a_audio("Deseas la seccion\n 1) General\n 2) Primera seccion\n 3) Segunda seccion\n 4) Tercera seccione\n 5)Salir")
+                        respuesta = enviar_voz()
+                        if(respuesta == "general"):
+                            for pregunta in preguntas['preguntas2'][0]:
+                                texto_a_audio([pregunta['pregunta'],pregunta['alternativas']])
+                                escribir_respuesta(pregunta['pregunta'], pregunta['alternativas_arr'], pregunta['respuesta_correcta'])
+                        elif(respuesta == "primera seccion"):
+                            for pregunta in preguntas['preguntas2'][1]:
+                                texto_a_audio([pregunta['pregunta'],pregunta['alternativas']])
+                                escribir_respuesta(pregunta['pregunta'], pregunta['alternativas_arr'], pregunta['respuesta_correcta'])
+                        elif(respuesta == "segunda sección"):
+                            for pregunta in preguntas['preguntas2'][2]:
+                                texto_a_audio([pregunta['pregunta'],pregunta['alternativas']])
+                                escribir_respuesta(pregunta['pregunta'], pregunta['alternativas_arr'], pregunta['respuesta_correcta'])
+                        elif(respuesta == "tercera sección"):
+                            for pregunta in preguntas['preguntas2'][3]:
+                                texto_a_audio([pregunta['pregunta'],pregunta['alternativas']])
+                                escribir_respuesta(pregunta['pregunta'], pregunta['alternativas_arr'], pregunta['respuesta_correcta'])
+                        elif(respuesta == "salir"):
+                            break
+                        else: texto_a_audio("repite la opcion por favor")       
+                elif respuesta == "salir":
+                    break
+                else:
                         texto_a_audio("repite la opcion por favor")
         elif respuesta == "juegos":
             texto_a_audio("Elegiste la opción JUEGOS.")
