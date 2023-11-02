@@ -19,7 +19,55 @@
             "Una característica del direccionamiento relativo a registro es que permite acceder a un conjunto de posiciones de memoria a partir de una dirección de referencia."]
         ],
         "seccion3":[
-            
+            [
+                "Un modo de direccionamiento incluye Registro, Inmediato, Directo e Indirecto, lo que significa que la respuesta correcta es 'Todos los anteriores'.",
+                "Una ventaja del direccionamiento inmediato es que no se requiere una referencia a memoria para obtener el operando.",
+                "Una desventaja del direccionamiento inmediato es que requiere una referencia a memoria para obtener el operando.",
+                "En el direccionamiento directo, la dirección del operando se encuentra en la instrucción.",
+                "El direccionamiento inmediato es el modo de direccionamiento más rápido, lo cual es verdadero.",
+                "El direccionamiento inmediato no requiere una referencia a memoria para obtener el operando, lo cual es falso, ya que se refiere al direccionamiento directo."
+            ],
+            [
+                "En las instrucciones de transferencia de datos, los dos tipos de operandos son 'Origen y destino'.",
+                "La longitud del dato a transferir se refiere a la cantidad de bits que ocupa el dato.",
+                "La instrucción utilizada para copiar un dato de una posición de memoria a un registro es 'MOVE'.",
+                "Las cuatro operaciones aritméticas básicas son suma, resta, multiplicación y división.",
+                "Las operaciones lógicas bit a bit más comunes incluyen 'AND, OR, XOR y NOT'.",
+                "La instrucción utilizada para sumar dos números enteros es 'ADD'.",
+                "Las instrucciones que modifican la secuencia normal de ejecución de un programa son 'Instrucciones de salto'.",
+                "Una bifurcación incondicional es un salto a una dirección específica en el programa.",
+                "Una bifurcación condicional es un salto que se produce si se cumple una condición.",
+                "La instrucción utilizada para saltar a una subrutina es 'CALL'.",
+                "La instrucción que no hace nada se llama 'NOP'.",
+                "La instrucción que detiene la ejecución de instrucciones se llama 'HALT'.",
+                "La instrucción que activa una interrupción software es 'INT'."
+            ],
+            [
+                "En las instrucciones de transferencia de datos, los dos tipos de operandos son 'Origen y destino'.",
+                "La longitud del dato a transferir se refiere a la cantidad de bits que ocupa el dato.",
+                "La instrucción utilizada para copiar un dato de una posición de memoria a un registro es 'MOVE'.",
+                "Las cuatro operaciones aritméticas básicas son suma, resta, multiplicación y división.",
+                "Las operaciones lógicas bit a bit más comunes incluyen 'AND, OR, XOR y NOT'.",
+                "La instrucción utilizada para sumar dos números enteros es 'ADD'.",
+                "Las instrucciones que modifican la secuencia normal de ejecución de un programa son 'Instrucciones de salto'.",
+                "Una bifurcación incondicional es un salto a una dirección específica en el programa.",
+                "Una bifurcación condicional es un salto que se produce si se cumple una condición.",
+                "La instrucción utilizada para saltar a una subrutina es 'CALL'.",
+                "La instrucción que no hace nada se llama 'NOP'.",
+                "La instrucción que detiene la ejecución de instrucciones se llama 'HALT'.",
+                "La instrucción que activa una interrupción software es 'INT'.",
+                "El tipo de direccionamiento utilizado para acceder a un dato que se encuentra en una posición relativa a la instrucción actual es 'Direccionamiento relativo a registro'.",
+                "El tipo de direccionamiento utilizado para acceder a un dato que se encuentra en una posición relativa al registro base es 'Direccionamiento relativo a registro base'.",
+                "El tipo de direccionamiento utilizado para acceder a un dato que se encuentra en la pila es 'Direccionamiento relativo a pila'.",
+                "El tipo de direccionamiento utilizado para acceder a un dato que se encuentra en una posición relativa a un registro índice es 'Direccionamiento indexado'.",
+                "El tipo de direccionamiento utilizado para acceder a un dato que se encuentra en una posición especificada por un valor almacenado en memoria es 'Direccionamiento indirecto'."
+            ],
+            [
+                "Al determinar el tamaño de las instrucciones en el diseño de un formato de instrucciones, es importante considerar 'El tamaño de la memoria disponible'.",
+                "El compromiso fundamental al diseñar el formato de las instrucciones de una CPU es 'Encontrar un equilibrio entre instrucciones poderosas y simplificación de decodificación'.",
+                "Los dos campos básicos presentes en un formato de instrucciones son 'Campo de operación y campo de dirección'.",
+                "Las instrucciones se dividen en una serie de campos en el diseño del formato de instrucciones 'Para simplificar la decodificación y ejecución'."
+            ]
         ]
     },
     "unidad central de proceso": ["La unidad central de proceso controla el funcionamiento de todos los elementos del computador. Controla el flujo de datos, los procesa, y gobierna el secuenciamiento y las acciones en todo el sistema.",
