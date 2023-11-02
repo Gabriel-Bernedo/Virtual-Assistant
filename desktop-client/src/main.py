@@ -36,7 +36,18 @@ def escribir_respuesta(pregunta, alternativas, respuesta_correcta):
         print("Entrada inválida. Por favor, ingresa el número de la alternativa.")
     texto_a_audio("TU PUNTAJE ES DE "+str(dict['puntaje'])+" PUNTOS")
 #INICIO
-if __name__ == "__main__":
+def cargarimg(img):
+    root = tk.Tk()
+    image_path = "img/" + img  # Ruta de la imagen que deseas abrir
+    def close_window():
+        root.destroy()
+    image_window = ImageWindow(root, image_path)
+    image_window.update()  # Iniciar la función de actualización
+    # Programar el cierre de la ventana después de 5 segundos
+    root.after(5000, close_window)
+    root.mainloop()
+cargarimg("pensamiento-computacional.png")
+if __name__ == "daasddad":
     salir = False
     #USANDO LA FUNCION TEXTO_A_AUDIO SE HACE LEER CADENAS DE TEXTO, COMO SI LA COMPUTADORA TE ESTUVIERA HABLANDO
     '''texto_a_audio(datos['bienvenida'])
@@ -47,28 +58,25 @@ if __name__ == "__main__":
     texto_a_audio("{} Ahora voy a explicarte sobre las opciones que tiene este programa. Tienes 3 opciones para escoger.".format(nombre))
     texto_a_audio("\n 1) Aprendizaje\n 2) Pruebas\n 3) Juegos\n")
     texto_a_audio("La opción Aprendizaje es donde podrás aprender todo con respecto a la Estructura de un computador. La opción Pruebas es donde podrás poner en práctica lo que aprendiste mediante exámenes. Y por último, la tercer opción, es Juegos, donde tambien podrás demostrar lo que aprendiste jugando.")'''
-    print("PRUEBAS")
+    print("APRENDIZAJE")
     texto_a_audio("¿Qué opción eliges? ")
-    #texto_a_audio("¿Aprendizaje? ¿Pruebas? ¿Juegos?", False)
-    
-    #SE USA LA FUNCION SLEEP DE LA LIBRERIA TIME PARA PAUSAR UN TIEMPO LA EJECUCION DEL PROGRAMA
-    #PARA QUE LA INTERACCION SEA MAS NATURAL    
-    #PREGUNTA AL USUARIO QUE OPCION ELIGE
     while (1): 
         respuesta = enviar_voz()
         print("Tu respuesta " + respuesta)
-
         if respuesta == "aprendizaje": 
             texto_a_audio("Elegiste la opcion APRENDIZAJE.")
-            texto_a_audio("Que seccion deseas empezar a aprender\n 1) Introduccion\n 2) Repertorio de instrucciones\n 3) Modos de direccionamiento\n 4) Salir")
-            if respuesta == "introducción":
-                texto_a_audio("Escogiste introduccion")
-                for pregunta in datos['aprendizaje']['seccion1']:
-                    texto_a_audio(pregunta)
-            elif respuesta == "salir":
-                break
-            else:
-                texto_a_audio("repite la opcion por favor")    
+            while(True):
+                texto_a_audio("Que seccion deseas empezar a aprender\n 1) Introduccion\n 2) Repertorio de instrucciones\n 3) Modos de direccionamiento\n 4) Salir")
+                respuesta = enviar_voz()
+                if respuesta == "introducción":
+                    texto_a_audio("Escogiste introduccion")
+                    cargarimg("pensamiento-computacional.png")
+                    for pregunta in datos['aprendizaje']['seccion1']:
+                        texto_a_audio(pregunta)
+                elif respuesta == "salir":
+                    break
+                else:
+                    texto_a_audio("repite la opcion por favor")    
             '''elif respuesta == "repertorio de instrucciones":
                     texto_a_audio("Escogiste Repertorio de instrucciones")
                     while(1):
