@@ -1,6 +1,5 @@
 {
     "bienvenida": ["Hola. Soy tu Asistente Virtual. Fui creada para instruirte todo respecto a la Estructura de un computador. Antes de empezar ¿Podrias decirme tu nombre?"],
-    
     "aprendizaje": {
         "seccion1":[
         "El objetivo principal del pensamiento computacional es resolver problemas utilizando algoritmos y abstracción.",
@@ -23,8 +22,6 @@
             
         ]
     },
-    
-    
     "unidad central de proceso": ["La unidad central de proceso controla el funcionamiento de todos los elementos del computador. Controla el flujo de datos, los procesa, y gobierna el secuenciamiento y las acciones en todo el sistema.",
                                   "Una CPU básica consta principalmente de las siguientes unidades","Unidad de Control UC. Unidad Aritmetico Logica ALU. Registros internos",
                                   "La UNIDAD DE CONTROL UC, se encarga de leer de la memoria las instrucciones que se debe ejecutar y de secuenciar el acceso a los datos y las operaciones a realizar por la unidad de proceso. Se encarga de acceder a memoria habilitando un camino de datos para que las instrucciones y los datos lleguen a la CPU.",
@@ -47,5 +44,3 @@
                     "Los periféricos de entrada de datos son interruptores, teclados, ratones, pantallas graficas interactivas y digitalizadores de imagenes (escaners)."]
     
 }
-
-
