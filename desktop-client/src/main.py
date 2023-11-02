@@ -1,4 +1,3 @@
-
 import time
 import sys
 import tkinter as tk
@@ -40,7 +39,7 @@ def escribir_respuesta(pregunta, alternativas, respuesta_correcta):
 if __name__ == "__main__":
     salir = False
     #USANDO LA FUNCION TEXTO_A_AUDIO SE HACE LEER CADENAS DE TEXTO, COMO SI LA COMPUTADORA TE ESTUVIERA HABLANDO
-    '''texto_a_audio(datos['bienvenida'])
+    texto_a_audio(datos['bienvenida'])
     print("Di tu nombre: ")
     #LA FUNCION 'enviar_voz' RETORNA UNA CADENA DE TEXTO DEL AUDIO ENVIADO POR VOZ DEL USUARIO
     nombre = enviar_voz()
@@ -48,7 +47,6 @@ if __name__ == "__main__":
     texto_a_audio("{} Ahora voy a explicarte sobre las opciones que tiene este programa. Tienes 3 opciones para escoger.".format(nombre))
     texto_a_audio("\n 1) Aprendizaje\n 2) Pruebas\n 3) Juegos\n")
     texto_a_audio("La opción Aprendizaje es donde podrás aprender todo con respecto a la Estructura de un computador. La opción Pruebas es donde podrás poner en práctica lo que aprendiste mediante exámenes. Y por último, la tercer opción, es Juegos, donde tambien podrás demostrar lo que aprendiste jugando.")
-    '''
     texto_a_audio("TU PUNTAJE ES DE "+str(dict['puntaje'])+" PUNTOS")
     print("PRUEBAS")
     texto_a_audio("¿Qué opción eliges? ")
