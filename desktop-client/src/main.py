@@ -49,17 +49,17 @@ def cargarimg(img):
 if __name__ == "__main__":
     salir = False
     #USANDO LA FUNCION TEXTO_A_AUDIO SE HACE LEER CADENAS DE TEXTO, COMO SI LA COMPUTADORA TE ESTUVIERA HABLANDO
-    '''texto_a_audio(datos['bienvenida'])
+    texto_a_audio(datos['bienvenida'])
     print("Di tu nombre: ")
     #LA FUNCION 'enviar_voz' RETORNA UNA CADENA DE TEXTO DEL AUDIO ENVIADO POR VOZ DEL USUARIO
     nombre = enviar_voz()
     texto_a_audio("Hola {}. Mucho gusto.".format(nombre))
     texto_a_audio("{} Ahora voy a explicarte sobre las opciones que tiene este programa. Tienes 3 opciones para escoger.".format(nombre))
     texto_a_audio("\n 1) Aprendizaje\n 2) Pruebas\n 3) Juegos\n")
-    texto_a_audio("La opción Aprendizaje es donde podrás aprender todo con respecto a la Estructura de un computador. La opción Pruebas es donde podrás poner en práctica lo que aprendiste mediante exámenes. Y por último, la tercer opción, es Juegos, donde tambien podrás demostrar lo que aprendiste jugando.")'''
+    texto_a_audio("La opción Aprendizaje es donde podrás aprender todo con respecto a la Estructura de un computador. La opción Pruebas es donde podrás poner en práctica lo que aprendiste mediante exámenes. Y por último, la tercer opción, es Juegos, donde tambien podrás demostrar lo que aprendiste jugando.")
     print("APRENDIZAJE")
     texto_a_audio("¿Qué opción eliges? ")
-    while (1): 
+    while (True): 
         respuesta = enviar_voz()
         print("Tu respuesta " + respuesta)
         if respuesta == "aprendizaje": 
@@ -76,99 +76,6 @@ if __name__ == "__main__":
                     break
                 else:
                     texto_a_audio("repite la opcion por favor")    
-            '''elif respuesta == "repertorio de instrucciones":
-                    texto_a_audio("Escogiste Repertorio de instrucciones")
-                    while(1):
-                        texto_a_audio("Deseas la seccion\n 1) General\n 2) Instrucciones\n 3) Salir")
-                        respuesta = enviar_voz()
-                        if(respuesta == "general"):
-                            for pregunta in preguntas['preguntas2'][0]:
-                                texto_a_audio([pregunta['pregunta'],pregunta['alternativas']])
-                                escribir_respuesta(pregunta['pregunta'], pregunta['alternativas_arr'], pregunta['respuesta_correcta'])
-                        elif(respuesta == "instrucciones"):
-                            for pregunta in preguntas['preguntas2'][1]:
-                                texto_a_audio([pregunta['pregunta'],pregunta['alternativas']])
-                                escribir_respuesta(pregunta['pregunta'], pregunta['alternativas_arr'], pregunta['respuesta_correcta'])
-                        elif(respuesta == "salir"):
-                            break
-                        else: texto_a_audio("repite la opcion por favor")
-            elif respuesta == "modos de direccionamiento":
-                    while(1):
-                        texto_a_audio("Escogiste Repertorio de instrucciones")
-                        texto_a_audio("Deseas la seccion\n 1) General\n 2) Primera seccion\n 3) Segunda seccion\n 4) Tercera seccione\n 5)Salir")
-                        respuesta = enviar_voz()
-                        if(respuesta == "general"):
-                            for pregunta in preguntas['preguntas2'][0]:
-                                texto_a_audio([pregunta['pregunta'],pregunta['alternativas']])
-                                escribir_respuesta(pregunta['pregunta'], pregunta['alternativas_arr'], pregunta['respuesta_correcta'])
-                        elif(respuesta == "primera seccion"):
-                            for pregunta in preguntas['preguntas2'][1]:
-                                texto_a_audio([pregunta['pregunta'],pregunta['alternativas']])
-                                escribir_respuesta(pregunta['pregunta'], pregunta['alternativas_arr'], pregunta['respuesta_correcta'])
-                        elif(respuesta == "segunda sección"):
-                            for pregunta in preguntas['preguntas2'][2]:
-                                texto_a_audio([pregunta['pregunta'],pregunta['alternativas']])
-                                escribir_respuesta(pregunta['pregunta'], pregunta['alternativas_arr'], pregunta['respuesta_correcta'])
-                        elif(respuesta == "tercera sección"):
-                            for pregunta in preguntas['preguntas2'][3]:
-                                texto_a_audio([pregunta['pregunta'],pregunta['alternativas']])
-                                escribir_respuesta(pregunta['pregunta'], pregunta['alternativas_arr'], pregunta['respuesta_correcta'])
-                        elif(respuesta == "salir"):
-                            break
-                        else: texto_a_audio("repite la opcion por favor")'''      
-            
-            '''texto_a_audio("Antes de empezar quisiera hacer una introduccion a la estructura de computadores.")
-            time.sleep(0.5)
-            
-            def main():
-                root = tk.Tk()
-                image_path = "img/computador.jpg"  # Ruta de la imagen que deseas abrir
-                
-                image_window = ImageWindow(root, image_path)
-                image_window.update()  # Iniciar la función de actualización
-
-                root.mainloop()
-
-            if __name__ == "__main__":
-                main()
-
-            texto_a_audio(datos['aprendizaje'])
-            
-            try:
-                img = Image.open("img/arquitectura.png")
-            except:
-                print("No se pudo cargar la imagen.")
-                sys.exit(1)
-            
-            size = (600,400)
-            img2 = img.resize(size)
-            img2.show()
-
-            texto_a_audio("Como se puede apreciar en la imagen, la estructura de un computador está dado por:")
-            texto_a_audio("\n1) Unidad central de proceso CPU\n 2) Memoria\n 3) Entrada / Salida\n 4) Sistemas de interconexion: Buses\n 5) Periféricos\n")
-
-            #PREGUNTA AL USUARIO CON QUÉ PARTE DESEA EMPEZAR
-            while(not salir):
-                texto_a_audio("¿Por cual deseas empezar?")
-                time.sleep(0.5)
-
-                #COMPRUEBA QUE EL MENSAJE ENVIADO SEA VALIDO
-                while (1):
-                    respuesta = enviar_voz()
-                    print("Tu respuesta " + respuesta)
-
-                    if respuesta == "unidad central de proceso" or respuesta == "memoria" or respuesta == "entrada salida" or respuesta == "sistemas de interconexion buses" or respuesta == "perifericos":
-                        continuar= aprender(respuesta)
-                        if not continuar:
-                            salir = True
-                            break
-                    elif respuesta != "unidad central de proceso" or respuesta != "memoria" or respuesta != "entrada salida" or respuesta != "sistemas de interconexion buses" or respuesta != "perifericos":
-                        texto_a_audio("Perdona, pero por el momento no tengo informacion sobre {}. Prueba con otra OPCION".format(respuesta))
-                        print("\n1) Unidad central de proceso CPU\n2) Memoria\n3) Entrada / Salida\n4) Sistemas de interconexion: Buses\n5) Periféricos\n")
-                    #SI EL MENSAJE ENVIADO NO ES ERRONEO LE PIDE AL USUARIO SELECCIONAR UNA OPCION VALIDA
-                    else:
-                        texto_a_audio(+ " creo que no has respondido con alguna de las instrucciones indicadas anteriormente")
-                        print("\n1) Unidad central de proceso CPU\n 2) Memoria\n 3) Entrada / Salida\n 4) Sistemas de interconexion: Buses\n 5) Periféricos\n")    '''
             break
         elif respuesta == "pruebas":
             texto_a_audio("Elegiste la opción PRUEBAS.")
@@ -237,5 +144,5 @@ if __name__ == "__main__":
                 root.mainloop()
         #SI EL MENSAJE ENVIADO NO ES ERRONEO LE PIDE AL USUARIO SELECCIONAR UNA OPCION VALIDA
         else:
-            texto_a_audio('''nombre''' + " creo que no has respondido con alguna de las instrucciones indicadas anteriormente")
+            texto_a_audio(nombre + " creo que no has respondido con alguna de las instrucciones indicadas anteriormente")
             texto_a_audio("Responde con una de las alternativas mencionadas.")

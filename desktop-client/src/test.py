@@ -37,8 +37,10 @@ def escribir_respuesta(pregunta, alternativas, respuesta_correcta):
     texto_a_audio("TU PUNTAJE ES DE "+str(dict['puntaje'])+" PUNTOS")
 #INICIO
 def cargarimg(img):
+    if img == "": 
+        return
     root = tk.Tk()
-    image_path = "img/" + img  # Ruta de la imagen que deseas abrir
+    image_path = "img/" + img+".png"  # Ruta de la imagen que deseas abrir
     def close_window():
         root.destroy()
     image_window = ImageWindow(root, image_path)
@@ -46,22 +48,22 @@ def cargarimg(img):
     # Programar el cierre de la ventana después de 5 segundos
     root.after(5000, close_window)
     root.mainloop()
-if __name__ == "__main__":
-    salir = False
+def main():
     #USANDO LA FUNCION TEXTO_A_AUDIO SE HACE LEER CADENAS DE TEXTO, COMO SI LA COMPUTADORA TE ESTUVIERA HABLANDO
-    texto_a_audio(datos['bienvenida'])
+    '''texto_a_audio(datos['bienvenida'])
     print("Di tu nombre: ")
     #LA FUNCION 'enviar_voz' RETORNA UNA CADENA DE TEXTO DEL AUDIO ENVIADO POR VOZ DEL USUARIO
     nombre = enviar_voz()
     texto_a_audio("Hola {}. Mucho gusto.".format(nombre))
     texto_a_audio("{} Ahora voy a explicarte sobre las opciones que tiene este programa. Tienes 3 opciones para escoger.".format(nombre))
-    texto_a_audio("\n 1) Aprendizaje\n 2) Pruebas\n 3) Juegos\n")
-    texto_a_audio("La opción Aprendizaje es donde podrás aprender todo con respecto a la Estructura de un computador. La opción Pruebas es donde podrás poner en práctica lo que aprendiste mediante exámenes. Y por último, la tercer opción, es Juegos, donde tambien podrás demostrar lo que aprendiste jugando.")
+    texto_a_audio("\n 1) Aprendizaje\n 2) Pruebas\n 3) Juegos\n 4) Salir")
+    texto_a_audio("La opción Aprendizaje es donde podrás aprender todo con respecto a la Estructura de un computador. 
+    La opción Pruebas es donde podrás poner en práctica lo que aprendiste mediante exámenes. 
+    Y por último, la tercer opción, es Juegos, donde tambien podrás demostrar lo que aprendiste jugando.")'''
     print("APRENDIZAJE")
-    texto_a_audio("¿Qué opción eliges? ")
-    while (1): 
+    texto_a_audio("¿Qué opción eliges?")
+    while (True): 
         respuesta = enviar_voz()
-        print("Tu respuesta " + respuesta)
         if respuesta == "aprendizaje": 
             texto_a_audio("Elegiste la opcion APRENDIZAJE.")
             while(True):
@@ -69,8 +71,8 @@ if __name__ == "__main__":
                 respuesta = enviar_voz()
                 if respuesta == "introducción":
                     texto_a_audio("Escogiste introduccion")
-                    cargarimg("pensamiento-computacional.png")
-                    for pregunta in datos['aprendizaje']['seccion1']:
+                    for pregunta, img in zip(datos['aprendizaje']['seccion1']['sentencias'], datos['aprendizaje']['seccion1']['img']):
+                        cargarimg(img)
                         texto_a_audio(pregunta)
                 elif respuesta == "salir":
                     break
@@ -142,7 +144,9 @@ if __name__ == "__main__":
                 root = tk.Tk()
                 app = ComputerStructureQuizApp(root)
                 root.mainloop()
-        #SI EL MENSAJE ENVIADO NO ES ERRONEO LE PIDE AL USUARIO SELECCIONAR UNA OPCION VALIDA
+        elif respuesta == "salir":
+            break
         else:
-            texto_a_audio('''nombre''' + " creo que no has respondido con alguna de las instrucciones indicadas anteriormente")
+            texto_a_audio('''nombre + '''" creo que no has respondido con alguna de las instrucciones indicadas anteriormente")
             texto_a_audio("Responde con una de las alternativas mencionadas.")
+main()
