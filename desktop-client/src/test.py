@@ -81,6 +81,14 @@ def main():
                         for dato in datos['aprendizaje']['seccion2'][1]:
                             texto_a_audio(dato)
                             time.sleep(1)
+                elif respuesta == "modos de direccionamiento":
+                    texto_a_audio("Escogiste modos de direccionamiento")
+                    texto_a_audio("Deseas la seccion\n 1) General\n 2) Primera seccion\n 3) Segunda seccion\n 4) Tercera seccion")
+                    respuesta = enviar_voz()
+                    if respuesta == "general":
+                        for dato in datos['aprendizaje']['seccion2'][0]:
+                            texto_a_audio(dato)
+                            time.sleep(1)
                 elif respuesta == "salir":
                     break
                 else:

@@ -16,7 +16,6 @@ def escribir_respuesta(pregunta, alternativas, respuesta_correcta):
     texto_a_audio("Escoge el número de la alternativa que crees correcta: ")
     respuesta_usuario = enviar_voz()
     print("Tu respuesta " + respuesta)
-
     if respuesta_usuario.isdigit():
         opcion_elegida = int(respuesta_usuario)
         if 1 <= opcion_elegida <= len(alternativas):
@@ -56,7 +55,6 @@ if __name__ == "__main__":
     texto_a_audio("¿Qué opción eliges? ")
     while (True): 
         respuesta = enviar_voz()
-        print("Tu respuesta " + respuesta)
         if respuesta == "aprendizaje": 
             texto_a_audio("Elegiste la opcion APRENDIZAJE.")
             while(True):
