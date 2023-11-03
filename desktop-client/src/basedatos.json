@@ -1,17 +1,12 @@
 {
     "bienvenida": ["Hola. Soy tu Asistente Virtual. Fui creada para instruirte todo respecto a la Estructura de un computador. Antes de empezar ¿Podrias decirme tu nombre?"],
     "aprendizaje": {
-        "seccion1":{
-            "sentencias":[
+        "seccion1":[
         "El objetivo principal del pensamiento computacional es resolver problemas utilizando algoritmos y abstracción.",
         "El primer paso del pensamiento computacional es identificar el problema",
         "Un algoritmo, en términos de pensamiento computacional, es una secuencia de pasos para resolver un problema.",
-        "El concepto introducido al inicio de este estudio es el de instrucción máquina en el contexto del pensamiento computacional."],
-        "img":[
-            "pensamiento-computacional",
-            "identificar-problema"
-        ]
-    },
+        "El concepto introducido al inicio de este estudio es el de instrucción máquina en el contexto del pensamiento computacional."        
+        ],
         "seccion2":[
             ["Las instrucciones de máquina en un computador se definen como comandos en lenguaje binario que el procesador puede entender y ejecutar.",
             "El término 'repertorio de instrucciones' en relación con un computador se refiere al conjunto completo de todas las instrucciones de máquina que una CPU puede ejecutar.",
@@ -73,6 +68,11 @@
                 "Los dos campos básicos presentes en un formato de instrucciones son 'Campo de operación y campo de dirección'.",
                 "Las instrucciones se dividen en una serie de campos en el diseño del formato de instrucciones 'Para simplificar la decodificación y ejecución'."
             ]
+        ]
+    },
+    "imagenes":{
+        "seccion1":[
+            
         ]
     }
 }

@@ -1,15 +1,10 @@
 import time
-import sys
 import tkinter as tk
-from PIL import Image, ImageTk
 #New imports
 from datos import datos, preguntas
 from aprendizaje.imageWindow import ImageWindow
-from aprendizaje.process import aprender
 from juegos.quizApp import ComputerStructureQuizApp
-
-from utils_audio import enviar_voz, texto_a_audio
-
+from utils_audio import *
 #BASE DE DATOS DONDE SE ENCUENTRA TODA LA INFORMACION CONCERNIENTE
 #Migrado a datos.py para mejor manejo y posible mejora futura
 dict = {"puntaje":0}
@@ -20,8 +15,7 @@ def escribir_respuesta(pregunta, alternativas, respuesta_correcta):
         print(f"{i}. {alternativa}")
     texto_a_audio("Escoge el número de la alternativa que crees correcta: ")
     respuesta_usuario = enviar_voz()
-    print("Tu respuesta " + respuesta)
-
+    print("Tu respuesta " + respuesta_usuario)
     if respuesta_usuario.isdigit():
         opcion_elegida = int(respuesta_usuario)
         if 1 <= opcion_elegida <= len(alternativas):
@@ -46,7 +40,7 @@ def cargarimg(img):
     image_window = ImageWindow(root, image_path)
     image_window.update()  # Iniciar la función de actualización
     # Programar el cierre de la ventana después de 5 segundos
-    root.after(5000, close_window)
+    #root.after(5000, close_window)
     root.mainloop()
 def main():
     #USANDO LA FUNCION TEXTO_A_AUDIO SE HACE LEER CADENAS DE TEXTO, COMO SI LA COMPUTADORA TE ESTUVIERA HABLANDO
@@ -71,9 +65,22 @@ def main():
                 respuesta = enviar_voz()
                 if respuesta == "introducción":
                     texto_a_audio("Escogiste introduccion")
-                    for pregunta, img in zip(datos['aprendizaje']['seccion1']['sentencias'], datos['aprendizaje']['seccion1']['img']):
-                        cargarimg(img)
-                        texto_a_audio(pregunta)
+                    for dato in datos['aprendizaje']['seccion1']:
+                        texto_a_audio(dato)
+                        time.sleep(1)
+                    cargarimg("esquema")
+                elif respuesta == "repertorio de instrucciones":
+                    texto_a_audio("Escogiste repertorio de instrucciones")
+                    texto_a_audio("Que seccion deseas empezar a aprender\n 1) Introduccion\n 2) Instrucciones\n 3) Ambas")
+                    respuesta = enviar_voz()
+                    if respuesta == "introducción" or respuesta == "ambas":
+                        for dato in datos['aprendizaje']['seccion2'][0]:
+                            texto_a_audio(dato)
+                            time.sleep(1)
+                    if respuesta == "instrucciones" or respuesta == "ambas":
+                        for dato in datos['aprendizaje']['seccion2'][1]:
+                            texto_a_audio(dato)
+                            time.sleep(1)
                 elif respuesta == "salir":
                     break
                 else:

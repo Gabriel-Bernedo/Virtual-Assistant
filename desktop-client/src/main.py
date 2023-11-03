@@ -1,15 +1,10 @@
 import time
-import sys
 import tkinter as tk
-from PIL import Image, ImageTk
 #New imports
 from datos import datos, preguntas
 from aprendizaje.imageWindow import ImageWindow
-from aprendizaje.process import aprender
 from juegos.quizApp import ComputerStructureQuizApp
-
-from utils_audio import enviar_voz, texto_a_audio
-
+from utils_audio import *
 #BASE DE DATOS DONDE SE ENCUENTRA TODA LA INFORMACION CONCERNIENTE
 #Migrado a datos.py para mejor manejo y posible mejora futura
 dict = {"puntaje":0}
