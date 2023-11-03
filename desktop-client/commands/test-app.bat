@@ -1,0 +1,5 @@
+ECHO OFF
+CLS
+TITLE VIRTUAL - ASSISTANT
+cd ../src
+py test.py
