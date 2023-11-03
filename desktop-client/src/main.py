@@ -46,8 +46,7 @@ def cargarimg(img):
     # Programar el cierre de la ventana después de 5 segundos
     root.after(5000, close_window)
     root.mainloop()
-cargarimg("pensamiento-computacional.png")
-if __name__ == "daasddad":
+if __name__ == "__main__":
     salir = False
     #USANDO LA FUNCION TEXTO_A_AUDIO SE HACE LEER CADENAS DE TEXTO, COMO SI LA COMPUTADORA TE ESTUVIERA HABLANDO
     '''texto_a_audio(datos['bienvenida'])
