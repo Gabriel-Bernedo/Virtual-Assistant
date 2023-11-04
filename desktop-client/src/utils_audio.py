@@ -11,7 +11,7 @@ def texto_a_audio(comando, doPrint = True):
     palabra = pyttsx3.init()
     palabra.say(comando)
     palabra.runAndWait()
-
+    
 #CAPTURA AUDIO DESDE EL MICROFONO Y ANALIZA POSIBLES ERRORES
 def capturar_voz(reconocer=recognizer, microfono=microphone, tiempo_ruido = 3.0):
     if not isinstance(reconocer, sr.Recognizer):
