@@ -164,11 +164,13 @@ def main():
         else:
             texto_a_audio('''nombre + '''" creo que no has respondido con alguna de las instrucciones indicadas anteriormente")
             texto_a_audio("Responde con una de las alternativas mencionadas.")
-main()
-'''def conversor(seccion, subseccion=None):
+#main()
+def conversor(seccion, subseccion=None):
+    
     cont = 1
     aux = 0
     if subseccion==None:
+        print('"'+seccion+'":')
         for pregunta in preguntas[seccion]:
             print("\""+str(cont)+". "+pregunta['pregunta']+"\":{")
             cont +=1
@@ -179,6 +181,7 @@ main()
                 print('"'+i+'":'+str(aux)+",")
             print("},")
     else:
+        print('"'+str(subseccion)+'":')
         for pregunta in preguntas[seccion][subseccion]:
             print("\""+str(cont)+". "+pregunta['pregunta']+"\":{")
             cont +=1
@@ -188,6 +191,7 @@ main()
                 else: aux=0
                 print('"'+i+'":'+str(aux)+",")
             print("},")
+print()
 conversor("preguntas1")
 print()
 print()
@@ -202,4 +206,4 @@ conversor("preguntas3",1)
 print()
 conversor("preguntas3",2)
 print()
-conversor("preguntas3",3)'''
+conversor("preguntas3",3)
