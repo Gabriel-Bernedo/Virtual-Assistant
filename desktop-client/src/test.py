@@ -1,12 +1,12 @@
 import time
 import tkinter as tk
 #New imports
-from datos import datos, preguntas
+from auxiliar import datos, preguntas
 from aprendizaje.imageWindow import ImageWindow
 from juegos.quizApp import ComputerStructureQuizApp
 from utils_audio import *
 #BASE DE DATOS DONDE SE ENCUENTRA TODA LA INFORMACION CONCERNIENTE
-#Migrado a datos.py para mejor manejo y posible mejora futura
+#Migrado a auxiliar.py para mejor manejo y posible mejora futura
 dict = {"puntaje":0}
 def escribir_respuesta(pregunta, alternativas, respuesta_correcta):
     print("------------------------------------------------------------------------------------")

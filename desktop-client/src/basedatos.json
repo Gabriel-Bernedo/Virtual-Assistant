@@ -25,7 +25,7 @@
                 "Sin embargo, una desventaja del direccionamiento inmediato es que está limitado por el tamaño del campo en la instrucción.",
                 "En el direccionamiento directo, la dirección del operando se encuentra directamente en la instrucción, lo que simplifica el acceso."
             ],
-            "primera":[
+            "1":[
                 "En las instrucciones de transferencia de datos, los dos tipos de operandos son 'Origen y destino', y la longitud del dato a transferir se refiere a la cantidad de bits que ocupa el dato.",
                 "La instrucción utilizada para copiar un dato de una posición de memoria a un registro es 'MOVE', mientras que las cuatro operaciones aritméticas básicas son suma, resta, multiplicación y división.",
                 "Las operaciones lógicas bit a bit más comunes incluyen 'AND, OR, XOR y NOT', y la instrucción utilizada para sumar dos números enteros es 'ADD'.",
@@ -33,7 +33,7 @@
                 "La instrucción utilizada para saltar a una subrutina es 'CALL', y la instrucción que no hace nada se llama 'NOP'.",
                 "La instrucción que detiene la ejecución de instrucciones se llama 'HALT', y la instrucción que activa una interrupción software es 'INT'."
             ],
-            "segunda":[
+            "2":[
                 "En las instrucciones de transferencia de datos, los dos tipos de operandos son 'Origen y destino', y la longitud del dato a transferir se refiere a la cantidad de bits que ocupa el dato.",
                 "La instrucción utilizada para copiar un dato de una posición de memoria a un registro es 'MOVE', y las cuatro operaciones aritméticas básicas son suma, resta, multiplicación y división.",
                 "Las operaciones lógicas bit a bit más comunes incluyen 'AND, OR, XOR y NOT', y la instrucción utilizada para sumar dos números enteros es 'ADD'.",
@@ -41,7 +41,7 @@
                 "La instrucción utilizada para saltar a una subrutina es 'CALL', la instrucción que no hace nada se llama 'NOP', la instrucción que detiene la ejecución de instrucciones se llama 'HALT', y la instrucción que activa una interrupción software es 'INT'.",
                 "El tipo de direccionamiento utilizado para acceder a un dato que se encuentra en una posición relativa a la instrucción actual es 'Direccionamiento relativo a registro', el tipo de direccionamiento utilizado para acceder a un dato que se encuentra en una posición relativa al registro base es 'Direccionamiento relativo a registro base', el tipo de direccionamiento utilizado para acceder a un dato que se encuentra en la pila es 'Direccionamiento relativo a pila', el tipo de direccionamiento utilizado para acceder a un dato que se encuentra en una posición relativa a un registro índice es 'Direccionamiento indexado', y el tipo de direccionamiento utilizado para acceder a un dato que se encuentra en una posición especificada por un valor almacenado en memoria es 'Direccionamiento indirecto'."
             ],
-            "tercera":[
+            "3":[
                 "Al determinar el tamaño de las instrucciones en el diseño de un formato de instrucciones, es importante considerar 'El tamaño de la memoria disponible'.",
                 "El compromiso fundamental al diseñar el formato de las instrucciones de una CPU es 'Encontrar un equilibrio entre instrucciones poderosas y simplificación de decodificación'.",
                 "Los dos campos básicos presentes en un formato de instrucciones son 'Campo de operación y campo de dirección'.",
@@ -50,10 +50,16 @@
     }
     },
     "img":{
-        "intro":["pensamiento_computacional","problema","algoritmo",""],
-        "seccion2":{
-            "nombre subseccion1": ["img.png","img.jpg"],
-            "subseccion2": ["img.png","img.jpg"]
-        }   
+        "introduccion":["pensamiento_computacional","problema","algoritmo",""],
+        "repertorio":{
+            "general": ["instrucciones","cpu","conjunto","codificacion","mnemonico"],
+            "instrucciones": ["","","","","",""]
+        },
+        "modos": {
+            "general": ["","","",""],
+            "1": ["","","","","",""],
+            "2": ["","","","",""],
+            "3": ["","","",""]
+        }
     }
 }
