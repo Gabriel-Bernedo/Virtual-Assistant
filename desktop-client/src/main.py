@@ -60,7 +60,7 @@ def dictarpreguntas(seccion, subsecion=None):
                 break
             else:
                 texto_a_audio("la respuesta debe estar en el rango")
-    texto_a_audio("En esta seccion tu puntaje es de "+str(dict['puntaje'])+" sobre "+str(len(preguntas[seccion])))
+    texto_a_audio("En esta seccion tu puntaje es de "+str(dict['puntaje'])+" sobre "+str(len(arr)))
     dict['puntaje'] = 0
 dictarpreguntas("repertorio",'general')
 if __name__ == "__main__":
