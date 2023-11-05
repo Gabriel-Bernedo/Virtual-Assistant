@@ -49,10 +49,8 @@
         ]
     }
     },
-    "imagenes":{
-        "seccion1":[
-            "img1"
-        ],
+    "img":{
+        "intro":["pensamiento_computacional","problema","algoritmo",""],
         "seccion2":{
             "nombre subseccion1": ["img.png","img.jpg"],
             "subseccion2": ["img.png","img.jpg"]

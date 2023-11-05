@@ -18,7 +18,7 @@ def mandaraudio(archivo_audio):
     while pygame.mixer.music.get_busy():
         continue
 #CAPTURA AUDIO DESDE EL MICROFONO Y ANALIZA POSIBLES ERRORES
-def capturar_voz(reconocer=recognizer, microfono=microphone, tiempo_ruido = 3.0):
+def capturar_voz(reconocer=recognizer, microfono=microphone, tiempo_ruido = 3):
     if not isinstance(reconocer, sr.Recognizer):
         raise TypeError("'reconocer' no es de la instacia 'Recognizer'")
 
@@ -29,7 +29,7 @@ def capturar_voz(reconocer=recognizer, microfono=microphone, tiempo_ruido = 3.0)
         reconocer.adjust_for_ambient_noise(fuente, duration = tiempo_ruido)
         #print("iniciando reconcimiento")
         mandaraudio("inicio.wav")
-        audio = reconocer.listen(fuente)
+        audio = reconocer.listen(fuente,None,3)
         mandaraudio("fin.wav")
     respuesta = {
         "suceso": True,

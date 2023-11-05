@@ -15,20 +15,22 @@ dict = {
     "cuatro":4,
     "cinco":5
 }
+#uno 1
 # INICIO
 def cargarimg(img):
-    root = tk.Tk()
-    image_path = "img/" + img  # Ruta de la imagen que deseas abrir
+    if not img == None:
+        root = tk.Tk()
+        image_path = "img/" + img  # Ruta de la imagen que deseas abrir
+        if not img.__contains__(".png"):
+            image_path += ".png"
+        def close_window():
+            root.destroy()
 
-    def close_window():
-        root.destroy()
-
-    image_window = ImageWindow(root, image_path)
-    image_window.update()  # Iniciar la función de actualización
-    # Programar el cierre de la ventana después de 5 segundos
-    root.after(5000, close_window)
-    root.mainloop()
-
+        image_window = ImageWindow(root, image_path)
+        image_window.update()  # Iniciar la función de actualización
+        # Programar el cierre de la ventana después de 5 segundos
+        root.after(5000, close_window)
+        root.mainloop()
 
 def dictarpreguntas(seccion, subsecion=None):
     resul, arr = 0, preguntas[seccion]
@@ -62,22 +64,16 @@ def dictarpreguntas(seccion, subsecion=None):
                 texto_a_audio("la respuesta debe estar en el rango")
     texto_a_audio("En esta seccion tu puntaje es de "+str(dict['puntaje'])+" sobre "+str(len(arr)))
     dict['puntaje'] = 0
-dictarpreguntas("repertorio",'general')
-#iniciarreconocimiento()
-if __name__ == "__main__2":
-    # USANDO LA FUNCION TEXTO_A_AUDIO SE HACE LEER CADENAS DE TEXTO, COMO SI LA COMPUTADORA TE ESTUVIERA HABLANDO
-    '''texto_a_audio(datos['bienvenida'])
+if __name__ == "__main__":
+    texto_a_audio(datos['bienvenida'])
     print("Di tu nombre: ")
-    #LA FUNCION 'enviar_voz' RETORNA UNA CADENA DE TEXTO DEL AUDIO ENVIADO POR VOZ DEL USUARIO
-    nombre = enviar_voz()
+    nombre = enviar_voz().capitalize()
     texto_a_audio("Hola {}. Mucho gusto.".format(nombre))
     texto_a_audio("{} Ahora voy a explicarte sobre las opciones que tiene este programa. Tienes 3 opciones para escoger.".format(nombre))
-    texto_a_audio("\n 1) Aprendizaje\n 2) Pruebas\n 3) Juegos\n")
     texto_a_audio("La opción Aprendizaje es donde podrás aprender todo con respecto a la Estructura de un computador. La opción Pruebas es donde podrás poner en práctica lo que aprendiste mediante exámenes. Y por último, la tercer opción, es Juegos, donde tambien podrás demostrar lo que aprendiste jugando.")
-    '''
     while True:
-        print("APRENDIZAJE")
         texto_a_audio("¿Qué opción eliges? ")
+        texto_a_audio(" 1) Aprendizaje\n 2) Pruebas\n 3) Juegos")
         while True:
             respuesta = enviar_voz()
             if respuesta == "aprendizaje":
@@ -88,9 +84,9 @@ if __name__ == "__main__2":
                     respuesta = enviar_voz()
                     if respuesta == "introducción":
                         texto_a_audio("Escogiste introduccion")
-                        cargarimg("pensamiento-computacional.png")
-                        for dato in datos['aprendizaje']['introduccion']:
+                        for dato, img in zip(datos['aprendizaje']['introduccion'], datos['img']['intro']):
                             texto_a_audio(dato)
+                            cargarimg(img)
                     elif respuesta == "repertorio de instrucciones":
                         texto_a_audio("Escogiste Repertorio de instrucciones")
                         while True:
@@ -192,5 +188,5 @@ if __name__ == "__main__2":
             elif respuesta == "salir":
                 break
             else:
-                texto_a_audio(" creo que no has respondido con alguna de las instrucciones indicadas anteriormente")
+                texto_a_audio(nombre+" creo que no has respondido con alguna de las instrucciones indicadas anteriormente")
                 texto_a_audio("Responde con una de las alternativas mencionadas.")
