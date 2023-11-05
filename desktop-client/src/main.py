@@ -5,35 +5,16 @@ from datos import datos, preguntas
 from aprendizaje.imageWindow import ImageWindow
 from juegos.quizApp import ComputerStructureQuizApp
 from utils_audio import *
-
 # BASE DE DATOS DONDE SE ENCUENTRA TODA LA INFORMACION CONCERNIENTE
 # Migrado a datos.py para mejor manejo y posible mejora futura
-dict = {"puntaje": 0}
-
-
-def escribir_respuesta(pregunta, alternativas, respuesta_correcta):
-    print("------------------------------------------------------------------------------------")
-    print(pregunta)
-    for i, alternativa in enumerate(alternativas, start=1):
-        print(f"{i}. {alternativa}")
-    texto_a_audio("Escoge el número de la alternativa que crees correcta: ")
-    respuesta_usuario = enviar_voz()
-    print("Tu respuesta " + respuesta)
-    if respuesta_usuario.isdigit():
-        opcion_elegida = int(respuesta_usuario)
-        if 1 <= opcion_elegida <= len(alternativas):
-            if alternativas[opcion_elegida - 1] == alternativas[respuesta_correcta - 1]:
-                dict['puntaje'] += 1
-                texto_a_audio("Respuesta correcta.")
-            else:
-                texto_a_audio("Respuesta incorrecta.")
-        else:
-            print("Opción inválida.")
-    else:
-        print("Entrada inválida. Por favor, ingresa el número de la alternativa.")
-    texto_a_audio("TU PUNTAJE ES DE " + str(dict['puntaje']) + " PUNTOS")
-
-
+dict = {
+    "puntaje": 0,
+    "uno":1,
+    "dos":2,
+    "tres":3,
+    "cuatro":4,
+    "cinco":5
+}
 # INICIO
 def cargarimg(img):
     root = tk.Tk()
@@ -49,25 +30,40 @@ def cargarimg(img):
     root.mainloop()
 
 
-def dictarpreguntas(seccion):
-    resul = 0
-    for pregunta in preguntas[seccion]:
+def dictarpreguntas(seccion, subsecion=None):
+    resul, arr = 0, preguntas[seccion]
+    if not subsecion == None:
+        arr = preguntas[seccion][subsecion]
+    for pregunta in arr:
         cont = 1
-        print(pregunta)
-        for alternativa in preguntas[seccion][pregunta]:
-            cont += 1
-            if preguntas[seccion][pregunta][alternativa]:
+        texto_a_audio("Pregunta numero "+pregunta)
+        for alternativa in arr[pregunta]:
+            if arr[pregunta][alternativa] == 1:
                 resul = cont
-            print(alternativa)
-        rpta = enviar_voz()
-        if rpta == resul:
-            dict['puntaje'] += 1
-    print(dict['puntaje'])
+            texto_a_audio(str(cont)+") "+alternativa)
+            cont += 1
+        texto_a_audio("Dicta el numero de opcion que creas que es correcta")
+        while True:
+            rpta = enviar_voz()
+            if rpta.isdigit() and int(rpta) > 0 and int(rpta) < cont:
+                if int(rpta) == resul:
+                    dict['puntaje'] += 1
+                    texto_a_audio("respuesta correcta")
+                else: texto_a_audio("respuesta incorrecta")
+                break
+            elif rpta in dict and dict[rpta] > 0 and dict[rpta] < cont:
+                if resul == dict[rpta]:
+                    dict['puntaje'] += 1
+                    texto_a_audio("respuesta correcta")
+                else:
+                    texto_a_audio("respuesta incorrecta")
+                break
+            else:
+                texto_a_audio("la respuesta debe estar en el rango")
+    texto_a_audio("En esta seccion tu puntaje es de "+str(dict['puntaje'])+" sobre "+str(len(preguntas[seccion])))
     dict['puntaje'] = 0
-
-
-dictarpreguntas("introduccion")
-if __name__ == "dfds":
+dictarpreguntas("repertorio",'general')
+if __name__ == "__main__":
     # USANDO LA FUNCION TEXTO_A_AUDIO SE HACE LEER CADENAS DE TEXTO, COMO SI LA COMPUTADORA TE ESTUVIERA HABLANDO
     '''texto_a_audio(datos['bienvenida'])
     print("Di tu nombre: ")
@@ -148,25 +144,16 @@ if __name__ == "dfds":
                     print("rpta " + respuesta)
                     if respuesta == "introducción":
                         texto_a_audio("Escogiste introduccion\nEmpezemos con la prueba:")
-                        for pregunta in preguntas['introduccion']:
-                            texto_a_audio([pregunta['introduccion'], pregunta['introduccion']])
-                            escribir_respuesta(pregunta['pregunta'], pregunta['alternativas_arr'],
-                                               pregunta['respuesta_correcta'])
+                        dictarpreguntas("introduccion")
                     elif respuesta == "repertorio de instrucciones":
                         texto_a_audio("Escogiste Repertorio de instrucciones")
-                        while (1):
+                        while True:
                             texto_a_audio("Deseas la seccion\n 1) General\n 2) Instrucciones\n 3) Salir")
                             respuesta = enviar_voz()
                             if respuesta == "general":
-                                for pregunta in preguntas['preguntas2'][0]:
-                                    texto_a_audio([pregunta['pregunta'], pregunta['alternativas']])
-                                    escribir_respuesta(pregunta['pregunta'], pregunta['alternativas_arr'],
-                                                       pregunta['respuesta_correcta'])
+                                dictarpreguntas('repertorio','general')
                             elif respuesta == "instrucciones":
-                                for pregunta in preguntas['preguntas2'][1]:
-                                    texto_a_audio([pregunta['pregunta'], pregunta['alternativas']])
-                                    escribir_respuesta(pregunta['pregunta'], pregunta['alternativas_arr'],
-                                                       pregunta['respuesta_correcta'])
+                                dictarpreguntas('repertorio','instrucciones')
                             elif respuesta == "salir":
                                 break
                             else:
@@ -175,28 +162,16 @@ if __name__ == "dfds":
                         while True:
                             texto_a_audio("Escogiste Repertorio de instrucciones")
                             texto_a_audio(
-                                "Deseas la seccion\n 1) General\n 2) Primera seccion\n 3) Segunda seccion\n 4) Tercera seccione\n 5)Salir")
+                                "Deseas la seccion\n 1) General\n 2) Primera seccion\n 3) Segunda seccion\n 4) Tercera seccion\n 5)Salir")
                             respuesta = enviar_voz()
                             if respuesta == "general":
-                                for pregunta in preguntas['preguntas2'][0]:
-                                    texto_a_audio([pregunta['pregunta'], pregunta['alternativas']])
-                                    escribir_respuesta(pregunta['pregunta'], pregunta['alternativas_arr'],
-                                                       pregunta['respuesta_correcta'])
+                                dictarpreguntas('modos','general')
                             elif respuesta == "primera seccion":
-                                for pregunta in preguntas['preguntas2'][1]:
-                                    texto_a_audio([pregunta['pregunta'], pregunta['alternativas']])
-                                    escribir_respuesta(pregunta['pregunta'], pregunta['alternativas_arr'],
-                                                       pregunta['respuesta_correcta'])
+                                dictarpreguntas('modos', '1')
                             elif respuesta == "segunda sección":
-                                for pregunta in preguntas['preguntas2'][2]:
-                                    texto_a_audio([pregunta['pregunta'], pregunta['alternativas']])
-                                    escribir_respuesta(pregunta['pregunta'], pregunta['alternativas_arr'],
-                                                       pregunta['respuesta_correcta'])
+                                dictarpreguntas('modos', '2')
                             elif respuesta == "tercera sección":
-                                for pregunta in preguntas['preguntas2'][3]:
-                                    texto_a_audio([pregunta['pregunta'], pregunta['alternativas']])
-                                    escribir_respuesta(pregunta['pregunta'], pregunta['alternativas_arr'],
-                                                       pregunta['respuesta_correcta'])
+                                dictarpreguntas('modos', '3')
                             elif respuesta == "salir":
                                 break
                             else:
@@ -213,7 +188,6 @@ if __name__ == "dfds":
                     root = tk.Tk()
                     app = ComputerStructureQuizApp(root)
                     root.mainloop()
-            # SI EL MENSAJE ENVIADO NO ES ERRONEO LE PIDE AL USUARIO SELECCIONAR UNA OPCION VALIDA
             elif respuesta == "salir":
                 break
             else:

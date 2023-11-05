@@ -49,5 +49,5 @@ def enviar_voz():
             print("Algo no está bien. No puedo reconocer tu micrófono o no lo tienes enchufado. <", palabra["error"],">")
             texto_a_audio("Algo no está bien. No puedo reconocer tu micrófono o no lo tienes enchufado.")
             exit(1)
-        texto_a_audio("No pude escucharte, ¿podrias repetirlo?")
+        texto_a_audio("No pude escucharte, ¿podrias repetirlo?",False)
     return palabra["mensaje"].lower()

@@ -21,7 +21,7 @@
 "El concepto introducido al inicio de este estudio es el de teoría de la relatividad.":0
 }
 },
-"repertorio de instrucciones":{
+"repertorio":{
 "general":{
 "1. ¿Cómo se definen las instrucciones de máquina en un computador?":{
 "Son definidas por el usuario.":0,
@@ -81,8 +81,8 @@
 }
 }
 },
-"modos de direccionamiento":{
-"General":{
+"modos":{
+"general":{
 "1. ¿Cuál de los siguientes es un modo de direccionamiento?":{
 "Registro":0,
 "Inmediato":0,
@@ -117,7 +117,7 @@
 "falso":1
 }
 },
-"primera seccion":{
+"1":{
 "1. ¿Cuáles son los dos tipos de operandos en las instrucciones de transferencia de datos?":{
 "Valor y dirección":0,
 "Fuente y destino":0,
@@ -197,7 +197,7 @@
 "RET":0
 }
 },
-"segunda seccion":{
+"2":{
 "1. ¿Cuál es el tipo de direccionamiento que se utiliza para acceder a un dato que se encuentra en una posición relativa a la instrucción actual?":{
 "Direccionamiento directo":0,
 "Direccionamiento relativo a registro":1,
@@ -228,7 +228,7 @@
 "Direccionamiento relativo a pila":0,
 "Direccionamiento indexado":0
 }},
-"tercera seccion":{
+"3":{
 "1. PREGUNTA:1. ¿Qué factores se deben considerar al determinar el tamaño de las instrucciones en el diseño de un formato de instrucciones?":{
 "El tipo de CPU.":0,
 "La velocidad del sistema.":0,
