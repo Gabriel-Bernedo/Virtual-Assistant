@@ -1,9 +1,9 @@
 import speech_recognition as sr
 import pyttsx3
-
+import pygame
 recognizer = sr.Recognizer()
 microphone = sr.Microphone()
-
+pygame.init()
 #CONVERTIR CADENAS DE TEXTO A AUDIO Y REPRODUCIRLAS
 def texto_a_audio(comando, doPrint = True):
     if doPrint:
@@ -11,7 +11,12 @@ def texto_a_audio(comando, doPrint = True):
     palabra = pyttsx3.init()
     palabra.say(comando)
     palabra.runAndWait()
-    
+def mandaraudio(archivo_audio):
+    pygame.mixer.init()
+    pygame.mixer.music.load(archivo_audio)
+    pygame.mixer.music.play()
+    while pygame.mixer.music.get_busy():
+        continue
 #CAPTURA AUDIO DESDE EL MICROFONO Y ANALIZA POSIBLES ERRORES
 def capturar_voz(reconocer=recognizer, microfono=microphone, tiempo_ruido = 3.0):
     if not isinstance(reconocer, sr.Recognizer):
@@ -22,9 +27,10 @@ def capturar_voz(reconocer=recognizer, microfono=microphone, tiempo_ruido = 3.0)
     
     with microfono as fuente:
         reconocer.adjust_for_ambient_noise(fuente, duration = tiempo_ruido)
-        print("iniciando reconcimiento")
+        #print("iniciando reconcimiento")
+        mandaraudio("inicio.wav")
         audio = reconocer.listen(fuente)
-        print("termino reconocimiento")
+        mandaraudio("fin.wav")
     respuesta = {
         "suceso": True,
         "error": None,

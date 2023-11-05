@@ -63,7 +63,8 @@ def dictarpreguntas(seccion, subsecion=None):
     texto_a_audio("En esta seccion tu puntaje es de "+str(dict['puntaje'])+" sobre "+str(len(arr)))
     dict['puntaje'] = 0
 dictarpreguntas("repertorio",'general')
-if __name__ == "__main__":
+#iniciarreconocimiento()
+if __name__ == "__main__2":
     # USANDO LA FUNCION TEXTO_A_AUDIO SE HACE LEER CADENAS DE TEXTO, COMO SI LA COMPUTADORA TE ESTUVIERA HABLANDO
     '''texto_a_audio(datos['bienvenida'])
     print("Di tu nombre: ")
