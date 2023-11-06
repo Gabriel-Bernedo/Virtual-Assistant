@@ -1,17 +1,18 @@
 # New imports
 from auxiliar import *
-from juegos.quizApp import ComputerStructureQuizApp
+#from juegos.quizApp import ComputerStructureQuizApp
 from utils_audio import *
 
 if __name__ == "__main__":
-    '''texto_a_audio(datos['bienvenida'])
+    texto_a_audio(datos['bienvenida'])
     print("Di tu nombre: ")
     nombre = enviar_voz().capitalize()
     texto_a_audio("Hola {}. Mucho gusto.".format(nombre))
-    texto_a_audio("{} Ahora voy a explicarte sobre las opciones que tiene este programa. Tienes 3 opciones para escoger.".format(nombre))
-    texto_a_audio("La opción Aprendizaje es donde podrás aprender todo con respecto a la Estructura de un computador. La opción Pruebas es donde podrás poner en práctica lo que aprendiste mediante exámenes. Y por último, la tercer opción, es Juegos, donde tambien podrás demostrar lo que aprendiste jugando.")
-    '''
-    nombre = ""
+    texto_a_audio(
+        "{} Ahora voy a explicarte sobre las opciones que tiene este programa. Tienes 3 opciones para escoger.".format(
+            nombre))
+    texto_a_audio(
+        "La opción Aprendizaje es donde podrás aprender todo con respecto a la Estructura de un computador. La opción Pruebas es donde podrás poner en práctica lo que aprendiste mediante exámenes. Y por último, la tercer opción, es Juegos, donde tambien podrás demostrar lo que aprendiste jugando.")
     while True:
         texto_a_audio("¿Qué opción eliges? ")
         texto_a_audio(" 1) Aprendizaje\n 2) Pruebas\n 3) Juegos\n 4) Salir")
@@ -31,7 +32,7 @@ if __name__ == "__main__":
                         respuesta = enviar_voz()
                         all = respuesta == "ambas"
                         if respuesta == "general" or all:
-                            aprender('repertorio','general')
+                            aprender('repertorio', 'general')
                         if respuesta == "instrucciones" or all:
                             aprender('repertorio', 'instrucciones')
                         if respuesta == "salir":
@@ -42,7 +43,7 @@ if __name__ == "__main__":
                     texto_a_audio("Escogiste modos de direccionamiento")
                     while True:
                         texto_a_audio(
-                            "Deseas la seccion\n 1) General\n 2) Primera seccion\n 3) Segunda seccion\n 4) Tercera seccione\n 5)Salir")
+                            "Deseas la seccion\n 1) General\n 2) Primera seccion\n 3) Segunda seccion\n 4) Tercera seccione\n 5) Salir")
                         respuesta = enviar_voz()
                         if respuesta == "general":
                             aprender('modos', 'general')
@@ -64,7 +65,6 @@ if __name__ == "__main__":
         elif respuesta == "pruebas":
             texto_a_audio("Elegiste la opción PRUEBAS.")
             texto_a_audio("¿Por cual deseas empezar?")
-            # COMPRUEBA QUE EL MENSAJE ENVIADO SEA VALIDO
             while True:
                 texto_a_audio(
                     "Deseas dar una prueba sobre\n 1) Introduccion\n 2) Repertorio de instrucciones\n 3) Modos de direccionamiento\n 4) Salir")
@@ -79,9 +79,9 @@ if __name__ == "__main__":
                         texto_a_audio("Deseas la seccion\n 1) General\n 2) Instrucciones\n 3) Salir")
                         respuesta = enviar_voz()
                         if respuesta == "general":
-                            dictarpreguntas('repertorio','general')
+                            dictarpreguntas('repertorio', 'general')
                         elif respuesta == "instrucciones":
-                            dictarpreguntas('repertorio','instrucciones')
+                            dictarpreguntas('repertorio', 'instrucciones')
                         elif respuesta == "salir":
                             break
                         else:
@@ -93,7 +93,7 @@ if __name__ == "__main__":
                             "Deseas la seccion\n 1) General\n 2) Primera seccion\n 3) Segunda seccion\n 4) Tercera seccion\n 5)Salir")
                         respuesta = enviar_voz()
                         if respuesta == "general":
-                            dictarpreguntas('modos','general')
+                            dictarpreguntas('modos', 'general')
                         elif respuesta == "primera seccion":
                             dictarpreguntas('modos', '1')
                         elif respuesta == "segunda sección":
@@ -119,5 +119,6 @@ if __name__ == "__main__":
         elif respuesta == "salir":
             break
         else:
-            texto_a_audio(nombre+" creo que no has respondido con alguna de las instrucciones indicadas anteriormente")
+            texto_a_audio(
+                nombre + " creo que no has respondido con alguna de las instrucciones indicadas anteriormente")
             texto_a_audio("Responde con una de las alternativas mencionadas.")
