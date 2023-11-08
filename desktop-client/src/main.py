@@ -1,12 +1,6 @@
-# New imports
-import time
-
 from auxiliar import *
-#from juegos.quizApp import ComputerStructureQuizApp
 from utils_audio import *
-#cargarimg("algoritmo")
-#time.sleep(5)
-if __name__ == "__main__":
+if __name__ == "__main__2":
     texto_a_audio(datos['bienvenida'])
     print("Di tu nombre: ")
     nombre = enviar_voz().capitalize()

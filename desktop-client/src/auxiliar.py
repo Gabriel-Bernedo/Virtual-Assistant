@@ -35,9 +35,6 @@ dict = {
     "cinco": 5
 }
 
-
-# uno 1
-# INICIO
 def cargarimg(img):
     if not img == "":
         root = tk.Tk()
@@ -68,7 +65,7 @@ def dictarpreguntas(seccion, subseccion=None):
             texto_a_audio(str(cont) + ") " + alternativa)
             cont += 1
         texto_a_audio("Dicta el numero de opcion que creas que es correcta")
-        while True:
+        while True:#uno-dos
             rpta = enviar_voz()
             if rpta.isdigit() and int(rpta) > 0 and int(rpta) < cont:
                 if int(rpta) == resul:
