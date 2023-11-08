@@ -30,6 +30,7 @@ def capturar_voz(reconocer=recognizer, microfono=microphone, tiempo_ruido = 3):
         #print("iniciando reconcimiento")
         mandaraudio("inicio.wav")
         audio = reconocer.listen(fuente,None,3)
+        mandaraudio("fin.wav")
     respuesta = {
         "suceso": True,
         "error": None,

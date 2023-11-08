@@ -58,7 +58,7 @@
         "modos": {
             "general": ["","","",""],
             "1": ["","","","","",""],
-            "2": ["","","","",""],
+            "2": ["binario","4_operaciones","condicionales","conexion","llamadoSubrutina","direccionamiento"],
             "3": ["memoria_disponible","equilibrio","",""]
         }
     }
