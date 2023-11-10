@@ -1,6 +1,6 @@
 from auxiliar import *
 from utils_audio import *
-if __name__ == "__main__2":
+if __name__ == "__main__":
     texto_a_audio(datos['bienvenida'])
     print("Di tu nombre: ")
     nombre = enviar_voz().capitalize()
