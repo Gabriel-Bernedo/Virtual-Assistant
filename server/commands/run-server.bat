@@ -1,5 +1,6 @@
 ECHO OFF
 CLS
-TITLE SERVER BACKEND
-python3 ../manage.py runserver
+TITLE SERVER
+CD ../web-client
+python3 ../manage.py runserver | npm run dev
 exit
