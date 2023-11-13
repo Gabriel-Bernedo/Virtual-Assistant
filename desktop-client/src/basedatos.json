@@ -53,10 +53,10 @@
         "introduccion":["pensamiento_computacional","problema","algoritmo",""],
         "repertorio":{
             "general": ["instrucciones","cpu","conjunto","codificacion","mnemonico"],
-            "instrucciones": ["","","","","",""]
+            "instrucciones": ["Direccionamiento Directo mediante Memoria","Direccionamiento Directo mediante Registros","Direccionamiento Relativo a Memoria","Direccionamiento Relativo a Registros","Direccionamiento Indirecto mediante Memoria","Direccionamiento Indirecto mediante Registros"]
         },
         "modos": {
-            "general": ["","","",""],
+            "general": ["", "direccionamiento-inmediato", "", "direccionamiento-directo"],
             "1": ["","","","","",""],
             "2": ["binario","4_operaciones","condicionales","conexion","llamadoSubrutina","direccionamiento"],
             "3": ["memoria_disponible","equilibrio","",""]
