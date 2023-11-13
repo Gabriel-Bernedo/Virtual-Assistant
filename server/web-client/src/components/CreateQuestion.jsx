@@ -2,7 +2,7 @@ import React, {useState, useRef, Fragment} from 'react'
 
 export default function CreateQuestion({newQuestion}) {
   
-    const [formMode, setFormMode] = useState(false)
+    const [formMode, setFormMode] = useState(true)
     const [question, setQuestion] = useState({
         question: "¿Pregunta?",
         question_ans: "Respuesta Correcta",
@@ -21,6 +21,10 @@ export default function CreateQuestion({newQuestion}) {
 
     function ParseData(){
         
+    }
+
+    function Display(){
+        prompt("XD")
     }
 
     function SubmitQuestion(){
@@ -55,57 +59,82 @@ export default function CreateQuestion({newQuestion}) {
                 alert(`${e} : ${data.errors[e]}`)
             } else if (data.status == 302){
                 alert("Pregunta Almacenada correctamente")
-                quest.current.value = ""
-                answer.current.value = ""
-                wrong.current.value = ""
-                explanation.current.value = ""
-                type.current.value = ""
-                subject.current.value = ""
-                parser.current.value = ""
+                setFormMode(formMode)
             }
         })
     }
   
   return (
     <form>
-        <div>
+        <div className="container form-group bg-light">
             { (formMode) ?
-                <Fragment>
-                    <label htmlFor="quest">Pregunta :</label>
-                    <input ref={quest} type="text" id="quest" placeholder="Pregunta"/>
+                <div className="row">
+                    <div className="container col-md-6 form-group">
+                        <label htmlFor="quest">Pregunta :</label>
+                        <input ref={quest} type="text" id="quest" placeholder="Pregunta"
+                            className="form-control" required/>
+                        
+                        <label htmlFor="answer">Respuesta :</label>
+                        <input ref={answer} type="text" id="answer" placeholder="Respuesta"
+                            className="form-control" required/>
+                        
+                        <label htmlFor="wrong">Alternativas :</label>
+                        <input ref={wrong} type="text" id="wrong" placeholder="Erroneas"
+                            className="form-control" required/>
 
-                    <label htmlFor="answer">Respuesta :</label>
-                    <input ref={answer} type="text" id="answer" placeholder="Respuesta"/>
 
-                    <label htmlFor="wrong">Alternativas :</label>
-                    <input ref={wrong} type="text" id="wrong" placeholder="Erroneas"/>
-
-                    <label htmlFor="explanation">Explicacion :</label>
-                    <textarea ref={explanation} id="explanation" cols="30" rows="10"></textarea>
+                        <div className="row">
+                            <div className="container col-md-6">
+                                <label htmlFor="type">Tipo de Pregunta :</label>
+                                <select ref={type} id="type"
+                                    className="form-control" required>
+                                    <option value="0">Alternativas</option>
+                                    <option value="1">Verdadero / Falso</option>
+                                    <option value="2">Completar</option>
+                                </select>
+                            </div>
+                            
+                            <div className="container col-md-6">
+                                <label htmlFor="subject">Tema :</label>
+                                <select ref={subject} name="" id=""
+                                    className="form-control" required>
+                                    <option value="1">2.1</option>
+                                    <option value="2">2.2</option>
+                                    <option value="3">2.3</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                     
-                    <label htmlFor="type">Tipo de Pregunta :</label>
-                    <select ref={type} id="type">
-                        <option value="0">Alternativas</option>
-                        <option value="1">Verdadero / Falso</option>
-                        <option value="2">Completar</option>
-                    </select>
-
-                    <label htmlFor="subject">Tema :</label>
-                    <select ref={subject} name="" id="">
-                        <option value="1">2.1</option>
-                        <option value="2">2.2</option>
-                        <option value="3">2.3</option>
-                    </select>
-                </Fragment>
+                    <div className="container col-md-6 form-group">
+                        <label htmlFor="explanation">Explicacion :</label>
+                        <textarea ref={explanation} id="explanation" cols="30" rows="10"
+                            className="form-control"></textarea>
+                    </div>
+                </div>
             :
-                <Fragment>
-                    <label htmlFor="parser">Texto</label>
-                    <textarea ref={parser} name="" id="parser" cols="30" rows="10"></textarea>
-                </Fragment>
+                <div className="row">
+                    <div className="container col form-group">
+                        <label htmlFor="parser">Texto</label>
+                        <textarea ref={parser} name="" id="parser" cols="30" rows="10"
+                            className="form-control"></textarea>
+                    </div>
+                </div>
             }
         </div>
-        <button type="button" onClick={ChangeMode}> Cambiar a Modo {(formMode)? "Texto" : "Formulario"} </button>
-        <button type="button" onClick={SubmitQuestion} className="btn btn-primary"> Nueva Pregunta </button>
+        <div className="container px-3">
+            <div className="row gx-3 form-group">
+                <div className="col">
+                    <button type="button" onClick={ChangeMode} className="btn btn-secondary form-control"> Cambiar a Modo {(formMode)? "Texto" : "Formulario"} </button>
+                </div>
+                <div className='col'>
+                    <button type="button" onClick={SubmitQuestion} className="btn btn-primary form-control"> Nueva Pregunta </button>
+                </div>
+                <div className='col'>
+                    <button type="button" onClick={Display} className="btn btn-warning form-control"> Message </button>
+                </div>
+            </div>
+        </div>
     </form>
   )
 }

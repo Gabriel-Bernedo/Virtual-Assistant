@@ -86,7 +86,6 @@ def dictarpreguntas(seccion, subseccion=None):
     texto_a_audio("En esta seccion tu puntaje es de " + str(dict['puntaje']) + " sobre " + str(len(arr)))
     dict['puntaje'] = 0
 
-
 def aprender(seccion, subseccion=None):
     info, imgs = datos['aprendizaje'][seccion], datos['img'][seccion]
     if not subseccion == None:
