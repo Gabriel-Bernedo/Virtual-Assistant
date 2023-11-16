@@ -1,4 +1,5 @@
 from auxiliar import *
+from juegos.quizApp import *
 from utils_audio import *
 if __name__ == "__main__":
     texto_a_audio(datos['bienvenida'])
@@ -107,12 +108,12 @@ if __name__ == "__main__":
                     texto_a_audio("repite la opcion por favor")
         elif respuesta == "juegos":
             texto_a_audio("Elegiste la opción JUEGOS.")
-            '''texto_a_audio(
+            texto_a_audio(
                 "El primer juego consta en contestar las preguntas, haciendo click en la imagen que crees que es la respuesta.")
             if __name__ == "__main__":
                 root = tk.Tk()
                 app = ComputerStructureQuizApp(root)
-                root.mainloop()'''
+                root.mainloop()
         elif respuesta == "salir":
             break
         else:

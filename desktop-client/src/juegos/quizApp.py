@@ -4,9 +4,10 @@ from utils_audio import texto_a_audio
 class ComputerStructureQuizApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("JUEGO: ESTRUCTURA DE UN COMPUTADOR")
+        self.root.title("JUEGO: Modos de direccionamiento")
 
-        self.question_label = tk.Label(root, text="¿Qué componente almacena datos de manera temporal en la CPU?")
+        self.question_label = tk.Label(root, text="¿Cual no es una operacion logica?")
+        texto_a_audio("¿Cual no es una operacion logica?",False)
         self.question_label.pack()
 
         self.image_frame = tk.Frame(root)
@@ -19,19 +20,19 @@ class ComputerStructureQuizApp:
             image_label.bind("<Button-1>", self.check_answer)
             self.image_labels.append(image_label)
 
-        self.correct_answer = 0  # Índice de la respuesta correcta
+        self.correct_answer = 2  # Índice de la respuesta correcta
         self.load_question()
 
     def load_question(self):
         # Cargar la pregunta y las imágenes aquí
-        question = "¿Qué componente almacena datos de manera temporal en la CPU?"
-        options = ["RAM", "GPU", "HDD", "CPU"]
+        question = "¿Cual no es una operacion logica?"
+        options = ["AND", "OR", "ADD", "NOT"]
         
         self.question_label.config(text=question)
-        self.correct_answer = 0  # Respuesta correcta en la posición 0 (RAM)
+        self.correct_answer = 2  # Respuesta correcta en la posición 0 (RAM)
 
         for i in range(4):
-            image_path = f"img/option_{i+1}.png"
+            image_path = f"img/{options[i]}.png"
             image = Image.open(image_path)
             image = image.resize((200, 200))
             photo = ImageTk.PhotoImage(image)
@@ -41,11 +42,14 @@ class ComputerStructureQuizApp:
     def check_answer(self, event):
         clicked_label = event.widget
         clicked_index = self.image_labels.index(clicked_label)
-        
+
         if clicked_index == self.correct_answer:
-            print("¡Respuesta correcta!")
-            texto_a_audio("Respuesta correcta.")
+            texto_a_audio("Respuesta correcta.", False)
+            self.root.destroy()  # Cierra la aplicación al dar la respuesta correcta
         else:
-            print("Respuesta incorrecta.")
-            texto_a_audio("Respuesta incorrecta.")
-        self.load_question()
+            texto_a_audio("Respuesta incorrecta. Intentalo de nuevo", False)
+
+            # Verificar si la ventana aún está abierta antes de cargar la siguiente pregunta
+            if self.root.winfo_exists():
+                self.load_question()
+
