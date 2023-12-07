@@ -6,3 +6,9 @@ from rest_framework.routers import DefaultRouter
 router = DefaultRouter()
 router.register(r'question', QuestionViewSet, basename='question')
 urlpatterns = router.urls
+
+from .views import ViewQuestions
+
+urlpatterns += [
+    path(r'data-tree', ViewQuestions.as_view()),
+]
