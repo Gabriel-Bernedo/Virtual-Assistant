@@ -1,0 +1,15 @@
+{
+    "version": 1,
+    "navigation" : [
+        {
+            "name": "Index",
+            "type": "item",
+            "href": "/"
+        },
+        {
+            "name": "Demo",
+            "type": "item",
+            "href": "/demo"
+        }
+    ]
+}
