@@ -58,32 +58,32 @@ def dictarpreguntas(seccion, subseccion=None):
         arr = arr[subseccion]
     for pregunta in arr:
         cont = 1
-        texto_a_audio("Pregunta numero " + pregunta)
+        asyncio.run(hablar("Pregunta numero " + pregunta))
         for alternativa in arr[pregunta]:
             if arr[pregunta][alternativa] == 1:
                 resul = cont
-            texto_a_audio(str(cont) + ") " + alternativa)
+            asyncio.run(hablar(str(cont) + ") " + alternativa))
             cont += 1
-        texto_a_audio("Dicta el numero de opcion que creas que es correcta")
+        asyncio.run(hablar("Dicta el numero de opcion que creas que es correcta"))
         while True:#uno-dos
-            rpta = enviar_voz()
+            rpta = asyncio.run(escuchar())
             if rpta.isdigit() and int(rpta) > 0 and int(rpta) < cont:
                 if int(rpta) == resul:
                     dict['puntaje'] += 1
-                    texto_a_audio("respuesta correcta")
+                    asyncio.run(hablar("respuesta correcta"))
                 else:
-                    texto_a_audio("respuesta incorrecta")
+                    asyncio.run(hablar("respuesta incorrecta"))
                 break
             elif rpta in dict and dict[rpta] > 0 and dict[rpta] < cont:
                 if resul == dict[rpta]:
                     dict['puntaje'] += 1
-                    texto_a_audio("respuesta correcta")
+                    asyncio.run(hablar("respuesta correcta"))
                 else:
-                    texto_a_audio("respuesta incorrecta")
+                    asyncio.run(hablar("respuesta incorrecta"))
                 break
             else:
-                texto_a_audio("la respuesta debe estar en el rango")
-    texto_a_audio("En esta seccion tu puntaje es de " + str(dict['puntaje']) + " sobre " + str(len(arr)))
+                asyncio.run(hablar("la respuesta debe estar en el rango"))
+    asyncio.run(hablar("En esta seccion tu puntaje es de " + str(dict['puntaje']) + " sobre " + str(len(arr))))
     dict['puntaje'] = 0
 
 
@@ -93,7 +93,7 @@ def aprender(seccion, subseccion=None):
         info = info[subseccion]
         imgs = imgs[subseccion]
     else:
-        texto_a_audio("Escogiste " + seccion)
+        asyncio.run(hablar("Escogiste " + seccion))
     for dato, img in zip(info, imgs):
-        texto_a_audio(dato)
+        asyncio.run(hablar(dato))
         cargarimg(img)

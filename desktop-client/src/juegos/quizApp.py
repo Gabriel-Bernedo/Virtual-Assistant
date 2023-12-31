@@ -1,13 +1,14 @@
 import tkinter as tk
 from PIL import Image, ImageTk
-from utils_audio import texto_a_audio
+from utils_audio import hablar
+import asyncio
 class ComputerStructureQuizApp:
     def __init__(self, root):
         self.root = root
         self.root.title("JUEGO: Modos de direccionamiento")
 
         self.question_label = tk.Label(root, text="¿Cual no es una operacion logica?")
-        texto_a_audio("¿Cual no es una operacion logica?",False)
+        asyncio.run(hablar("¿Cual no es una operacion logica?",False))
         self.question_label.pack()
 
         self.image_frame = tk.Frame(root)
@@ -44,10 +45,10 @@ class ComputerStructureQuizApp:
         clicked_index = self.image_labels.index(clicked_label)
 
         if clicked_index == self.correct_answer:
-            texto_a_audio("Respuesta correcta.", False)
+            asyncio.run(hablar("Respuesta correcta.", False))
             self.root.destroy()  # Cierra la aplicación al dar la respuesta correcta
         else:
-            texto_a_audio("Respuesta incorrecta. Intentalo de nuevo", False)
+            asyncio.run(hablar("Respuesta incorrecta. Intentalo de nuevo", False))
 
             # Verificar si la ventana aún está abierta antes de cargar la siguiente pregunta
             if self.root.winfo_exists():
