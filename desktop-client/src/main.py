@@ -1,8 +1,12 @@
 from auxiliar import *
-from juegos.quizApp import *
-from utils_audio import *
-from ui import *
+# from juegos.quizApp import *
+# from utils_audio import *
+# from ui import *
+import pygame
 from multiprocessing import Process
+import sys
+import asyncio
+
 '''def programa():
     txtToAudio(datos['bienvenida'])
     print("Di tu nombre: ")
@@ -121,53 +125,77 @@ from multiprocessing import Process
             asyncio.run(hablar(
                 nombre + " creo que no has respondido con alguna de las instrucciones indicadas anteriormente"))
             asyncio.run(hablar("Responde con una de las alternativas mencionadas."))'''
-def programa():
-    # Tu código aquí
-    #setVentana(screen)
-    txtToAudio(datos['bienvenida'])
-    print("Di tu nombre: ")
-    # nombre = asyncio.run(escuchar()).capitalize()
-    nombre = enviar_voz().capitalize()
-    txtToAudio(f"Hola {nombre}. Mucho gusto.")
-async def main():
-    #dict["continuar"] = True
-    await asyncio.gather(
-        asyncio.to_thread(programa),
-        asyncio.to_thread(asistentePyg)
-    )
-asyncio.run(main())
-'''import pygame
-import sys
 
-# Inicializar Pygame
 pygame.init()
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+GREEN = (0, 255, 0)
+RED = (255, 0, 0)
+BLUE = (0, 0, 255)
+CELESTE = (114, 157, 174)
+CELESTE = (85, 201, 245)
+#CELESTE = RED#para diferenciar
+size = (600, 600)  # ancho,alto
 
-# Configuración de la pantalla
-width, height = 800, 600
-screen = pygame.display.set_mode((width, height))
-pygame.display.set_caption("Ventana en Blanco")
+screen = pygame.display.set_mode(size)
 screen.fill(WHITE)
 pygame.display.flip()
+pygame.display.set_caption('PYG4 Asistente Virtual')
+pygame.display.set_icon(pygame.image.load("img/fondo.jpg"))
+clock = pygame.time.Clock()
+fondo = pygame.image.load('img/fondo.jpg').convert()#600x600px
+micro = pygame.image.load('img/micro.png').convert_alpha()#120x120px
+from utils_audio import *
 
-# Función principal del programa
-def programa(screen):
-    # Tu código aquí
-    setVentana(screen)
+
+def programa():
     txtToAudio(datos['bienvenida'])
-    print("Di tu nombre: ")
-    # nombre = asyncio.run(escuchar()).capitalize()
+    #hablando[0] = False
     nombre = enviar_voz().capitalize()
     txtToAudio(f"Hola {nombre}. Mucho gusto.")
+    nombre = enviar_voz()
+    estado['termino'] = True
 
-programa(screen)
-print("Saliendo del programa")'''
-'''
-procesos = [
-    Process(target=programa),
-    Process(target=asistentePyg)
-]
-#freeze_support()
-for proceso in procesos:
-    proceso.start()
-for proceso in procesos:
-    proceso.join()'''
+
+fuente = pygame.font.SysFont('segoe print', 20)
+texto = fuente.render('Pyg4 Tu Asistente Virtual', True, WHITE)
+
+
+def asistentePyg():
+    import threading
+    modo = True
+    hilo1 = threading.Thread(target=programa)
+    hilo1.start()
+    while not estado['termino']:
+        # print('iterando')
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+        screen.blit(fondo, (0, 0))
+        if estado['hablando']:
+            ancho = 70
+            if modo:#185-120 = x,y 405 -> 220 -> 210
+                alto = 150
+                pygame.draw.ellipse(screen, RED, (185, 140, ancho, alto-40))
+                pygame.draw.ellipse(screen, BLUE, (260, 120, ancho, alto))
+                pygame.draw.ellipse(screen, GREEN, (335, 140, ancho, alto-40))
+            else:
+                alto = 90
+                pygame.draw.ellipse(screen, RED, (185, 140, ancho, alto+40))
+                pygame.draw.ellipse(screen, BLUE, (260, 160, ancho, alto))
+                pygame.draw.ellipse(screen, GREEN, (335, 140, ancho, alto+40))
+            modo = not modo
+        elif estado['escuchando']:#120+150=270/2=135
+            ancho = 70
+            if modo:  # 185-120 = x,y 405 -> 220 -> 2109
+                alto = 150
+                pygame.draw.circle(screen, CELESTE, (295, 230),80)
+            modo = not modo
+            screen.blit(micro, (235, 170))
+            #pygame.draw.rect(screen, BLUE, (185, 255, 220, 10))
+        screen.blit(texto, (10, 10))
+        pygame.display.flip()
+        clock.tick(2.5)
+
+
+asistentePyg()

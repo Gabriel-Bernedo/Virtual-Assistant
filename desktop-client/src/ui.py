@@ -47,4 +47,4 @@ def asistentePyg():
         clock.tick(1)  # Establecer la velocidad de actualización (1 FPS en este caso)
 
     #print('fdfsf')
-#asistentePyg()'''
+asistentePyg()
