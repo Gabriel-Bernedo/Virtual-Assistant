@@ -1,8 +1,11 @@
 from auxiliar import *
-from juegos.quizApp import *
-from utils_audio import *
-from ui import *
+#from juegos.quizApp import *
+#from utils_audio import *
+#from ui import *
+import pygame
 from multiprocessing import Process
+import sys
+import asyncio
 '''def programa():
     txtToAudio(datos['bienvenida'])
     print("Di tu nombre: ")
@@ -121,53 +124,54 @@ from multiprocessing import Process
             asyncio.run(hablar(
                 nombre + " creo que no has respondido con alguna de las instrucciones indicadas anteriormente"))
             asyncio.run(hablar("Responde con una de las alternativas mencionadas."))'''
-def programa():
-    # Tu código aquí
-    #setVentana(screen)
-    txtToAudio(datos['bienvenida'])
-    print("Di tu nombre: ")
-    # nombre = asyncio.run(escuchar()).capitalize()
-    nombre = enviar_voz().capitalize()
-    txtToAudio(f"Hola {nombre}. Mucho gusto.")
-async def main():
-    #dict["continuar"] = True
-    await asyncio.gather(
-        asyncio.to_thread(programa),
-        asyncio.to_thread(asistentePyg)
-    )
-asyncio.run(main())
-'''import pygame
-import sys
 
-# Inicializar Pygame
 pygame.init()
+BLACK = (0,0,0)
+WHITE= (255,255,255)
+GREEN = (0,255,0)
+RED = (255,0,0)
+BLUE = (0,0,255)
+size = (800,500)#ancho,alto
 
-# Configuración de la pantalla
-width, height = 800, 600
-screen = pygame.display.set_mode((width, height))
-pygame.display.set_caption("Ventana en Blanco")
+screen = pygame.display.set_mode(size)
 screen.fill(WHITE)
 pygame.display.flip()
-
-# Función principal del programa
-def programa(screen):
-    # Tu código aquí
-    setVentana(screen)
+clock = pygame.time.Clock()
+from utils_audio import *
+def programa():
     txtToAudio(datos['bienvenida'])
-    print("Di tu nombre: ")
-    # nombre = asyncio.run(escuchar()).capitalize()
     nombre = enviar_voz().capitalize()
     txtToAudio(f"Hola {nombre}. Mucho gusto.")
+    nombre = enviar_voz()
+    termino[0] = True
+fuente = pygame.font.SysFont('segoe print', 20)
+texto = fuente.render('Subtitulo',True,RED)
+def asistentePyg():
+    import threading
+    modo = True
+    hilo1 = threading.Thread(target=programa)
+    hilo1.start()
+    while not termino[0]:
+        #print('iterando')
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+        screen.fill(WHITE)
+        if hablando[0]:
+            if modo:
+                pygame.draw.ellipse(screen, BLUE, (0, 0, 100, 300))
+                pygame.draw.ellipse(screen, BLUE, (204, 0, 100, 300))
+                pygame.draw.ellipse(screen, BLUE, (102, 0, 100, 300))
+            else:
+                pygame.draw.ellipse(screen, BLUE, (0, 0, 100, 200))
+                pygame.draw.ellipse(screen, BLUE, (102, 0, 100, 200))
+                pygame.draw.ellipse(screen, BLUE, (204, 0, 100, 200))
+            modo = not modo
+        else:
+            pygame.draw.line(screen, BLUE, (20, 50), (100, 50))
+        screen.blit(texto, (10, 10))
+        pygame.display.flip()
+        clock.tick(1.5)
+        #time.sleep(5000)
 
-programa(screen)
-print("Saliendo del programa")'''
-'''
-procesos = [
-    Process(target=programa),
-    Process(target=asistentePyg)
-]
-#freeze_support()
-for proceso in procesos:
-    proceso.start()
-for proceso in procesos:
-    proceso.join()'''
+asistentePyg()

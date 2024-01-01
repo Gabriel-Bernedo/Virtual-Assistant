@@ -1,6 +1,6 @@
 import tkinter as tk
 from PIL import Image, ImageTk
-from utils_audio import hablar
+from utils_audio import *
 import asyncio
 class ComputerStructureQuizApp:
     def __init__(self, root):
