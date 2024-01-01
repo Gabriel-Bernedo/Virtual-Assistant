@@ -1,11 +1,12 @@
 from auxiliar import *
-#from juegos.quizApp import *
-#from utils_audio import *
-#from ui import *
+# from juegos.quizApp import *
+# from utils_audio import *
+# from ui import *
 import pygame
 from multiprocessing import Process
 import sys
 import asyncio
+
 '''def programa():
     txtToAudio(datos['bienvenida'])
     print("Di tu nombre: ")
@@ -126,52 +127,75 @@ import asyncio
             asyncio.run(hablar("Responde con una de las alternativas mencionadas."))'''
 
 pygame.init()
-BLACK = (0,0,0)
-WHITE= (255,255,255)
-GREEN = (0,255,0)
-RED = (255,0,0)
-BLUE = (0,0,255)
-size = (800,500)#ancho,alto
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+GREEN = (0, 255, 0)
+RED = (255, 0, 0)
+BLUE = (0, 0, 255)
+CELESTE = (114, 157, 174)
+CELESTE = (85, 201, 245)
+#CELESTE = RED#para diferenciar
+size = (600, 600)  # ancho,alto
 
 screen = pygame.display.set_mode(size)
 screen.fill(WHITE)
 pygame.display.flip()
+pygame.display.set_caption('PYG4 Asistente Virtual')
+pygame.display.set_icon(pygame.image.load("img/fondo.jpg"))
 clock = pygame.time.Clock()
+fondo = pygame.image.load('img/fondo.jpg').convert()#600x600px
+micro = pygame.image.load('img/micro.png').convert_alpha()#120x120px
 from utils_audio import *
+
+
 def programa():
     txtToAudio(datos['bienvenida'])
+    #hablando[0] = False
     nombre = enviar_voz().capitalize()
     txtToAudio(f"Hola {nombre}. Mucho gusto.")
     nombre = enviar_voz()
-    termino[0] = True
+    estado['termino'] = True
+
+
 fuente = pygame.font.SysFont('segoe print', 20)
-texto = fuente.render('Subtitulo',True,RED)
+texto = fuente.render('Pyg4 Tu Asistente Virtual', True, WHITE)
+
+
 def asistentePyg():
     import threading
     modo = True
     hilo1 = threading.Thread(target=programa)
     hilo1.start()
-    while not termino[0]:
-        #print('iterando')
+    while not estado['termino']:
+        # print('iterando')
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-        screen.fill(WHITE)
-        if hablando[0]:
-            if modo:
-                pygame.draw.ellipse(screen, BLUE, (0, 0, 100, 300))
-                pygame.draw.ellipse(screen, BLUE, (204, 0, 100, 300))
-                pygame.draw.ellipse(screen, BLUE, (102, 0, 100, 300))
+        screen.blit(fondo, (0, 0))
+        if estado['hablando']:
+            ancho = 70
+            if modo:#185-120 = x,y 405 -> 220 -> 210
+                alto = 150
+                pygame.draw.ellipse(screen, RED, (185, 140, ancho, alto-40))
+                pygame.draw.ellipse(screen, BLUE, (260, 120, ancho, alto))
+                pygame.draw.ellipse(screen, GREEN, (335, 140, ancho, alto-40))
             else:
-                pygame.draw.ellipse(screen, BLUE, (0, 0, 100, 200))
-                pygame.draw.ellipse(screen, BLUE, (102, 0, 100, 200))
-                pygame.draw.ellipse(screen, BLUE, (204, 0, 100, 200))
+                alto = 90
+                pygame.draw.ellipse(screen, RED, (185, 140, ancho, alto+40))
+                pygame.draw.ellipse(screen, BLUE, (260, 160, ancho, alto))
+                pygame.draw.ellipse(screen, GREEN, (335, 140, ancho, alto+40))
             modo = not modo
-        else:
-            pygame.draw.line(screen, BLUE, (20, 50), (100, 50))
+        elif estado['escuchando']:#120+150=270/2=135
+            ancho = 70
+            if modo:  # 185-120 = x,y 405 -> 220 -> 2109
+                alto = 150
+                pygame.draw.circle(screen, CELESTE, (295, 230),80)
+            modo = not modo
+            screen.blit(micro, (235, 170))
+            #pygame.draw.rect(screen, BLUE, (185, 255, 220, 10))
         screen.blit(texto, (10, 10))
         pygame.display.flip()
-        clock.tick(1.5)
-        #time.sleep(5000)
+        clock.tick(2.5)
+
 
 asistentePyg()

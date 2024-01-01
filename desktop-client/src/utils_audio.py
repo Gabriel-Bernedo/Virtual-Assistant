@@ -7,37 +7,20 @@ pygame.init()
 ventana = [None]
 def setVentana(scrren):
     ventana[0] = scrren
-dict = {'continuar': True,
-        'rpta':''}
-hablando = [True]
-termino = [False]
-width, height = 1280,720
-
-def mostarimg(path):
-    pygame.init()
-    screen = pygame.display.set_mode((width, height))
-    pygame.display.set_caption("Mostrar Imagen")
-    image = pygame.image.load(path).convert()
-    done = False
-    print('mostrando img')
-    while not done and dict["continuar"]:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                done = True
-        screen.blit(image,[0,0])
-        pygame.display.flip()
-        #print('aun no termino')
-
-    # Salir del programa
-    pygame.quit()
+estado = {
+    'hablando': True,
+    'escuchando':False,
+    'termino': False
+}
 
 def txtToAudio(comando, doPrint=True):
-    hablando[0] = True
+    estado['hablando'] = True
     if doPrint:
         print(comando)
     palabra = pyttsx3.init()
     palabra.say(comando)
     palabra.runAndWait()
+    estado['hablando'] = False
 def mandaraudio(archivo_audio):
     pygame.mixer.init()
     pygame.mixer.music.load(archivo_audio)
@@ -56,7 +39,7 @@ def capturar_voz(reconocer=recognizer, microfono=microphone, tiempo_ruido=3):
         reconocer.adjust_for_ambient_noise(fuente, duration=tiempo_ruido)
         print("iniciando reconocimiento")
         mandaraudio("inicio.wav")
-        hablando[0] = False
+        estado['escuchando'] = True
         audio = reconocer.listen(fuente, None, 3)
         mandaraudio("fin.wav")
 
@@ -86,6 +69,5 @@ def enviar_voz():
             txtToAudio("Algo no está bien. No puedo reconocer tu micrófono o no lo tienes enchufado.")
             exit(1)
         txtToAudio("No pude escucharte, ¿podrías repetirlo?", False)
-    dict["continuar"] = False
-    dict['mensaje'] = palabra["mensaje"].lower()
-    return dict['mensaje']
+    estado['escuchando'] = False
+    return palabra["mensaje"].lower()
