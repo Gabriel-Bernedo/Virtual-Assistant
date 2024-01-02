@@ -10,7 +10,7 @@ estado = {
 }
 subTxt = ['']
 
-def txtToAudio(comando, doPrint=True):
+def decir(comando, doPrint=True):
     estado['hablando'] = True
     subTxt[0] = comando
     if doPrint:
@@ -20,14 +20,14 @@ def txtToAudio(comando, doPrint=True):
     palabra.runAndWait()
     subTxt[0] = ''
     estado['hablando'] = False
-def mandaraudio(archivo_audio):
+def repAudio(archivo_audio):
     pygame.mixer.init()
     pygame.mixer.music.load(archivo_audio)
     pygame.mixer.music.play()
     while pygame.mixer.music.get_busy():
         continue
 
-def capturar_voz(reconocer=recognizer, microfono=microphone, tiempo_ruido=3):
+def enviarAudio(reconocer=recognizer, microfono=microphone, tiempo_ruido=3):
     if not isinstance(reconocer, sr.Recognizer):
         raise TypeError("'reconocer' no es de la instacia 'Recognizer'")
 
@@ -37,11 +37,11 @@ def capturar_voz(reconocer=recognizer, microfono=microphone, tiempo_ruido=3):
     with microfono as fuente:
         reconocer.adjust_for_ambient_noise(fuente, duration=tiempo_ruido)
         print("iniciando reconocimiento")
-        mandaraudio("inicio.wav")
+        repAudio("inicio.wav")
         estado['escuchando'] = True
         audio = reconocer.listen(fuente, None, 3)
         estado['escuchando'] = False
-        mandaraudio("fin.wav")
+        repAudio("fin.wav")
 
     respuesta = {
         "suceso": True,
@@ -58,16 +58,16 @@ def capturar_voz(reconocer=recognizer, microfono=microphone, tiempo_ruido=3):
 
     return respuesta
 
-def enviar_voz():
+def escuchar():
     estado['escuchando'] = False
     while True:
-        palabra = capturar_voz(recognizer, microphone)
+        palabra = enviarAudio(recognizer, microphone)
         if palabra["mensaje"]:
             break
         if not palabra["suceso"]:
             print("Algo no está bien. No puedo reconocer tu micrófono o no lo tienes enchufado. <", palabra["error"], ">")
-            txtToAudio("Algo no está bien. No puedo reconocer tu micrófono o no lo tienes enchufado.")
+            decir("Algo no está bien. No puedo reconocer tu micrófono o no lo tienes enchufado.")
             exit(1)
-        txtToAudio("No pude escucharte, ¿podrías repetirlo?", False)
+        decir("No pude escucharte, ¿podrías repetirlo?", False)
     estado['escuchando'] = False
     return palabra["mensaje"].lower()
