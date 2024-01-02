@@ -1,11 +1,11 @@
 from auxiliar import *
+import threading
 # from juegos.quizApp import *
-import pygame
 from utils_audio import *
 import sys
 
 def programa():
-    txtToAudio(datos['bienvenida'])
+    txtToAudio(datos['bienvenida'][0])
     print("Di tu nombre: ")
     #nombre = enviar_voz().capitalize()
     nombre = enviar_voz().capitalize()
@@ -156,15 +156,14 @@ load = [pygame.image.load('img/load.png').convert_alpha()]#140x140px
 
 
 fuente = pygame.font.SysFont('segoe print', 20)
-texto = fuente.render('Pyg4 Tu Asistente Virtual', True, WHITE)
-
+pygTxt = fuente.render('Pyg4 Tu Asistente Virtual', True, WHITE)
 
 def asistentePyg():
-    import threading
     modo = True
     hilo1 = threading.Thread(target=programa)
     hilo1.start()
     while not estado['termino']:
+        subtitulos = fuente.render(subTxt[0], True, WHITE)
         # print('iterando')
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -197,7 +196,8 @@ def asistentePyg():
             screen.blit(load[0], (235, 170))
             load[0] = pygame.transform.rotate(load[0], 90)
             clock.tick(1.5)
-        screen.blit(texto, (10, 10))
+        screen.blit(pygTxt, (10, 10))
+        screen.blit(subtitulos, (185, 160))
         pygame.display.flip()
 
 

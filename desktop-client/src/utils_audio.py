@@ -3,23 +3,22 @@ import speech_recognition as sr
 import pygame
 recognizer = sr.Recognizer()
 microphone = sr.Microphone()
-pygame.init()
-ventana = [None]
-def setVentana(scrren):
-    ventana[0] = scrren
 estado = {
     'hablando': True,
     'escuchando':False,
     'termino': False
 }
+subTxt = ['']
 
 def txtToAudio(comando, doPrint=True):
     estado['hablando'] = True
+    subTxt[0] = comando
     if doPrint:
         print(comando)
     palabra = pyttsx3.init()
     palabra.say(comando)
     palabra.runAndWait()
+    subTxt[0] = ''
     estado['hablando'] = False
 def mandaraudio(archivo_audio):
     pygame.mixer.init()
@@ -58,7 +57,6 @@ def capturar_voz(reconocer=recognizer, microfono=microphone, tiempo_ruido=3):
         respuesta["error"] = "Habla ininteligible"
 
     return respuesta
-
 
 def enviar_voz():
     estado['escuchando'] = False
