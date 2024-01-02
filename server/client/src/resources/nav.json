@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "navigation": [
+    {
+      "page": "Index",
+      "href": "/"
+    },
+    {
+      "page": "Demo_Learn",
+      "href": "/demo/learn"
+    },
+    {
+      "page": "Demo_Quiz",
+      "href": "/demo/quiz"
+    },
+    {
+      "page": "Demo_Games",
+      "href": "/demo/games"
+    },
+    {
+      "page": "Demo_Docs",
+      "href": "/demo/docs"
+    },
+    {
+      "page": "Dev_Learn",
+      "href": "/dev/learn"
+    },
+    {
+      "page": "Dev_Quiz",
+      "href": "/dev/quiz"
+    },
+    {
+      "page": "Dev_Games",
+      "href": "/dev/games"
+    },
+    {
+      "page": "Dev_Docs",
+      "href": "/dev/docs"
+    },
+    {
+      "page": "OhWeHaveAProblem",
+      "href": "/*",
+      "params": {
+        "errCode": 404,
+        "msg": "Lo sentimos, no pudimos encontrar la pagina"
+      }
+    }
+  ]
+}

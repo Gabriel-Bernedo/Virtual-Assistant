@@ -41,6 +41,7 @@ def capturar_voz(reconocer=recognizer, microfono=microphone, tiempo_ruido=3):
         mandaraudio("inicio.wav")
         estado['escuchando'] = True
         audio = reconocer.listen(fuente, None, 3)
+        estado['escuchando'] = False
         mandaraudio("fin.wav")
 
     respuesta = {
@@ -60,6 +61,7 @@ def capturar_voz(reconocer=recognizer, microfono=microphone, tiempo_ruido=3):
 
 
 def enviar_voz():
+    estado['escuchando'] = False
     while True:
         palabra = capturar_voz(recognizer, microphone)
         if palabra["mensaje"]:

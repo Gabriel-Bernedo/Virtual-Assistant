@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "navigation": [
+    {
+      "name": "Demo",
+      "type": "menu",
+      "items": [
+        {
+          "name": "Aprender",
+          "desc": "Adentrate en el mundo de las computadoras con PyG4",
+          "href": "/demo/learn",
+          "icon": {
+            "type": "outline",
+            "value": "AcademicCapIcon"
+          }
+        },
+        {
+          "name": "Quiz",
+          "desc": "Prueba tu conocimiento en un quiz por PyG4",
+          "href": "/demo/quiz",
+          "icon": {
+            "type": "outline",
+            "value": "PuzzlePieceIcon"
+          }
+        },
+        {
+          "name": "Juegos",
+          "desc": "Aprende algunos conceptos jugando con PyG4",
+          "href": "/demo/games",
+          "icon": {
+            "type": "outline",
+            "value": "CubeIcon"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "name": "Documentacion del Demo",
+          "href": "/demo/docs",
+          "icon": {
+            "type": "solid",
+            "value": "BookOpenIcon"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Desarrollar",
+      "type": "menu",
+      "items": [
+        {
+          "name": "Temas y Contenido",
+          "desc": "Inspecciona y Personaliza el contenido de la PyG4",
+          "href": "/dev/learn",
+          "icon": {
+            "type": "outline",
+            "value": "PencilSquareIcon"
+          }
+        },
+        {
+          "name": "Pruebas",
+          "desc": "Desarrolla tus propias preguntas y pruebas",
+          "href": "/dev/quiz",
+          "icon": {
+            "type": "outline",
+            "value": "QuestionMarkCircleIcon"
+          }
+        },
+        {
+          "name": "Juegos",
+          "desc": "Crea tus propios juegos compatibles con PyG4",
+          "href": "/dev/games",
+          "icon": {
+            "type": "outline",
+            "value": "CubeTransparentIcon"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "name": "Documentacion del Desarrollador",
+          "href": "/dev/docs",
+          "icon": {
+            "type": "solid",
+            "value": "BookOpenIcon"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Mas Información",
+      "type": "item",
+      "href": "/about"
+    },
+    {
+      "name": "Descargar App",
+      "type": "item",
+      "href": "/download"
+    }
+  ]
+}

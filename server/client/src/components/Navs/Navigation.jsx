@@ -16,7 +16,7 @@ import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/
 import NavMenuSlot from './NavMenuSlot'
 import NavSlot from './NavSlot'
 
-import { navigation } from './navigationTree.json'
+import { navigation } from 'resources/navTree.json'
 
 const products = [
   { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
@@ -38,9 +38,9 @@ function classNames(...classes) {
 function renderNav(slot){
   switch(slot.type){
     case "item":
-      return <NavSlot slot={slot}/>
+      return <NavSlot key={slot.name} slot={slot}/>
     case "menu":
-      return <NavMenuSlot slot={slot}/>
+      return <NavMenuSlot key={slot.name} slot={slot}/>
   }
 }
 

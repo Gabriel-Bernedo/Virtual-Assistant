@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import colors from 'tailwindcss/colors'
+
 export default {
   content: [
     "./index.html",
@@ -6,6 +8,11 @@ export default {
   ],
   theme: {
     extend: {},
+    colors: {
+      white: colors.white,
+      gray: colors.gray,
+      slate: colors.slate,
+    }
   },
   plugins: [],
 }
