@@ -12,6 +12,7 @@ export default {
       white: colors.white,
       gray: colors.gray,
       slate: colors.slate,
+      indigo: colors.indigo,
     }
   },
   plugins: [],
