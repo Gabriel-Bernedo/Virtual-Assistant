@@ -131,20 +131,22 @@ GREEN = (0, 255, 0)
 RED = (255, 0, 0)
 BLUE = (0, 0, 255)
 CELESTE = (85, 201, 245)
-size = (600, 600)  # ancho,alto
 
-screen = pygame.display.set_mode(size)
-screen.fill(WHITE)
-pygame.display.flip()
-pygame.display.set_caption('PYG-4')
-pygame.display.set_icon(pygame.image.load("img/fondo.jpg"))
 clock = pygame.time.Clock()
-fondo = pygame.image.load('img/fondo.jpg').convert()#600x600px
+fondo = pygame.image.load('img/fondo.jpg')#.convert()#600x600px
+
+size = (fondo.get_width(),fondo.get_height())  # ancho,alto
+pygame.display.set_icon(fondo)
+pygame.display.set_caption('PYG-4')
+screen = pygame.display.set_mode(size)
+#screen.fill(WHITE)
+
 micro = pygame.image.load('img/micro.png').convert_alpha()#120x120px
 load = [pygame.image.load('img/load.png').convert_alpha()]#140x140px
 
 fuente = pygame.font.SysFont('segoe print', 20)
 pygTxt = fuente.render('PYG-4 Tu Asistente Virtual', True, WHITE)
+pygame.display.flip()
 
 def asistentePyg():#INTERFAZ grafica
     modo = True
@@ -155,6 +157,7 @@ def asistentePyg():#INTERFAZ grafica
         # print('iterando')
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                estado['termino'] = True
                 sys.exit()
         screen.blit(fondo, (0, 0))
         if estado['hablando']:

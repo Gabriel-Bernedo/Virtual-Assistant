@@ -1,14 +1,12 @@
 import tkinter as tk
 from PIL import Image, ImageTk
-from utils_audio import *
-import asyncio
 class ComputerStructureQuizApp:
     def __init__(self, root):
         self.root = root
         self.root.title("JUEGO: Modos de direccionamiento")
 
         self.question_label = tk.Label(root, text="¿Cual no es una operacion logica?")
-        asyncio.run(hablar("¿Cual no es una operacion logica?",False))
+        decir("¿Cual no es una operacion logica?",False)
         self.question_label.pack()
 
         self.image_frame = tk.Frame(root)
