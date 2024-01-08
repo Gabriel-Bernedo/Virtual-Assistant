@@ -12,10 +12,6 @@ BLUE = (0, 0, 255)
 CELESTE = (85, 201, 245)
 clock = pygame.time.Clock()
 
-'''
-estado={'enPartida' : False,
-        'jugando':True}
-'''
 # Palabras para adivinar
 palabras = ["PYTHON", "PROGRAMACION", "VIDEOJUEGO", "AHORCADO", "GITHUB", "INTELIGENCIA"]
 max_intentos = 6
