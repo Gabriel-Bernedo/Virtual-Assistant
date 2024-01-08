@@ -8,9 +8,9 @@ estado = {
     'escuchando':False,
     'termino': False,
     'asistente':True,
-    #'juego':False,
+    'aprendiendo':False,
     'enPartida' : False,
-    'jugando':True
+    'jugando': False
 }
 subTxt = ['']
 

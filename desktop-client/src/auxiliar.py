@@ -19,6 +19,7 @@ dict = {
     "cuatro": 4,
     "cinco": 5
 }
+img_path = ['']
 
 
 def dictarpreguntas(seccion, subseccion=None):
@@ -65,43 +66,41 @@ def aprender(seccion, subseccion=None):
         decir("Escogiste " + seccion)
     for dato, img in zip(info, imgs):
         decir(dato)
+        estado['asistente'] = False
+        estado['aprendiendo'] = True
         cargarimg(img)
+        print('siguiente dato')
+        time.sleep(3)
+
 def cargarimg(img):
     if not img == "":
         image_path = "img/" + img  # Ruta de la imagen que deseas abrir
         if not img.__contains__(".png"):
             image_path += ".png"
-        imagen = pygame.image.load(image_path)
-        size = (imagen.get_width(), imagen.get_height())
-        screen = pygame.display.set_mode(size)
-        estado['asistente'] = False
-        estado['jugando'] = False
-        screen.blit(imagen, (0, 0))
-        pygame.display.flip()
-        time.sleep(3)
+        img_path[0] = image_path
 
 def interfaz():
     pygame.init()
     fondo = pygame.image.load('img/fondo.jpg')  # .convert()#600x600px
 
-    size = (fondo.get_width(), fondo.get_height())  # ancho,alto
-    pygame.display.set_mode(size)
+    sizeF = (fondo.get_width(), fondo.get_height())  # ancho,alto
+    pygame.display.set_mode(sizeF)
 
     micro = pygame.image.load('img/micro.png').convert_alpha()  # 120x120px
     load = [pygame.image.load('img/load.png').convert_alpha()]  # 140x140px
 
     fuente = pygame.font.SysFont('segoe print', 20)
+    fuenteSub = pygame.font.SysFont('segoe print', 11)
     pygTxt = fuente.render('PYG-4 Tu Asistente Virtual', True, WHITE)
     pygame.display.flip()
     modo = True
     while not estado['termino']:
-        screen = pygame.display.set_mode(size)
+        screen = pygame.display.set_mode(sizeF)
 
         while estado['asistente']:
             pygame.display.set_icon(fondo)
             pygame.display.set_caption('PYG-4')
-            subtitulos = fuente.render(subTxt[0], True, WHITE)
-            # print('iterando')
+            subtitulos = fuenteSub.render(subTxt[0], True, BLACK)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     estado['termino'] = True
@@ -132,11 +131,19 @@ def interfaz():
                 load[0] = pygame.transform.rotate(load[0], 90)
                 clock.tick(1.5)
             screen.blit(pygTxt, (10, 10))
-            screen.blit(subtitulos, (185, 160))
+            screen.blit(subtitulos, (185, 280))
             pygame.display.flip()
-        while not estado['asistente'] and estado['jugando']:
+        while estado['jugando']:
             ahorcado()
-            estado['jugando'] = True
+            estado['jugando'] = False
             estado['asistente'] = True
-        while not estado['asistente'] and not estado['jugando']:
-            cargarimg()
+        while estado['aprendiendo']:
+            imagen = pygame.image.load(img_path[0])
+            size = (imagen.get_width(), imagen.get_height())
+            screen = pygame.display.set_mode(size)
+            screen.blit(imagen, (0, 0))
+            pygame.display.flip()
+            time.sleep(3)
+            print('termino de aprender')
+            estado['asistente'] = True
+            estado['aprendiendo'] = False
