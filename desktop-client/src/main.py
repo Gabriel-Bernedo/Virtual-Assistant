@@ -5,7 +5,7 @@ import time
 def programa():
     #decir(datos['bienvenida'][0])
     #nombre = escuchar().capitalize()
-    nombre = 'carlo'
+    nombre = 'paulo'
     #decir(f"Hola {nombre}. Mucho gusto.")
     #decir(f"{nombre} Ahora voy a explicarte sobre las opciones que tiene este programa. Tienes 3 opciones para escoger.")
     #decir("La opción Aprendizaje es donde podrás aprender todo con respecto a la Estructura de un computador. "
