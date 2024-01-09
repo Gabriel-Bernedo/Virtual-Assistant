@@ -1,6 +1,6 @@
 import React from 'react'
 
-import SubjectBar from 'components/SideBars/SubjectBar'
+import SubjectBar from 'components/SideBars/SideBar'
 export default function Dev_Learn() {
   return (
     <div className="w-full bg-slate-500 ">
