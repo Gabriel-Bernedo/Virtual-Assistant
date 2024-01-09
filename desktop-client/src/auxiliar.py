@@ -5,10 +5,10 @@ from utils_audio import *
 from juegos import *
 
 
-with open('basedatos.json', 'r', encoding='utf-8') as archivo:
+with open('res/db/basedatos.json', 'r', encoding='utf-8') as archivo:
     datos = json.load(archivo)
 
-with open('preguntas.json', 'r', encoding='utf-8') as archivo:
+with open('res/db/preguntas.json', 'r', encoding='utf-8') as archivo:
     preguntas = json.load(archivo)
 
 dict = {
@@ -69,25 +69,24 @@ def aprender(seccion, subseccion=None):
         estado['asistente'] = False
         estado['aprendiendo'] = True
         cargarimg(img)
-        print('siguiente dato')
         time.sleep(3)
 
 def cargarimg(img):
     if not img == "":
-        image_path = "img/" + img  # Ruta de la imagen que deseas abrir
+        image_path = "res/imgs/" + img  # Ruta de la imagen que deseas abrir
         if not img.__contains__(".png"):
             image_path += ".png"
         img_path[0] = image_path
 
 def interfaz():
     pygame.init()
-    fondo = pygame.image.load('img/fondo.jpg')  # .convert()#600x600px
+    fondo = pygame.image.load('res/imgs/fondo.jpg')  # .convert()#600x600px
 
     sizeF = (fondo.get_width(), fondo.get_height())  # ancho,alto
     pygame.display.set_mode(sizeF)
 
-    micro = pygame.image.load('img/micro.png').convert_alpha()  # 120x120px
-    load = [pygame.image.load('img/load.png').convert_alpha()]  # 140x140px
+    micro = pygame.image.load('res/imgs/micro.png').convert_alpha()  # 120x120px
+    load = [pygame.image.load('res/imgs/load.png').convert_alpha()]  # 140x140px
 
     fuente = pygame.font.SysFont('segoe print', 20)
     fuenteSub = pygame.font.SysFont('segoe print', 11)
@@ -96,7 +95,6 @@ def interfaz():
     modo = True
     while not estado['termino']:
         screen = pygame.display.set_mode(sizeF)
-
         while estado['asistente']:
             pygame.display.set_icon(fondo)
             pygame.display.set_caption('PYG-4')
@@ -144,6 +142,5 @@ def interfaz():
             screen.blit(imagen, (0, 0))
             pygame.display.flip()
             time.sleep(3)
-            print('termino de aprender')
             estado['asistente'] = True
             estado['aprendiendo'] = False

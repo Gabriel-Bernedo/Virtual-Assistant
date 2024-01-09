@@ -41,10 +41,10 @@ def enviarAudio(reconocer=recognizer, microfono=microphone, tiempo_ruido=3):
     with microfono as fuente:
         reconocer.adjust_for_ambient_noise(fuente, duration=tiempo_ruido)
         estado['escuchando'] = True
-        repAudio("inicio.wav")
+        repAudio("res/audio/inicio.wav")
         audio = reconocer.listen(fuente, None, 3)
         estado['escuchando'] = False
-        repAudio("fin.wav")
+        repAudio("res/audio/fin.wav")
 
     respuesta = {
         "suceso": True,

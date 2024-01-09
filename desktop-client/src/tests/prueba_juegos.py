@@ -13,7 +13,7 @@ BLUE = (0, 0, 255)
 CELESTE = (85, 201, 245)
 clock = pygame.time.Clock()
 pygame.init()
-fondo = pygame.image.load('../img/pizarra.png')#512x267px
+fondo = pygame.image.load('../res/imgs/pizarra.png')#512x267px
 size = (fondo.get_width(), fondo.get_height())
 screen = pygame.display.set_mode(size)
 pygame.display.set_caption('AHORCADO')

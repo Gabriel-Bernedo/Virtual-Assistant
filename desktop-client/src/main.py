@@ -5,7 +5,7 @@ import time
 def programa():
     decir(datos['bienvenida'][0])
     nombre = escuchar().capitalize()
-    #nombre = 'paulo'
+    #nombre = 'carlo'
     decir(f"Hola {nombre}. Mucho gusto.")
     decir(f"{nombre} Ahora voy a explicarte sobre las opciones que tiene este programa. Tienes 3 opciones para escoger.")
     decir("La opción Aprendizaje es donde podrás aprender todo con respecto a la Estructura de un computador. "
@@ -21,8 +21,8 @@ def programa():
             while True:
                 decir("Que seccion deseas aprender\n 1) Introduccion\n 2) Repertorio de instrucciones\n 3) "
                               "Modos de direccionamiento\n 4) Salir")
-                respuesta = escuchar()
-                #respuesta = 'introducción'
+                #respuesta = escuchar()
+                respuesta = 'introducción'
                 if respuesta == "introducción":
                     aprender('introduccion')
                 elif respuesta == "repertorio de instrucciones":

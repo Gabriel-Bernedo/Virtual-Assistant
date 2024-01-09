@@ -26,10 +26,10 @@ partes = [
 
 ]
 
-
+#pygame.init()
 def ahorcado():  # INTERFAZ grafica
     fuente = pygame.font.SysFont('segoe print', 20)
-    pizarra = pygame.image.load('img/pizarra.png')  # 512x267px
+    pizarra = pygame.image.load('res/imgs/pizarra.png')  # 512x267px
     tamanio = (pizarra.get_width(), pizarra.get_height())
     pantalla = pygame.display.set_mode(tamanio)
     pygame.display.set_caption('AHORCADO')
@@ -119,7 +119,8 @@ def ahorcado():  # INTERFAZ grafica
         else:
             estado['jugando'] = False
 
-
+'''estado['jugando'] = True
+ahorcado()'''
 def drawKeyboard():
     # Dibujar teclado
     '''for i in range(26):
