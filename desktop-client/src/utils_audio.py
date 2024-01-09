@@ -6,11 +6,15 @@ microphone = sr.Microphone()
 estado = {
     'hablando': True,
     'escuchando':False,
-    'termino': False
+    'termino': False,
+    'asistente':True,
+    'aprendiendo':False,
+    'enPartida' : False,
+    'jugando': False
 }
 subTxt = ['']
 
-def decir(comando, doPrint=True):
+def decir(comando, doPrint=False):
     estado['hablando'] = True
     subTxt[0] = comando
     if doPrint:
@@ -36,9 +40,8 @@ def enviarAudio(reconocer=recognizer, microfono=microphone, tiempo_ruido=3):
 
     with microfono as fuente:
         reconocer.adjust_for_ambient_noise(fuente, duration=tiempo_ruido)
-        print("iniciando reconocimiento")
-        repAudio("inicio.wav")
         estado['escuchando'] = True
+        repAudio("inicio.wav")
         audio = reconocer.listen(fuente, None, 3)
         estado['escuchando'] = False
         repAudio("fin.wav")
