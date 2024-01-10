@@ -3,7 +3,12 @@ import sys
 import random
 import time
 from utils_audio import estado
-
+import json
+with open('res/db/ahorcado.json', 'r', encoding='utf-8') as archivo:
+    objJuego = json.load(archivo)
+rpts = []
+for rpta in objJuego:
+    rpts.append(rpta)
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GREEN = (0, 255, 0)
@@ -11,9 +16,9 @@ RED = (255, 0, 0)
 BLUE = (0, 0, 255)
 CELESTE = (85, 201, 245)
 clock = pygame.time.Clock()
-
+#print(rpts)
 # Palabras para adivinar
-palabras = ["PYTHON", "PROGRAMACION", "VIDEOJUEGO", "AHORCADO", "GITHUB", "INTELIGENCIA"]
+palabras = rpts
 max_intentos = 6
 
 partes = [
@@ -27,6 +32,7 @@ partes = [
 ]
 
 #pygame.init()
+dest = (195, 25)
 def ahorcado():  # INTERFAZ grafica
     fuente = pygame.font.SysFont('segoe print', 20)
     pizarra = pygame.image.load('res/imgs/pizarra.png')  # 512x267px
@@ -67,6 +73,9 @@ def ahorcado():  # INTERFAZ grafica
 
     while estado['jugando']:
         palabra_secreta = random.choice(palabras)
+        img_ayuda = pygame.image.load(f'res/imgs/juegos/{palabra_secreta}.jpg')
+        imagen_rect = img_ayuda.get_rect()
+        print(imagen_rect)
         print(palabra_secreta)
         letras_adivinadas = ["_"] * len(palabra_secreta)
         estado['enPartida'] = False
@@ -77,6 +86,15 @@ def ahorcado():  # INTERFAZ grafica
                 if event.type == pygame.QUIT:
                     estado['enPartida'] = True
                     sys.exit()
+                elif event.type == pygame.MOUSEBUTTONDOWN:
+                    if event.button == 1:  # Clic izquierdo del ratón
+                        # Verificar si el clic se hizo sobre la imagen
+                        mouse_pos = pygame.mouse.get_pos()
+                        pos =(mouse_pos[0] + dest[0],mouse_pos[1] + dest[1])
+                        if imagen_rect.collidepoint(pos):
+                            print(mouse_pos)
+                            # Mostrar el texto o realizar la acción que desees
+                            print("Clic sobre la imagen")
             horca()
 
             palabra_oculta = " ".join(letras_adivinadas)
@@ -111,6 +129,7 @@ def ahorcado():  # INTERFAZ grafica
                     for i in range(1, intentos):
                         linea(partes[i][0], partes[i][1])
             pantalla.blit(texto_palabra, (170, 195))
+            pantalla.blit(img_ayuda, dest)
             clock.tick(10)
             pygame.display.flip()
         time.sleep(3)
@@ -118,15 +137,3 @@ def ahorcado():  # INTERFAZ grafica
             estado['jugando'] = True
         else:
             estado['jugando'] = False
-
-'''estado['jugando'] = True
-ahorcado()'''
-def drawKeyboard():
-    # Dibujar teclado
-    '''for i in range(26):
-        letra = chr(ord("A") + i)
-        pygame.draw.rect(screen, BLACK, (50 + i * 30, 100, 25, 25), 2)
-        texto_letra = fuente.render(letra, True, BLACK)
-        screen.blit(texto_letra, (60 + i * 30, 105))
-'''
-    print(1)

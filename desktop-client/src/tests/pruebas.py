@@ -1,3 +1,7 @@
-print(len('Hola. Soy tu Asistente Virtual. Fui creada'))
-#42*11
-print(42*11)
+import json
+with open('../res/db/ahorcado.json', 'r', encoding='utf-8') as archivo:
+    datos = json.load(archivo)
+'''for rpta in datos:
+    print(rpta)
+    print(datos[rpta])'''
+print(datos)
