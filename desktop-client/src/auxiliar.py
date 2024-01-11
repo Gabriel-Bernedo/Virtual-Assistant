@@ -76,8 +76,9 @@ def cargarimg(img):
         img_path[0] = image_path
 
 def interfaz():
+
     pygame.init()
-    fondo = pygame.image.load('res/imgs/fondo.jpg')  # .convert()#600x600px
+    fondo = pygame.image.load('res/imgs/fondo.jpg')  # 600x600px
 
     sizeF = (fondo.get_width(), fondo.get_height())  # ancho,alto
     pygame.display.set_mode(sizeF)
@@ -90,12 +91,17 @@ def interfaz():
     pygTxt = fuente.render('PYG-4 Tu Asistente Virtual', True, WHITE)
     pygame.display.flip()
     modo = True
+    def parrafo():
+        oraciones = dividir_texto(subTxt[0],38)
+        for i, oracion in enumerate(oraciones):
+            txtAyuda = fuenteSub.render(oracion, True, BLACK)
+            screen.blit(txtAyuda, (185, 280+(17 * i)))
     while not estado['termino']:
         screen = pygame.display.set_mode(sizeF)
         while estado['asistente']:
             pygame.display.set_icon(fondo)
             pygame.display.set_caption('PYG-4')
-            subtitulos = fuenteSub.render(subTxt[0], True, BLACK)
+            #subtitulos = fuenteSub.render(subTxt[0], True, BLACK)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     estado['termino'] = True
@@ -113,6 +119,7 @@ def interfaz():
                     pygame.draw.ellipse(screen, RED, (185, 140, ancho, alto+40))
                     pygame.draw.ellipse(screen, BLUE, (260, 160, ancho, alto))
                     pygame.draw.ellipse(screen, GREEN, (335, 140, ancho, alto+40))
+                parrafo()
                 clock.tick(2.5)
                 modo = not modo
             elif estado['escuchando']:#120+150=270/2=135
@@ -126,7 +133,7 @@ def interfaz():
                 load[0] = pygame.transform.rotate(load[0], 90)
                 clock.tick(1.5)
             screen.blit(pygTxt, (10, 10))
-            screen.blit(subtitulos, (185, 280))
+            #screen.blit(subtitulos, (185, 280))
             pygame.display.flip()
         while estado['jugando']:
             ahorcado()

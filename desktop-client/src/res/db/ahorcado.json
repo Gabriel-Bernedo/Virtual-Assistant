@@ -3,5 +3,5 @@
   "INDEXADO": "Este tipo de direccionamiento se utiliza para acceder a un dato que se encuentra en una posición relativa a un registro índice.",
   "COMPILADOR": "Es un programa informático que traduce el código fuente escrito en un lenguaje de programación de alto nivel (como C o Pascal) a código máquina, que es ejecutable por el procesador.",
   "ENSAMBLADOR": "Es un programa que traduce el código escrito en lenguaje que utiliza mnemónicos a código máquina. Facilita la programación al permitir a los desarrolladores trabajar con representaciones más comprensibles que los códigos binarios.",
-  "MICROINSTRUCCION": "Es la instrucción más básica y elemental que un procesador ejecuta. Se trata de una serie de señales de control que especifican las operaciones a nivel de hardware, como el acceso a registros, el manejo de la ALU (Unidad Aritmético-Lógica), y otras acciones fundamentales."
+  "MICROINSTRUCCION": "Es la instrucción más básica y elemental que un procesador ejecuta. Se trata de una serie de señales de control que especifican las operaciones a nivel de hardware, como el acceso a registros, el manejo de la ALU, y otras acciones fundamentales."
 }

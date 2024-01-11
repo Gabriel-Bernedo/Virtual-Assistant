@@ -10,15 +10,14 @@ estado = {
     'asistente':True,
     'aprendiendo':False,
     'enPartida' : False,
-    'jugando': False
+    'jugando': False,
+    'ayuda': False
 }
 subTxt = ['']
 
-def decir(comando, doPrint=False):
+def decir(comando):
     estado['hablando'] = True
     subTxt[0] = comando
-    if doPrint:
-        print(comando)
     palabra = pyttsx3.init()
     palabra.say(comando)
     palabra.runAndWait()
@@ -71,6 +70,6 @@ def escuchar():
             print("Algo no está bien. No puedo reconocer tu micrófono o no lo tienes enchufado. <", palabra["error"], ">")
             decir("Algo no está bien. No puedo reconocer tu micrófono o no lo tienes enchufado.")
             exit(1)
-        decir("No pude escucharte, ¿podrías repetirlo?", False)
+        decir("No pude escucharte, ¿podrías repetirlo?")
     estado['escuchando'] = False
     return palabra["mensaje"].lower()

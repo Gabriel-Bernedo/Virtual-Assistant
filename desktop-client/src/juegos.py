@@ -4,6 +4,7 @@ import random
 import time
 from utils_audio import estado
 import json
+
 with open('res/db/ahorcado.json', 'r', encoding='utf-8') as archivo:
     objJuego = json.load(archivo)
 rpts = []
@@ -16,8 +17,6 @@ RED = (255, 0, 0)
 BLUE = (0, 0, 255)
 CELESTE = (85, 201, 245)
 clock = pygame.time.Clock()
-#print(rpts)
-# Palabras para adivinar
 palabras = rpts
 max_intentos = 6
 
@@ -31,10 +30,27 @@ partes = [
 
 ]
 
-#pygame.init()
-dest = (195, 25)
+# pygame.init()
+dest = [195, 25]
+def dividir_texto(texto, longitud_maxima):
+    palabras = texto.split()
+    oraciones = []
+    oracion_actual = palabras[0]
+
+    for palabra in palabras[1:]:
+        if len(oracion_actual + ' ' + palabra) <= longitud_maxima:
+            oracion_actual += ' ' + palabra
+        else:
+            oraciones.append(oracion_actual)
+            oracion_actual = palabra
+
+    oraciones.append(oracion_actual)
+    return oraciones
+
+
 def ahorcado():  # INTERFAZ grafica
     fuente = pygame.font.SysFont('segoe print', 20)
+    minFont = pygame.font.SysFont('segoe print', 13)
     pizarra = pygame.image.load('res/imgs/pizarra.png')  # 512x267px
     tamanio = (pizarra.get_width(), pizarra.get_height())
     pantalla = pygame.display.set_mode(tamanio)
@@ -51,6 +67,13 @@ def ahorcado():  # INTERFAZ grafica
         pygame.draw.rect(pantalla, WHITE, (30, 207, 100, 15))
         pygame.draw.rect(pantalla, WHITE, (70, 80, 10, 127))
         pygame.draw.rect(pantalla, WHITE, (80, 80, 60, 10))
+
+    def parrafo():
+        #cont = int(len(txt) / 30 + 1)
+        oraciones = dividir_texto(txt,40)
+        for i, oracion in enumerate(oraciones):
+            txtAyuda = minFont.render(oracion, True, BLACK)
+            pantalla.blit(txtAyuda, (195, 25 * (i + 1)))
 
     def preguntar_continuar():
         font = pygame.font.Font(None, 36)
@@ -75,7 +98,7 @@ def ahorcado():  # INTERFAZ grafica
         palabra_secreta = random.choice(palabras)
         img_ayuda = pygame.image.load(f'res/imgs/juegos/{palabra_secreta}.jpg')
         imagen_rect = img_ayuda.get_rect()
-        print(imagen_rect)
+        txt = objJuego[palabra_secreta]
         print(palabra_secreta)
         letras_adivinadas = ["_"] * len(palabra_secreta)
         estado['enPartida'] = False
@@ -90,13 +113,10 @@ def ahorcado():  # INTERFAZ grafica
                     if event.button == 1:  # Clic izquierdo del ratón
                         # Verificar si el clic se hizo sobre la imagen
                         mouse_pos = pygame.mouse.get_pos()
-                        pos =(mouse_pos[0] + dest[0],mouse_pos[1] + dest[1])
+                        pos = (int(mouse_pos[0]) - int(dest[0]), int(mouse_pos[1]) - int(dest[1]))
                         if imagen_rect.collidepoint(pos):
-                            print(mouse_pos)
-                            # Mostrar el texto o realizar la acción que desees
-                            print("Clic sobre la imagen")
+                            estado['ayuda'] = not estado['ayuda']
             horca()
-
             palabra_oculta = " ".join(letras_adivinadas)
             texto_palabra = fuente.render(palabra_oculta, True, BLACK)
 
@@ -129,7 +149,10 @@ def ahorcado():  # INTERFAZ grafica
                     for i in range(1, intentos):
                         linea(partes[i][0], partes[i][1])
             pantalla.blit(texto_palabra, (170, 195))
-            pantalla.blit(img_ayuda, dest)
+            if estado['ayuda']:
+                parrafo()
+            else:
+                pantalla.blit(img_ayuda, dest)
             clock.tick(10)
             pygame.display.flip()
         time.sleep(3)
