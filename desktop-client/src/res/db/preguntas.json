@@ -1,0 +1,255 @@
+{"introducción":{
+"1. ¿Cual es el objetivo principal del pensamiento computacional?":{
+"Resolver problemas utilizando algoritmos y abstraccion.":1,
+"Programar robots y sistemas autonomos.":0,
+"Diseñar hardware de computadoras.":0
+},
+"2. El primer paso del pensamiento computacional es: identificar el problema.":{
+"¿VERDADERO? ":1,
+"¿FALSO?":0
+},
+"3. ¿Qué es un algoritmo en terminos de pensamiento computacional?":{
+"Un patron de diseño visual":0,
+"Un lenguaje de programacion":0,
+"Una secuencia de pasos para resolver un problema":1,
+"Una representacion grafica de datos":0
+},
+"4. ¿Cual es el objetivo principal del pensamiento computacional?":{
+"El concepto introducido al inicio de este estudio es el de tecnología de vanguardia.":0,
+"El concepto introducido al inicio de este estudio es el de instrucción máquina.":1,
+"El concepto introducido al inicio de este estudio es el de métodos tradicionales de enseñanza.":0,
+"El concepto introducido al inicio de este estudio es el de teoría de la relatividad.":0
+}
+},
+"repertorio de instrucciones":{
+"general":{
+"1. ¿Cómo se definen las instrucciones de máquina en un computador?":{
+"Son definidas por el usuario.":0,
+"Son comandos en lenguaje binario que el procesador puede entender y ejecutar. ":1,
+"Son interpretaciones de alto nivel de las operaciones del procesador.":0,
+"Son exclusivas de los lenguajes de programación de alto nivel.":0
+},
+"2. ¿Qué significa el término repertorio de instrucciones en relación con un computador?":{
+"Se refiere al conjunto de programas de software en el computador.":0,
+"Es el listado de comandos en lenguaje humano utilizados en la programación.":0,
+"Es el conjunto completo de todas las instrucciones de máquina que una CPU puede ejecutar. ":1,
+"Indica las instrucciones para ensamblar el hardware del computador.":0
+},
+"3. ¿Cuáles son los dos requisitos clave que debe cumplir el conjunto de instrucciones de un computador?":{
+"Eficiencia y flexibilidad.":0,
+"Completitud y eficacia. ":1,
+"Facilidad de uso y capacidad de expansión.":0,
+"Velocidad y diversidad.":0
+},
+"4. ¿Cuáles son las características generales que deben cumplir las instrucciones de máquina en un repertorio de instrucciones?":{
+"Realizan múltiples funciones complejas.":0,
+"Emplean un número variable de operandos en cada instrucción.":0,
+"Realizan una función única y sencilla, emplean un número fijo de operandos y tienen una codificación sistemática. ":1,
+"Son exclusivas de los lenguajes de programación de alto nivel.":0
+},
+"5. ¿Cómo se simplifica la identificación de las instrucciones de máquina en un lenguaje de programación?":{
+"A través del uso de códigos nemónicos, que son nombres en lenguaje humano para las instrucciones. ":1,
+"Usando únicamente lenguaje binario en la programación.":0,
+"No hay forma de simplificar la identificación de las instrucciones de máquina.":0,
+"A través del uso de nombres de archivos en lugar de instrucciones.":0
+}
+},
+"instrucciones":{
+"1. ¿Qué es el direccionamiento mediante registro?":{
+"Un modo de direccionamiento que utiliza memoria principal.":0,
+" El proceso de lectura de una instrucción. ":0,
+"Un modo de direccionamiento donde los operandos se almacenan en registros internos de la CPU. ":1,
+" La forma en que se calculan las direcciones de memoria.":0
+},
+"2. ¿Cuál es una ventaja del direccionamiento mediante registro?":{
+"Requiere ciclos adicionales para acceder a los datos.":0,
+"Es más lento que la lectura desde la memoria principal.":0,
+"Elimina la necesidad de acceder a la memoria principal.":1,
+"Utiliza un campo grande de direcciones en la instrucción.":0
+},
+"3. ¿Por qué el direccionamiento relativo a registro puede introducir un pequeño retraso en la ejecución de una instrucción?":{
+"Porque requiere ciclos adicionales para acceder a la memoria principal.":0,
+"Porque el desplazamiento debe calcularse antes de obtener la dirección del operando.":1,
+"Porque utiliza un campo grande de direcciones en la instrucción.":0,
+"Porque solo funciona con registros internos de la CPU.":0
+},
+"4. ¿Cuál es una característica del direccionamiento relativo a registro?":{
+"Siempre utiliza desplazamientos positivos.":0,
+"Utiliza un número de bits en el campo de dirección mucho mayor que el direccionamiento absoluto.":0,
+"Siempre es más lento que el direccionamiento absoluto.":0,
+"Permite acceder a un conjunto de posiciones de memoria a partir de una dirección de referencia.":1
+}
+}
+},
+"modos de direccionamiento":{
+"general":{
+"1. ¿Cuál de los siguientes es un modo de direccionamiento?":{
+"Registro":0,
+"Inmediato":0,
+"Directo":0,
+"Indirecto":0,
+"Todos los anteriores":1
+},
+"2. ¿Cuál de los siguientes es una ventaja del direccionamiento inmediato?":{
+"El rango de direcciones al cual se puede acceder es muy grande.":0,
+"Es un modo de direccionamiento flexible.":0,
+"No se requiere una referencia a memoria para obtener el operando.":1,
+"Todas las anteriores":0
+},
+"3. Señale la incorrecta:¿Cuál de los siguientes es una desventaja del direccionamiento inmediato?":{
+"El rango de direcciones al cual se puede acceder es limitado por el tamaño del campo empleado por la instrucción para almacenarlo.":0,
+"No es un modo de direccionamiento flexible.":0,
+"Requiere una referencia a memoria para obtener el operando.":1,
+"Todas las anteriores":0
+},
+"4. Señale la incorrecta:¿Cuál de los siguientes es un modo de direccionamiento en el que la dirección del operando se encuentra en la instrucción?":{
+"Registro":0,
+"Inmediato":0,
+"Directo":1,
+"Indirecto":0
+},
+"5. ¿El direccionamiento inmediato es el modo de direccionamiento más rápido?":{
+"Verdadero":1,
+"falso":0
+},
+"6. El direccionamiento inmediato no requiere una referencia a memoria para obtener el operando, por lo que es el modo de direccionamiento más rápido.":{
+"Verdadero":0,
+"falso":1
+}
+},
+"1":{
+"1. ¿Cuáles son los dos tipos de operandos en las instrucciones de transferencia de datos?":{
+"Valor y dirección":0,
+"Fuente y destino":0,
+"Origen y destino":1,
+"Dato y registro":0
+},
+"2. PREGUNTA:Pregunta ¿Qué es la longitud del dato a transferir?":{
+"La cantidad de bytes que ocupa el dato":0,
+"La cantidad de bits que ocupa el dato":1,
+"La cantidad de palabras que ocupa el dato":0,
+"La cantidad de bytes que ocupa la dirección del dato":0
+},
+"3. ¿Qué instrucción se utiliza para copiar un dato de una posición de memoria a un registro?":{
+"MOVE":1,
+"COPY":0,
+"LOAD":0,
+"STORE":0
+},
+"4. ¿Cuáles son las cuatro operaciones aritméticas básicas?":{
+"Suma, resta, multiplicación, potencia":0,
+"Suma, resta, producto, cociente":0,
+"Suma, resta, multiplicación, residuo":0,
+"Suma, resta, multiplicación, división":1
+},
+"5. PREGUNTA:Pregunta ¿Cuáles son las operaciones lógicas bit a bit más comunes?":{
+"AND, OR, XOR, NAND":0,
+"AND, OR, XOR, NOT":1,
+"AND, OR, XOR, NOR":0,
+"AND, OR, XOR, XNOR":0
+},
+"6. ¿Qué instrucción se utiliza para sumar dos números enteros?":{
+"ADD":1,
+"SUB":0,
+"MUL":0,
+"DIV":0
+},
+"7. ¿Qué tipos de instrucciones modifican la secuencia normal de ejecución de un programa?":{
+"Instrucciones de bifurcación":0,
+"Instrucciones de control de flujo":0,
+"Instrucciones de salto":1,
+"Instrucciones de retorno":0
+},
+"8. ¿Qué es una bifurcación incondicional?":{
+"Un salto al final del programa":0,
+"Un salto a la siguiente instrucción":0,
+"Un salto a la instrucción anterior":0,
+"Un salto a una dirección específica":1
+},
+"9. PREGUNTA:Pregunta ¿Qué es una bifurcación condicional?":{
+"Un salto que se produce si se cumple una condición":1,
+"Un salto que se produce si no se cumple una condición":0,
+"Un salto que se produce si el resultado de una operación es cero":0,
+"Un salto que se produce si el resultado de una operación es no cero":0
+},
+"10.  ¿Qué instrucción se utiliza para saltar a una subrutina?":{
+"PROC":0,
+"JUMP":0,
+"CALL":1,
+"ENDP":0
+},
+"11.  ¿Qué instrucción no hace nada?":{
+"HALT":0,
+"NOP":1,
+"INT":0,
+"RET":0
+},
+"12.  ¿Qué instrucción detiene la ejecución de instrucciones?":{
+"RET":0,
+"NOP":0,
+"INT":0,
+"HALT":1
+},
+"13. PREGUNTA:Pregunta ¿Qué instrucción activa una interrupción software?":{
+"INT":1,
+"NOP":0,
+"HALT":0,
+"RET":0
+}
+},
+"2":{
+"1. ¿Cuál es el tipo de direccionamiento que se utiliza para acceder a un dato que se encuentra en una posición relativa a la instrucción actual?":{
+"Direccionamiento directo":0,
+"Direccionamiento relativo a registro":1,
+"Direccionamiento relativo a pila":0,
+"Direccionamiento indexado":0
+},
+"2. ¿Cuál es el tipo de direccionamiento que se utiliza para acceder a un dato que se encuentra en una posición relativa al registro base?":{
+" Direccionamiento directo":0,
+"Direccionamiento relativo a registro base":1,
+"Direccionamiento relativo a pila":0,
+"Direccionamiento indexado":0
+},
+"3. ¿Cuál es el tipo de direccionamiento que se utiliza para acceder a un dato que se encuentra en la pila?":{
+" Direccionamiento directo":0,
+"Direccionamiento relativo a registro":0,
+"Direccionamiento relativo a pila":1,
+"Direccionamiento indexado":0
+},
+"4. ¿Cuál es el tipo de direccionamiento que se utiliza para acceder a un dato que se encuentra en una posición relativa a un registro índice?":{
+" Direccionamiento directo":0,
+"Direccionamiento relativo a registro":0,
+"Direccionamiento relativo a pila":0,
+"Direccionamiento indexado":1
+},
+"5. ¿Cuál es el tipo de direccionamiento que se utiliza para acceder a un dato que se encuentra en una posición especificada por un valor almacenado en memoria?":{  
+" Direccionamiento indirecto":1,
+"Direccionamiento relativo a registro":0,
+"Direccionamiento relativo a pila":0,
+"Direccionamiento indexado":0
+}},
+"3":{
+"1. PREGUNTA:1. ¿Qué factores se deben considerar al determinar el tamaño de las instrucciones en el diseño de un formato de instrucciones?":{
+"El tipo de CPU.":0,
+"La velocidad del sistema.":0,
+"El tamaño de la memoria disponible.":1,
+"El sistema operativo utilizado.":0
+},
+"2. PREGUNTA:2. ¿Cuál es el compromiso fundamental al diseñar el formato de las instrucciones de una CPU?":{
+"Maximizar la complejidad de la CPU.":0,
+"Minimizar la riqueza de las instrucciones máquina.":0,
+"Encontrar un equilibrio entre instrucciones poderosas y simplificación de decodificación.":1,
+"Priorizar la velocidad de ejecución sin importar la complejidad.":0
+},
+"3. PREGUNTA:3. ¿Cuáles son los dos campos básicos presentes en un formato de instrucciones?":{
+"Campo de dirección y campo de control.":0,
+"Campo de operación y campo de dición.":1,
+"Campo de modo y campo de registro.":0,
+"Campo de salto y campo de comparación.":0
+},
+"4. PREGUNTA:4. ¿Por qué se dividen las instrucciones en una serie de campos en el diseño del formato de instrucciones?":{
+"Para complicar la decodificación.":0,
+"Para acelerar la ejecución.":0,
+"Para aumentar la confusión en la CPU.":0,
+"Para simplificar la decodificación y ejecución.":1
+}}}}
