@@ -18,7 +18,7 @@ def programa():
         #decir(" 1) Aprendizaje\n 2) Pruebas\n 3) Juegos\n 4) Salir")
         #respuesta = escuchar()
         #respuesta = 'aprendizaje'
-        respuesta = 'pruebas'
+        respuesta = 'juegos'
         if respuesta == "aprendizaje":
             aprenderElseProbar()
         elif respuesta == "pruebas":

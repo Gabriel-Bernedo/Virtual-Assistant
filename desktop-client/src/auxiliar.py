@@ -140,10 +140,11 @@ def interfaz():
     modo = True
 
     def parrafo(altura):
-        oraciones = dividir_texto(subTxt[0], 38)
-        for i, oracion in enumerate(oraciones):
-            txtAyuda = fuenteSub.render(oracion, True, BLACK)
-            screen.blit(txtAyuda, (185, altura + (17 * i)))
+        if len(subTxt[0]) >0:
+            oraciones = dividir_texto(subTxt[0], 38)
+            for i, oracion in enumerate(oraciones):
+                txtAyuda = fuenteSub.render(oracion, True, BLACK)
+                screen.blit(txtAyuda, (185, altura + (17 * i)))
 
     while not estado['termino']:
         screen = pygame.display.set_mode(sizeF)
@@ -198,7 +199,6 @@ def interfaz():
                 parrafo(305)
                 clock.tick(1.5)
             screen.blit(pygTxt, (10, 10))
-            # screen.blit(subtitulos, (185, 280))
             pygame.display.flip()
         while estado['jugando']:
             ahorcado()

@@ -49,7 +49,7 @@ def dividir_texto(texto, longitud_maxima):
 
 
 def ahorcado():  # INTERFAZ grafica
-    fuente = pygame.font.SysFont('segoe print', 20)
+    fuente = pygame.font.SysFont('segoe print', 18)
     minFont = pygame.font.SysFont('segoe print', 13)
     pizarra = pygame.image.load('res/imgs/pizarra.png')  # 512x267px
     tamanio = (pizarra.get_width(), pizarra.get_height())
@@ -69,26 +69,26 @@ def ahorcado():  # INTERFAZ grafica
         pygame.draw.rect(pantalla, WHITE, (80, 80, 60, 10))
 
     def parrafo():
-        #cont = int(len(txt) / 30 + 1)
         oraciones = dividir_texto(txt,40)
         for i, oracion in enumerate(oraciones):
             txtAyuda = minFont.render(oracion, True, BLACK)
             pantalla.blit(txtAyuda, (195, 25 * (i + 1)))
 
     def preguntar_continuar():
-        font = pygame.font.Font(None, 36)
-        pregunta_texto = font.render("¿Deseas continuar? (Sí/No)", True, (0, 0, 0))
+        font = pygame.font.SysFont('segoe print', 25)
+        pregunta_texto = font.render("¿Deseas continuar? (Sí/No)", True, BLACK)
         pregunta_rect = pregunta_texto.get_rect(center=(pantalla.get_width() // 2, pantalla.get_height() // 2))
 
         while True:
-            pantalla.fill((255, 255, 255))
+            pantalla.blit(pizarra, (0, 0))
             pantalla.blit(pregunta_texto, pregunta_rect)
             pygame.display.flip()
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
-                elif event.type == pygame.KEYDOWN:
+
+                elif event.type == pygame.KEYUP:
                     if event.key == pygame.K_s:
                         return True
                     elif event.key == pygame.K_n:
@@ -104,11 +104,14 @@ def ahorcado():  # INTERFAZ grafica
         estado['enPartida'] = False
         intentos = 0
         while not estado['enPartida']:
+            letra = None
             pantalla.blit(pizarra, (0, 0))
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     estado['enPartida'] = True
                     sys.exit()
+                elif event.type == pygame.KEYUP:
+                    letra = event.unicode
                 elif event.type == pygame.MOUSEBUTTONDOWN:
                     if event.button == 1:  # Clic izquierdo del ratón
                         # Verificar si el clic se hizo sobre la imagen
@@ -123,26 +126,26 @@ def ahorcado():  # INTERFAZ grafica
             # Verificar si se adivinó la palabra
             if "_" not in letras_adivinadas:
                 texto_ganar = fuente.render("¡Ganaste!", True, BLACK)
-                pantalla.blit(texto_ganar, (140, 180))
+                pantalla.blit(texto_ganar, (140, 175))
                 estado['enPartida'] = True
             elif intentos >= max_intentos:
                 texto_perder = fuente.render("¡Perdiste! La palabra era: ", True, BLACK)
                 texto_perder2 = fuente.render(palabra_secreta, True, BLACK)
                 pantalla.blit(texto_perder, (140, 160))
-                pantalla.blit(texto_perder2, (140, 200))
+                pantalla.blit(texto_perder2, (140, 195))
                 estado['enPartida'] = True
+                pygame.display.flip()
+                continue
             else:
-                # Obtener teclas presionadas
-                keys = pygame.key.get_pressed()
-                for i in range(26):
-                    if keys[pygame.K_a + i]:
-                        letra = chr(ord("A") + i)
-                        if letra not in palabra_secreta:
-                            intentos += 1
-                        else:
-                            for j, letra_palabra in enumerate(palabra_secreta):
-                                if letra == letra_palabra:
-                                    letras_adivinadas[j] = letra
+                if letra is not None and letra.isalpha():
+                    print(letra)
+                    letra = letra.upper()
+                    if letra not in palabra_secreta:
+                        intentos += 1
+                    else:
+                        for j, letra_palabra in enumerate(palabra_secreta):
+                            if letra == letra_palabra:
+                                letras_adivinadas[j] = letra
             if intentos > 0 and not estado['enPartida']:
                 circle(partes[0][0], partes[0][1])
                 if intentos > 1:
@@ -153,7 +156,7 @@ def ahorcado():  # INTERFAZ grafica
                 parrafo()
             else:
                 pantalla.blit(img_ayuda, dest)
-            clock.tick(10)
+            clock.tick(15)
             pygame.display.flip()
         time.sleep(3)
         if preguntar_continuar():
