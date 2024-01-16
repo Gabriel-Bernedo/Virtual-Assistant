@@ -1,4 +1,4 @@
-{"introduccion":{
+{"introducción":{
 "1. ¿Cual es el objetivo principal del pensamiento computacional?":{
 "Resolver problemas utilizando algoritmos y abstraccion.":1,
 "Programar robots y sistemas autonomos.":0,
@@ -21,7 +21,7 @@
 "El concepto introducido al inicio de este estudio es el de teoría de la relatividad.":0
 }
 },
-"repertorio":{
+"repertorio de instrucciones":{
 "general":{
 "1. ¿Cómo se definen las instrucciones de máquina en un computador?":{
 "Son definidas por el usuario.":0,
@@ -81,7 +81,7 @@
 }
 }
 },
-"modos":{
+"modos de direccionamiento":{
 "general":{
 "1. ¿Cuál de los siguientes es un modo de direccionamiento?":{
 "Registro":0,

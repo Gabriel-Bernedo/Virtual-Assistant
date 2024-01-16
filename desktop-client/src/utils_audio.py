@@ -15,13 +15,13 @@ estado = {
 }
 subTxt = ['']
 
-def decir(comando):
+def decir(comando,cambiar=True):
     estado['hablando'] = True
-    subTxt[0] = comando
+    subTxt[0] = comando if cambiar else subTxt[0]
     palabra = pyttsx3.init()
     palabra.say(comando)
     palabra.runAndWait()
-    subTxt[0] = ''
+    #subTxt[0] = ''
     estado['hablando'] = False
 def repAudio(archivo_audio):
     pygame.mixer.init()
@@ -70,6 +70,6 @@ def escuchar():
             print("Algo no está bien. No puedo reconocer tu micrófono o no lo tienes enchufado. <", palabra["error"], ">")
             decir("Algo no está bien. No puedo reconocer tu micrófono o no lo tienes enchufado.")
             exit(1)
-        decir("No pude escucharte, ¿podrías repetirlo?")
+        decir("No pude escucharte, ¿podrías repetirlo?",False)
     estado['escuchando'] = False
     return palabra["mensaje"].lower()

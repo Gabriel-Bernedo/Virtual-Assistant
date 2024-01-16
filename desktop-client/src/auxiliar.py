@@ -3,11 +3,11 @@ from juegos import *
 
 with open('res/db/basedatos.json', 'r', encoding='utf-8') as archivo:
     datos = json.load(archivo)
-
+aprendizaje, imagenes = datos['aprendizaje'], datos['img']
 with open('res/db/preguntas.json', 'r', encoding='utf-8') as archivo:
     preguntas = json.load(archivo)
 
-dict = {
+dicc = {
     "puntaje": 0,
     "uno": 1,
     "dos": 2,
@@ -35,26 +35,26 @@ def dictarpreguntas(seccion, subseccion=None):
             rpta = escuchar()
             if rpta.isdigit() and int(rpta) > 0 and int(rpta) < cont:
                 if int(rpta) == resul:
-                    dict['puntaje'] += 1
+                    dicc['puntaje'] += 1
                     decir("respuesta correcta")
                 else:
                     decir("respuesta incorrecta")
                 break
-            elif rpta in dict and dict[rpta] > 0 and dict[rpta] < cont:
-                if resul == dict[rpta]:
-                    dict['puntaje'] += 1
+            elif rpta in dicc and dicc[rpta] > 0 and dicc[rpta] < cont:
+                if resul == dicc[rpta]:
+                    dicc['puntaje'] += 1
                     decir("respuesta correcta")
                 else:
                     decir("respuesta incorrecta")
                 break
             else:
                 decir("la respuesta debe estar en el rango")
-    decir("En esta seccion tu puntaje es de " + str(dict['puntaje']) + " sobre " + str(len(arr)))
-    dict['puntaje'] = 0
+    decir("En esta seccion tu puntaje es de " + str(dicc['puntaje']) + " sobre " + str(len(arr)))
+    dicc['puntaje'] = 0
 
 
 def aprender(seccion, subseccion=None):
-    info, imgs = datos['aprendizaje'][seccion], datos['img'][seccion]
+    info, imgs = aprendizaje[seccion], imagenes[seccion]
     if not subseccion == None:
         info = info[subseccion]
         imgs = imgs[subseccion]
@@ -68,10 +68,48 @@ def aprender(seccion, subseccion=None):
         time.sleep(3)
 
 
+def generar_mensaje_secciones(secciones):
+    return "\n".join([f"{i + 1}) {seccion}" for i, seccion in enumerate(secciones)] + [f"{len(secciones) + 1}) Salir"])
+def aprenderElseProbar(aprendiendo=True):
+    decir(f"Elegiste la opcion {"Aprendizaje" if aprendiendo else "Pruebas"}")
+    while True:
+        mensaje_pregunta = "Que seccion deseas aprender\n" if aprendiendo else "Deseas dar una prueba sobre\n"
+        decir(mensaje_pregunta + generar_mensaje_secciones(aprendizaje))
+        respuesta = escuchar()
+        equivocado = True
+        for seccion in aprendizaje:
+            if any(palabra in seccion for palabra in respuesta.split() if len(palabra) > 3):#escoger seccion
+                equivocado = False
+                if isinstance(aprendizaje[seccion], dict) and len(seccion) > 1:
+                    aprenderElseProbarSubseccion(seccion, aprendiendo)
+                else:
+                    aprender(seccion) if aprendiendo else dictarpreguntas(seccion)
+                break
+        if respuesta == 'salir':
+            break
+        elif equivocado:
+            decir("repite la opcion por favor")
+
+
+def aprenderElseProbarSubseccion(seccion, aprendiendo=True):
+    decir(f"Ahora aprenderas {seccion}" if aprendiendo else f"Escogiste {seccion}, empecemos con la prueba")
+    while True:
+        decir(f"En cual subseccion deseas {'aprender'if aprendiendo else 'dar una prueba'}\n" + generar_mensaje_secciones(aprendizaje[seccion]))
+        respuesta = escuchar()
+        equivocado = True
+        for subseccion in aprendizaje[seccion]:
+            if any(palabra in subseccion for palabra in respuesta.split()):#escoger seccion
+                equivocado = False
+                aprender(seccion,subseccion) if aprendiendo else dictarpreguntas(seccion,subseccion)
+        if respuesta == 'salir':
+            break
+        elif equivocado:
+            decir("repite la opcion por favor")
+
 def cargarimg(img):
     if not img == "":
         image_path = "res/imgs/" + img  # Ruta de la imagen que deseas abrir
-        if not img._contains_(".png"):
+        if not img.__contains__(".png"):
             image_path += ".png"
         img_path[0] = image_path
 
@@ -101,18 +139,17 @@ def interfaz():
     pygame.display.flip()
     modo = True
 
-    def parrafo():
+    def parrafo(altura):
         oraciones = dividir_texto(subTxt[0], 38)
         for i, oracion in enumerate(oraciones):
             txtAyuda = fuenteSub.render(oracion, True, BLACK)
-            screen.blit(txtAyuda, (185, 280 + (17 * i)))
+            screen.blit(txtAyuda, (185, altura + (17 * i)))
 
     while not estado['termino']:
         screen = pygame.display.set_mode(sizeF)
         while estado['asistente']:
             pygame.display.set_icon(fondo)
             pygame.display.set_caption('PYG-4')
-            # subtitulos = fuenteSub.render(subTxt[0], True, BLACK)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     estado['termino'] = True
@@ -120,7 +157,6 @@ def interfaz():
             screen.blit(fondo, (0, 0))
             if estado['hablando']:
                 ancho = 70
-
                 if modo:  # 185-120 = x,y 405 -> 220 -> 210
                     alto1 -= 2
                     alto2 += 2
@@ -146,7 +182,7 @@ def interfaz():
                     pygame.draw.ellipse(screen, RED, (185, y1, ancho, alto1))
                     pygame.draw.ellipse(screen, BLUE, (260, y2, ancho, alto2))
                     pygame.draw.ellipse(screen, GREEN, (335, y1, ancho, alto1))
-                parrafo()
+                parrafo(285)
                 clock.tick(60)
 
             elif estado['escuchando']:  # 120+150=270/2=135
@@ -154,10 +190,12 @@ def interfaz():
                     pygame.draw.circle(screen, CELESTE, (295, 230), 80)
                 modo = not modo
                 screen.blit(micro, (235, 170))
+                parrafo(305)
                 clock.tick(2)
             else:
                 screen.blit(load[0], (235, 170))
                 load[0] = pygame.transform.rotate(load[0], 90)
+                parrafo(305)
                 clock.tick(1.5)
             screen.blit(pygTxt, (10, 10))
             # screen.blit(subtitulos, (185, 280))
