@@ -53,7 +53,7 @@ def programa():
                             aprender('modos', '2')
                         elif respuesta.__contains__("tercera"):
                             aprender('modos', '3')
-                        elif respuesta == "salir":
+                        elif respuesta == "salir":  
                             break
                         else:
                             decir("repite la opcion por favor")

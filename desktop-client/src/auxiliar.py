@@ -1,7 +1,6 @@
 from utils_audio import *
 from juegos import *
 
-
 with open('res/db/basedatos.json', 'r', encoding='utf-8') as archivo:
     datos = json.load(archivo)
 
@@ -32,7 +31,7 @@ def dictarpreguntas(seccion, subseccion=None):
             decir(str(cont) + ") " + alternativa)
             cont += 1
         decir("Dicta el numero de opcion que creas que es correcta")
-        while True:#uno-dos
+        while True:  # uno-dos
             rpta = escuchar()
             if rpta.isdigit() and int(rpta) > 0 and int(rpta) < cont:
                 if int(rpta) == resul:
@@ -68,17 +67,27 @@ def aprender(seccion, subseccion=None):
         cargarimg(img)
         time.sleep(3)
 
+
 def cargarimg(img):
     if not img == "":
         image_path = "res/imgs/" + img  # Ruta de la imagen que deseas abrir
-        if not img.__contains__(".png"):
+        if not img._contains_(".png"):
             image_path += ".png"
         img_path[0] = image_path
 
-def interfaz():
 
+def interfaz():
     pygame.init()
     fondo = pygame.image.load('res/imgs/fondo.jpg')  # 600x600px
+
+    max_alto = 150
+    min_alto = 90
+
+    alto1 = max_alto
+    alto2 = min_alto
+
+    y1 = 140
+    y2 = 160
 
     sizeF = (fondo.get_width(), fondo.get_height())  # ancho,alto
     pygame.display.set_mode(sizeF)
@@ -91,17 +100,19 @@ def interfaz():
     pygTxt = fuente.render('PYG-4 Tu Asistente Virtual', True, WHITE)
     pygame.display.flip()
     modo = True
+
     def parrafo():
-        oraciones = dividir_texto(subTxt[0],38)
+        oraciones = dividir_texto(subTxt[0], 38)
         for i, oracion in enumerate(oraciones):
             txtAyuda = fuenteSub.render(oracion, True, BLACK)
-            screen.blit(txtAyuda, (185, 280+(17 * i)))
+            screen.blit(txtAyuda, (185, 280 + (17 * i)))
+
     while not estado['termino']:
         screen = pygame.display.set_mode(sizeF)
         while estado['asistente']:
             pygame.display.set_icon(fondo)
             pygame.display.set_caption('PYG-4')
-            #subtitulos = fuenteSub.render(subTxt[0], True, BLACK)
+            # subtitulos = fuenteSub.render(subTxt[0], True, BLACK)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     estado['termino'] = True
@@ -109,22 +120,38 @@ def interfaz():
             screen.blit(fondo, (0, 0))
             if estado['hablando']:
                 ancho = 70
-                if modo:#185-120 = x,y 405 -> 220 -> 210
-                    alto = 150
-                    pygame.draw.ellipse(screen, RED, (185, 140, ancho, alto-40))
-                    pygame.draw.ellipse(screen, BLUE, (260, 120, ancho, alto))
-                    pygame.draw.ellipse(screen, GREEN, (335, 140, ancho, alto-40))
+
+                if modo:  # 185-120 = x,y 405 -> 220 -> 210
+                    alto1 -= 2
+                    alto2 += 2
+                    y1 += 1
+                    y2 -= 1
+
+                    # print(alto1, alto2, y1)
+                    if alto1 == min_alto:
+                        modo = not modo
+
+                    pygame.draw.ellipse(screen, RED, (185, y1, ancho, alto1))
+                    pygame.draw.ellipse(screen, BLUE, (260, y2, ancho, alto2))
+                    pygame.draw.ellipse(screen, GREEN, (335, y1, ancho, alto1))
                 else:
-                    alto = 90
-                    pygame.draw.ellipse(screen, RED, (185, 140, ancho, alto+40))
-                    pygame.draw.ellipse(screen, BLUE, (260, 160, ancho, alto))
-                    pygame.draw.ellipse(screen, GREEN, (335, 140, ancho, alto+40))
+                    alto1 += 2
+                    alto2 -= 2
+                    y1 -= 1
+                    y2 += 1
+
+                    if alto1 == max_alto:
+                        modo = not modo
+
+                    pygame.draw.ellipse(screen, RED, (185, y1, ancho, alto1))
+                    pygame.draw.ellipse(screen, BLUE, (260, y2, ancho, alto2))
+                    pygame.draw.ellipse(screen, GREEN, (335, y1, ancho, alto1))
                 parrafo()
-                clock.tick(2.5)
-                modo = not modo
-            elif estado['escuchando']:#120+150=270/2=135
+                clock.tick(60)
+
+            elif estado['escuchando']:  # 120+150=270/2=135
                 if modo:  # 185-120 = x,y 405 -> 220 -> 2109
-                    pygame.draw.circle(screen, CELESTE, (295, 230),80)
+                    pygame.draw.circle(screen, CELESTE, (295, 230), 80)
                 modo = not modo
                 screen.blit(micro, (235, 170))
                 clock.tick(2)
@@ -133,7 +160,7 @@ def interfaz():
                 load[0] = pygame.transform.rotate(load[0], 90)
                 clock.tick(1.5)
             screen.blit(pygTxt, (10, 10))
-            #screen.blit(subtitulos, (185, 280))
+            # screen.blit(subtitulos, (185, 280))
             pygame.display.flip()
         while estado['jugando']:
             ahorcado()
@@ -147,4 +174,4 @@ def interfaz():
             pygame.display.flip()
             time.sleep(3)
             estado['asistente'] = True
-            estado['aprendiendo'] = False
+            estado['aprendiendo']=False
