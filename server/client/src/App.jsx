@@ -17,6 +17,7 @@ import Dev_Docs from 'pages/dev/Docs'
 import Dev_Games from 'pages/dev/Games'
 import Dev_Learn from 'pages/dev/Learn'
 import Dev_Quiz from 'pages/dev/Quiz'
+import Database from 'api/Database'
 
 const pages = {
   "Index": Index,

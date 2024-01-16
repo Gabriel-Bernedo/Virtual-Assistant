@@ -1,19 +1,19 @@
 from django.shortcuts import get_object_or_404
 
+from ..serializers.Information import InfoSerializer, Information
+from ..serializers.Question import QuestionSerializer, Question
+from ..serializers.Subject import SubjectSerializer, Subject
 
-from ..models.Subject import Subject
-from ..models.Information import Information
-from ..models.Question import Question
-
-from ..serializers.Information import InfoSerializer
 
 from rest_framework import viewsets
 from rest_framework.response import Response
 
-class InfoViewSet(viewsets.ViewSet):
+class InfoViewSet(viewsets.ModelViewSet):
+    queryset = Information.objects.all()
+    serializer_class = InfoSerializer
     """
     A simple ViewSet for listing or retrieving users.
-    """
+    
     def list(self, request):
         queryset = Information.objects.all()
         serializer = InfoSerializer(queryset, many=True)
@@ -29,3 +29,12 @@ class InfoViewSet(viewsets.ViewSet):
         data = request.POST
         serializer = InfoSerializer(data=data)
         return Response(serializer.data)
+    """
+
+class SubjectViewSet(viewsets.ModelViewSet):
+    queryset = Subject.objects.all()
+    serializer_class = SubjectSerializer
+
+class QuestionViewSet(viewsets.ModelViewSet):
+    queryset = Question.objects.all()
+    serializer_class = QuestionSerializer

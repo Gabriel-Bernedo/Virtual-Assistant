@@ -9,6 +9,8 @@ export default {
   theme: {
     extend: {},
     colors: {
+      black: colors.black,
+      blue: colors.blue,
       white: colors.white,
       gray: colors.gray,
       slate: colors.slate,

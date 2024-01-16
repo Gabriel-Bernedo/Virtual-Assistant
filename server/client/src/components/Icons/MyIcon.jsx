@@ -13,6 +13,17 @@ import {
   BookOpenIcon as Solid_BookOpenIcon,
   ChevronDownIcon as Solid_ChevronDownIcon,
 } from '@heroicons/react/20/solid'
+import Kanban from './Kanban'
+import Inbox from './Inbox'
+import Products from './Products'
+import SignIn from './SignIn'
+import SignUp from './SignUp'
+import Users from './Users'
+import Save from './Save'
+import Delete from './Delete'
+import Add from './Add'
+import DownArrow from './DownArrow'
+import ShoppingCar from './ShoppingCar'
 
 const icons = {
   outline : {
@@ -26,6 +37,21 @@ const icons = {
   solid : {
     "BookOpenIcon" : Solid_BookOpenIcon,
     "ChevronDownIcon": Solid_ChevronDownIcon,
+  },
+  original: {
+    "Kanban": Kanban,
+    "Inbox": Inbox,
+    "Products": Products,
+    "SignIn": SignIn,
+    "SignUp": SignUp,
+    "Users": Users,
+    "DownArrow" : DownArrow,
+    "ShoppingCar": ShoppingCar,
+  },
+  options: {
+    "Save": Save,
+    "Delete": Delete,
+    "Add": Add,
   }
 }
 
@@ -35,3 +61,4 @@ export default function MyIcon(props) {
     <MyIcon {...props} />
   )
 }
+
