@@ -31,7 +31,6 @@ def programa():
         else:
             decir(
                 nombre + " creo que no has respondido con alguna de las instrucciones indicadas anteriormente")
-            decir("Responde con una de las alternativas mencionadas.")
     estado['termino'] = True
 
 

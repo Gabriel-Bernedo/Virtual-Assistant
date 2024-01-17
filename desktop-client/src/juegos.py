@@ -2,7 +2,7 @@ import pygame
 import sys
 import random
 import time
-from utils_audio import estado
+from utils_audio import estado, repAudio
 import json
 
 with open('res/db/ahorcado.json', 'r', encoding='utf-8') as archivo:
@@ -32,6 +32,8 @@ partes = [
 
 # pygame.init()
 dest = [195, 25]
+
+
 def dividir_texto(texto, longitud_maxima):
     palabras = texto.split()
     oraciones = []
@@ -69,7 +71,7 @@ def ahorcado():  # INTERFAZ grafica
         pygame.draw.rect(pantalla, WHITE, (80, 80, 60, 10))
 
     def parrafo():
-        oraciones = dividir_texto(txt,40)
+        oraciones = dividir_texto(txt, 40)
         for i, oracion in enumerate(oraciones):
             txtAyuda = minFont.render(oracion, True, BLACK)
             pantalla.blit(txtAyuda, (195, 25 * (i + 1)))
@@ -99,10 +101,19 @@ def ahorcado():  # INTERFAZ grafica
         img_ayuda = pygame.image.load(f'res/imgs/juegos/{palabra_secreta}.jpg')
         imagen_rect = img_ayuda.get_rect()
         txt = objJuego[palabra_secreta]
-        print(palabra_secreta)
+        texto_secreto = fuente.render(palabra_secreta, True, BLACK)
+        # print(palabra_secreta)
         letras_adivinadas = ["_"] * len(palabra_secreta)
         estado['enPartida'] = False
         intentos = 0
+
+        def munieco():
+            if intentos > 0 and not estado['enPartida']:
+                circle(partes[0][0], partes[0][1])
+                if intentos > 1:
+                    for i in range(1, intentos):
+                        linea(partes[i][0], partes[i][1])
+
         while not estado['enPartida']:
             letra = None
             pantalla.blit(pizarra, (0, 0))
@@ -113,8 +124,7 @@ def ahorcado():  # INTERFAZ grafica
                 elif event.type == pygame.KEYUP:
                     letra = event.unicode
                 elif event.type == pygame.MOUSEBUTTONDOWN:
-                    if event.button == 1:  # Clic izquierdo del ratón
-                        # Verificar si el clic se hizo sobre la imagen
+                    if event.button == 1:
                         mouse_pos = pygame.mouse.get_pos()
                         pos = (int(mouse_pos[0]) - int(dest[0]), int(mouse_pos[1]) - int(dest[1]))
                         if imagen_rect.collidepoint(pos):
@@ -122,40 +132,38 @@ def ahorcado():  # INTERFAZ grafica
             horca()
             palabra_oculta = " ".join(letras_adivinadas)
             texto_palabra = fuente.render(palabra_oculta, True, BLACK)
-
-            # Verificar si se adivinó la palabra
-            if "_" not in letras_adivinadas:
-                texto_ganar = fuente.render("¡Ganaste!", True, BLACK)
-                pantalla.blit(texto_ganar, (140, 175))
-                estado['enPartida'] = True
-            elif intentos >= max_intentos:
-                texto_perder = fuente.render("¡Perdiste! La palabra era: ", True, BLACK)
-                texto_perder2 = fuente.render(palabra_secreta, True, BLACK)
-                pantalla.blit(texto_perder, (140, 160))
-                pantalla.blit(texto_perder2, (140, 195))
-                estado['enPartida'] = True
-                pygame.display.flip()
-                continue
-            else:
-                if letra is not None and letra.isalpha():
-                    print(letra)
-                    letra = letra.upper()
-                    if letra not in palabra_secreta:
-                        intentos += 1
-                    else:
-                        for j, letra_palabra in enumerate(palabra_secreta):
-                            if letra == letra_palabra:
-                                letras_adivinadas[j] = letra
-            if intentos > 0 and not estado['enPartida']:
-                circle(partes[0][0], partes[0][1])
-                if intentos > 1:
-                    for i in range(1, intentos):
-                        linea(partes[i][0], partes[i][1])
-            pantalla.blit(texto_palabra, (170, 195))
+            munieco()
             if estado['ayuda']:
                 parrafo()
             else:
                 pantalla.blit(img_ayuda, dest)
+            if "_" not in letras_adivinadas:
+                texto_ganar = fuente.render("¡Ganaste!", True, BLACK)
+                pantalla.blit(texto_ganar, (140, 175))
+                estado['enPartida'] = True
+                pantalla.blit(texto_secreto, (170, 195))
+                pygame.display.flip()
+                repAudio("res/audio/victoria.mp3")
+            else:
+                if intentos >= max_intentos:
+                    texto_perder = fuente.render("¡Perdiste! La palabra era: ", True, BLACK)
+                    pantalla.blit(texto_perder, (140, 160))
+                    pantalla.blit(texto_secreto, (140, 195))
+                    repAudio("res/audio/derrota.mp3")
+                    estado['enPartida'] = True
+                    pygame.display.flip()
+                    continue
+                else:
+                    if letra is not None and letra.isalpha():
+                        #print(letra)
+                        letra = letra.upper()
+                        if letra not in palabra_secreta:
+                            intentos += 1
+                        else:
+                            for j, letra_palabra in enumerate(palabra_secreta):
+                                if letra == letra_palabra:
+                                    letras_adivinadas[j] = letra
+                pantalla.blit(texto_palabra, (170, 195))
             clock.tick(15)
             pygame.display.flip()
         time.sleep(3)
