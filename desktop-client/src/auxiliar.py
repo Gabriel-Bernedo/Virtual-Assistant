@@ -1,3 +1,5 @@
+import pygame
+
 from utils_audio import *
 from juegos import *
 
@@ -213,3 +215,4 @@ def interfaz():
             time.sleep(3)
             estado['asistente'] = True
             estado['aprendiendo']=False
+    pygame.quit()

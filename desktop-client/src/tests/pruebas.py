@@ -1,29 +1,17 @@
-'''
-datos = "Esta instrucción se utiliza para realizar una bifurcación incondicional en un programa, llevándolo a una dirección específica."
-print(datos)
-print(int(len(datos)/30+1.8))
-datos = 'Esta instrucción se utiliza pa'
-print(len(datos))
-'''
-def dividir_texto(texto, longitud_maxima):
-    palabras = texto.split()
-    oraciones = []
-    oracion_actual = palabras[0]
+import json
 
-    for palabra in palabras[1:]:
-        if len(oracion_actual + ' ' + palabra) <= longitud_maxima:
-            oracion_actual += ' ' + palabra
-        else:
-            oraciones.append(oracion_actual)
-            oracion_actual = palabra
+# Paso 1: Leer el archivo JSON
+with open('basedatos.json', 'r', encoding='utf-8') as file:
+    data = json.load(file)
 
-    oraciones.append(oracion_actual)
-    return oraciones
+# Paso 2: Modificar los datos según sea necesario
+#data['bienvenida'] += 'holá'
+data['aprendizaje']['nueva_seccion'] = {
+    'clave1':['2',
+    'clave2','1']
+    # ... Puedes agregar más claves y valores según sea necesario
+}
+# Paso 3: Escribir los cambios de vuelta al archivo JSON
+with open('basedatos.json', 'w',  encoding='utf-8') as file:
+    json.dump(data, file, indent=2,ensure_ascii=False)
 
-texto_original = "Es un programa informático que traduce el código fuente escrito en un lenguaje de programación de alto nivel (como C o Pascal) a código máquina, que es ejecutable por el procesador."
-longitud_maxima = 40
-
-resultado = dividir_texto(texto_original, longitud_maxima)
-
-for i, oracion in enumerate(resultado):
-    print(f"Oración {i + 1}: {oracion}")

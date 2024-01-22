@@ -1,6 +1,7 @@
 from auxiliar import *
 import threading
 from utils_audio import *
+
 import time
 
 
@@ -13,12 +14,13 @@ def programa():
     #decir("La opción Aprendizaje es donde podrás aprender todo con respecto a la Estructura de un computador. "
           #     "La opción Pruebas es donde podrás poner en práctica lo que aprendiste mediante exámenes. "
          #      "Y por último, la tercer opción, es Juegos, donde tambien podrás demostrar lo que aprendiste jugando.")
+    #respuesta = ('aprendizaje')
     while True:
         #decir("¿Qué opción eliges? ")
         #decir(" 1) Aprendizaje\n 2) Pruebas\n 3) Juegos\n 4) Salir")
         #respuesta = escuchar()
         #respuesta = 'aprendizaje'
-        respuesta = 'juegos'
+        respuesta = 'modificar'
         if respuesta == "aprendizaje":
             aprenderElseProbar()
         elif respuesta == "pruebas":
@@ -29,6 +31,10 @@ def programa():
             estado['jugando'] = True
             while not estado['asistente']:
                 time.sleep(1)
+        elif respuesta == 'modificar':
+            estado['termino'] = True
+            from queryDB import modificar
+            modificar()
         elif respuesta == "salir":
             break
         else:
@@ -42,5 +48,6 @@ def asistentePyg():#INTERFAZ grafica
     hilo1 = threading.Thread(target=programa)
     hilo1.start()
     interfaz()
+    return
 
 asistentePyg()
