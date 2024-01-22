@@ -60,7 +60,28 @@
         "clave2",
         "1"
       ]
-    }
+    },
+    "pruebas": {
+      "sub1": [
+        "nombre",
+        "apellido"
+      ],
+      "suv2": [
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    "fdsfdsf": [
+      [
+        "dsadsads"
+      ]
+    ],
+    "dsads": [
+      [
+        "dsdsad"
+      ]
+    ]
   },
   "img": {
     "introducción": [

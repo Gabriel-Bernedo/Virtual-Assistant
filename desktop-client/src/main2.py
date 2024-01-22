@@ -33,8 +33,8 @@ def programa():
                 time.sleep(1)
         elif respuesta == 'modificar':
             estado['termino'] = True
-            from queryDB import modificar
-            modificar()
+            from queryDB import query
+            query()
         elif respuesta == "salir":
             break
         else:

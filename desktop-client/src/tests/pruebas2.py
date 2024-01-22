@@ -1,19 +1,33 @@
 import tkinter as tk
 from tkinter import ttk
+import json
 
+with open('basedatos.json', 'r', encoding='utf-8') as file:
+    data = json.load(file)
 def enviar_formulario():
     # Obtener la sección y la información general
     seccion = entry_seccion.get()
-    informacion = entry_informacion.get("1.0", "end-1c")
-    print(f"Sección: {seccion}\nInformación General: {informacion}")
-
-    # Obtener la información de las subsecciones
-    informacion_subsecciones_lista = [info_subseccion.get("1.0", "end-1c") for info_subseccion in
-                                      informacion_subsecciones]
-
-    # Imprimir la información de las subsecciones
-    for i, info_subseccion in enumerate(informacion_subsecciones_lista, start=1):
-        print(f"Subsección {i}: {info_subseccion}")
+    if entry_seccion.get() != '':
+        if seleccion_var.get():
+            # Obtener la información de las subsecciones
+            nombres_subsecciones_lista = [nom_subseccion.get() for nom_subseccion in
+                                              nombres_subsecciones]
+            informacion_subsecciones_lista = [info_subseccion.get("1.0", "end-1c") for info_subseccion in
+                                              informacion_subsecciones]
+            # Crear un diccionario para almacenar las subsecciones
+            subsecciones_dict = {}
+            # Iterar sobre las subsecciones y agregarlas al diccionario
+            for nombre, info in zip(nombres_subsecciones_lista, informacion_subsecciones_lista):
+                subsecciones_dict[nombre] = info.splitlines()
+            # Asignar el diccionario de subsecciones a la sección en data['aprendizaje']
+            data['aprendizaje'][seccion] = subsecciones_dict
+        else:
+            informacion = entry_informacion.get("1.0", "end-1c")
+            data['aprendizaje'][seccion] = [
+                informacion.splitlines()
+            ]
+        with open('basedatos.json', 'w', encoding='utf-8') as file:
+            json.dump(data, file, indent=2, ensure_ascii=False)
 
 def actualizar_desplazamiento(event=None):
     # Actualizar la región de desplazamiento del Canvas
@@ -30,7 +44,7 @@ def mostrar_nombres_secciones():
             # Crear Entry para nombre de subsección
             nombre_seccion = tk.Entry(frame_subsecciones)
             nombre_seccion.grid(row=i, column=1, padx=10, pady=5, sticky="w")
-            nombres_secciones.append(nombre_seccion)
+            nombres_subsecciones.append(nombre_seccion)
 
             # Crear Text para información de subsección
             info_subseccion = tk.Text(frame_subsecciones, width=50, height=2, wrap="word")
@@ -56,11 +70,11 @@ def mostrar_nombres_secciones():
 
 def eliminar_nombres_secciones():
     # Eliminar los Entry y Text de las subsecciones
-    for nombre_seccion in nombres_secciones:
+    for nombre_seccion in nombres_subsecciones:
         nombre_seccion.destroy()
     for info_subseccion in informacion_subsecciones:
         info_subseccion.destroy()
-    nombres_secciones.clear()
+    nombres_subsecciones.clear()
     informacion_subsecciones.clear()
 
 # Crear la ventana principal
@@ -94,7 +108,7 @@ entrada_subsecciones = tk.Entry(ventana, textvariable=num_subsecciones_var)
 entrada_subsecciones.grid(row=4, column=1, padx=10, pady=5, sticky="w")
 
 # Lista para almacenar los Entry de nombres de secciones
-nombres_secciones = []
+nombres_subsecciones = []
 
 # Lista para almacenar los Text de información de subsecciones
 informacion_subsecciones = []
