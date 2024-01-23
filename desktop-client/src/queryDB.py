@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import PhotoImage
+from auxiliar import estado
 import json
 
 with open('res/db/basedatos.json', 'r', encoding='utf-8') as file:
@@ -84,14 +85,8 @@ ventana.title("Agregar Temas a la Base de Datos")
 
 # Configurar el tamaño de la ventana
 ventana.geometry("720x720")
-'''
-imagen_fondo = PhotoImage(file="res/imgs/fondo.jpg")  # Reemplaza con la ruta de tu imagen
-canvas = tk.Canvas(ventana, width=720, height=720)
-canvas.pack()
+ventana.configure(bg="#60BBF4")
 
-# Mostrar la imagen de fondo
-canvas.create_image(0, 0, anchor=tk.NW, image=imagen_fondo)
-'''
 # Etiqueta y entrada para la sección
 label_seccion = tk.Label(ventana, text="Nombre de la Sección:")
 label_seccion.grid(row=0, column=0, padx=10, pady=5, sticky="e")
@@ -153,8 +148,12 @@ actualizar_desplazamiento()
 
 # Configurar el evento de desplazamiento
 canvas.bind("<Configure>", actualizar_desplazamiento)
-
-ventana.mainloop()
 def query():
     ventana.mainloop()
-query()
+    print('termino')
+    #estado['termino'] = False
+    from auxiliar import interfaz
+    interfaz()
+    #estado['asistente'] = True
+    #estado['query'] = False
+#query()

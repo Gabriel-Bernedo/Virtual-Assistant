@@ -5,24 +5,26 @@ recognizer = sr.Recognizer()
 microphone = sr.Microphone()
 estado = {
     'hablando': True,
-    'escuchando':False,
+    'escuchando': False,
     'termino': False,
-    'asistente':True,
-    'aprendiendo':False,
-    'enPartida' : False,
+    'asistente': True,
+    'aprendiendo': False,
+    'enPartida': False,
     'jugando': False,
-    'ayuda': False
+    'ayuda': False,
+    'query': False,
+    'fin_hilo': False
 }
 subTxt = ['']
 
 def decir(comando,cambiar=True):
-    estado['hablando'] = True
-    subTxt[0] = comando if cambiar else subTxt[0]
-    palabra = pyttsx3.init()
-    palabra.say(comando)
-    palabra.runAndWait()
-    #subTxt[0] = ''
-    estado['hablando'] = False
+    if not estado['fin_hilo']:
+        estado['hablando'] = True
+        subTxt[0] = comando if cambiar else subTxt[0]
+        palabra = pyttsx3.init()
+        palabra.say(comando)
+        palabra.runAndWait()
+        estado['hablando'] = False
 def repAudio(archivo_audio):
     pygame.mixer.init()
     pygame.mixer.music.load(archivo_audio)
@@ -62,7 +64,8 @@ def enviarAudio(reconocer=recognizer, microfono=microphone, tiempo_ruido=3):
 
 def escuchar():
     estado['escuchando'] = False
-    while True:
+    palabra = None
+    while not estado['fin_hilo']:
         palabra = enviarAudio(recognizer, microphone)
         if palabra["mensaje"]:
             break
@@ -72,4 +75,5 @@ def escuchar():
             exit(1)
         decir("No pude escucharte, ¿podrías repetirlo?",False)
     estado['escuchando'] = False
-    return palabra["mensaje"].lower()
+    if palabra is not None:
+        return palabra["mensaje"].lower()

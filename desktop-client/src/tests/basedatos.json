@@ -53,35 +53,7 @@
         "Los dos campos básicos presentes en un formato de instrucciones son 'Campo de operación y campo de dirección'.",
         "Las instrucciones se dividen en una serie de campos en el diseño del formato de instrucciones 'Para simplificar la decodificación y ejecución'."
       ]
-    },
-    "nueva_seccion": {
-      "clave1": [
-        "2",
-        "clave2",
-        "1"
-      ]
-    },
-    "pruebas": {
-      "sub1": [
-        "nombre",
-        "apellido"
-      ],
-      "suv2": [
-        "a",
-        "b",
-        "c"
-      ]
-    },
-    "fdsfdsf": [
-      [
-        "dsadsads"
-      ]
-    ],
-    "dsads": [
-      [
-        "dsdsad"
-      ]
-    ]
+    }
   },
   "img": {
     "introducción": [

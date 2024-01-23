@@ -4,7 +4,6 @@ from utils_audio import *
 
 import time
 
-
 def programa():
     #decir(datos['bienvenida'][0])
     #nombre = escuchar().capitalize()
@@ -15,12 +14,12 @@ def programa():
           #     "La opción Pruebas es donde podrás poner en práctica lo que aprendiste mediante exámenes. "
          #      "Y por último, la tercer opción, es Juegos, donde tambien podrás demostrar lo que aprendiste jugando.")
     #respuesta = ('aprendizaje')
-    while True:
+    while not estado['fin_hilo']:
         #decir("¿Qué opción eliges? ")
         #decir(" 1) Aprendizaje\n 2) Pruebas\n 3) Juegos\n 4) Salir")
         #respuesta = escuchar()
         #respuesta = 'aprendizaje'
-        respuesta = 'modificar'
+        respuesta = 'aprendizaje'
         if respuesta == "aprendizaje":
             aprenderElseProbar()
         elif respuesta == "pruebas":
@@ -32,6 +31,7 @@ def programa():
             while not estado['asistente']:
                 time.sleep(1)
         elif respuesta == 'modificar':
+            estado['asistente'] = False
             estado['termino'] = True
             from queryDB import query
             query()
@@ -45,9 +45,14 @@ def programa():
 
 
 def asistentePyg():#INTERFAZ grafica
+    global hilo_finalizado
     hilo1 = threading.Thread(target=programa)
     hilo1.start()
     interfaz()
+    print('fin hilo')
+    estado['fin_hilo'] = True
+    hilo1.join()
     return
+
 
 asistentePyg()

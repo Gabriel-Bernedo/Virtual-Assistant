@@ -1,5 +1,3 @@
-import pygame
-
 from utils_audio import *
 from juegos import *
 
@@ -8,7 +6,6 @@ with open('res/db/basedatos.json', 'r', encoding='utf-8') as archivo:
 aprendizaje, imagenes = datos['aprendizaje'], datos['img']
 with open('res/db/preguntas.json', 'r', encoding='utf-8') as archivo:
     preguntas = json.load(archivo)
-
 dicc = {
     "puntaje": 0,
     "uno": 1,
@@ -22,7 +19,7 @@ img_path = ['']
 
 def dictarpreguntas(seccion, subseccion=None):
     resul, arr = 0, preguntas[seccion]
-    if not subseccion == None:
+    if not subseccion is None:
         arr = arr[subseccion]
     for pregunta in arr:
         cont = 1
@@ -74,19 +71,21 @@ def generar_mensaje_secciones(secciones):
     return "\n".join([f"{i + 1}) {seccion}" for i, seccion in enumerate(secciones)] + [f"{len(secciones) + 1}) Salir"])
 def aprenderElseProbar(aprendiendo=True):
     decir(f"Elegiste la opcion {"Aprendizaje" if aprendiendo else "Pruebas"}")
-    while True:
+    while not estado['fin_hilo']:
         mensaje_pregunta = "Que seccion deseas aprender\n" if aprendiendo else "Deseas dar una prueba sobre\n"
         decir(mensaje_pregunta + generar_mensaje_secciones(aprendizaje))
+        #aqui cierro la ventana
         respuesta = escuchar()
         equivocado = True
-        for seccion in aprendizaje:
-            if any(palabra in seccion for palabra in respuesta.split() if len(palabra) > 3):#escoger seccion
-                equivocado = False
-                if isinstance(aprendizaje[seccion], dict) and len(seccion) > 1:
-                    aprenderElseProbarSubseccion(seccion, aprendiendo)
-                else:
-                    aprender(seccion) if aprendiendo else dictarpreguntas(seccion)
-                break
+        if not estado['fin_hilo']:
+            for seccion in aprendizaje:
+                if any(palabra in seccion for palabra in respuesta.split() if len(palabra) > 3):#escoger seccion
+                    equivocado = False
+                    if isinstance(aprendizaje[seccion], dict) and len(seccion) > 1:
+                        aprenderElseProbarSubseccion(seccion, aprendiendo)
+                    else:
+                        aprender(seccion) if aprendiendo else dictarpreguntas(seccion)
+                    break
         if respuesta == 'salir':
             break
         elif equivocado:
@@ -95,7 +94,7 @@ def aprenderElseProbar(aprendiendo=True):
 
 def aprenderElseProbarSubseccion(seccion, aprendiendo=True):
     decir(f"Ahora aprenderas {seccion}" if aprendiendo else f"Escogiste {seccion}, empecemos con la prueba")
-    while True:
+    while not estado['fin_hilo']:
         decir(f"En cual subseccion deseas {'aprender'if aprendiendo else 'dar una prueba'}\n" + generar_mensaje_secciones(aprendizaje[seccion]))
         respuesta = escuchar()
         equivocado = True
@@ -155,8 +154,8 @@ def interfaz():
             pygame.display.set_caption('PYG-4')
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    estado['termino'] = True
-                    sys.exit()
+                    estado['termino'], estado['asistente'] = True, False
+                    #sys.exit()
             screen.blit(fondo, (0, 0))
             if estado['hablando']:
                 ancho = 70
