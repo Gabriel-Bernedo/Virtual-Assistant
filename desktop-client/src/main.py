@@ -1,7 +1,6 @@
 from auxiliar import *
 import threading
 from utils_audio import *
-import time
 from query import query
 
 
