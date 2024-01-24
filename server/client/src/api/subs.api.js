@@ -1,7 +1,8 @@
 import axios from "axios"
-import { apiRoutes } from "./Database"
+import { addInfoToSubjects } from "./info.api"
+import Database from "./Database"
 
-const url = apiRoutes.subs
+const url = "http://localhost:8000/dev/subs" //"https://r0sd4f3n-8000.brs.devtunnels.ms/dev/subs"
 
 export const getAllSubs = () => axios.get(url)
 export const createSub = (el) => axios.post(url, sub)
@@ -9,11 +10,10 @@ export const deleteSub = (el) => axios.delete(url, sub)
 export const updateSub = (id, el) => axios.post(`${url}${id}/`, el)
 
 export const generateSubsTree = () => {
-  return getAllSubs().then( res => res.data).then(data => {
+  return Database.getSubs().then(data => {
     return SetChilds(data, null)
   })
 }
-
 
 
 function makeTree(data, node){

@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 
 import axios from 'axios'
 import { generateSubsTree, getAllSubs } from './subs.api'
+import { addInfoToSubjects } from './info.api'
+import { addQuizToSubjects } from './quiz.api,'
 
 export const apiRoutes = {
   learn: "http://localhost:8000/dev/learn/",
@@ -13,10 +15,10 @@ export const apiRoutes = {
 class Database{
 
   state = {
-    subsData : {},
-    infoData : {},
-    quizData : {},
-    gameData : {},
+    subsData : [],
+    infoData : [],
+    quizData : [],
+    gameData : [],
     dataTree : [],
   }
 
@@ -29,10 +31,9 @@ class Database{
   }
 
   getSubs(){
-    axios.get(apiRoutes.subs).then(res => {
-      this.state.subsData = res.data
-      console.log(this.state.subsData)
-
+    return getAllSubs().then(res => res.data).then((data) => {
+      this.state.subsData = data
+      return data
     })
   }
 
@@ -41,6 +42,12 @@ class Database{
       this.state.dataTree = res
       return res
     })
+  }
+
+  getDataTree(){
+    return this.getSubsTree().then((res) => 
+      addInfoToSubjects().then(addQuizToSubjects) && res
+    )
   }
 
   getQuiz(){

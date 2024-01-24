@@ -11,6 +11,8 @@ export default defineConfig({
       resources : "/src/resources",
       assets : "/src/assets",
       api : "/src/api",
+      objects: "/src/objects",
+
     }
   }
 })

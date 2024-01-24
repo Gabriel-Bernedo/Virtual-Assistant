@@ -4,7 +4,7 @@ from django.db import models
 class Subject(models.Model):
   subject_name = models.CharField(max_length=255, verbose_name="Nombre", blank=False)
   subject_parent = models.ForeignKey("Subject", verbose_name="SuperTema", blank=True, null=True, on_delete=models.CASCADE)
-  subject_nickname = models.CharField(max_length=255, verbose_name="Nombre Corto", null=True, blank=True)
+  subject_nickname = models.CharField(max_length=150, verbose_name="Nombre Corto", null=True, blank=True)
   
   def __str__(self):
     parent = self.subject_parent

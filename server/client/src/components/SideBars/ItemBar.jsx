@@ -8,7 +8,7 @@ export default function ItemBar({item, select}) {
         onClick={() => {select(item)}}  
       >
           {(item.icon) ? <MyIcon icon={item.icon}/> : ""}
-          <span className="ms-3">{item.name}</span>
+          <span className="ms-3 w-full">{item.name}</span>
           {/*(item.addon) ? 
           <span className={`inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-${item.addon.color}-800 bg-${item.addon.color}-100 rounded-full dark:bg-${item.addon.color}-900 dark:text-${item.addon.color}-300`}>
             {item.addon.value}

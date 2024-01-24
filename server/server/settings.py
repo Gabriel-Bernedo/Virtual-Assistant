@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'corsheaders',
-    'backend',
+    'backend', 
     'rest_framework',
 ]
 
@@ -128,4 +128,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = [
   "http://localhost:5173",
+  "https://r0sd4f3n-5173.brs.devtunnels.ms",
 ]

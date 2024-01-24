@@ -8,7 +8,7 @@ import { SubEncoder } from 'api/subs.api'
 export default function Dev_Learn() {
   const [data, setData] = useState([])
   useEffect(() => {
-    Database.getSubsTree().then(res => {
+    Database.getDataTree().then(res => {
       setData(res)
     })
   },[])
