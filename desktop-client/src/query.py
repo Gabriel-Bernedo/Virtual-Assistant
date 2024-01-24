@@ -1,6 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
 import json
+from auxiliar import estado
+
 
 class InterfazGrafica:
     def __init__(self, ventana_principal):
@@ -13,6 +15,7 @@ class InterfazGrafica:
     def crear_widgets(self):
         with open('res/db/basedatos.json', 'r', encoding='utf-8') as file:
             data = json.load(file)
+
         def enviar_formulario():
             # Obtener la sección y la información general
             seccion = entry_seccion.get()
@@ -85,13 +88,7 @@ class InterfazGrafica:
                 info_subseccion.destroy()
             nombres_subsecciones.clear()
             informacion_subsecciones.clear()
-        # Crear la ventana principal
-        #self.ventana = tk.Tk()
-        #self.ventana.title("Agregar Temas a la Base de Datos")
 
-        # Configurar el tamaño de la ventana
-        #self.ventana.geometry("720x720")
-        #self.ventana.configure(bg="#60BBF4")
 
         # Etiqueta y entrada para la sección
         label_seccion = tk.Label(self.ventana, text="Nombre de la Sección:")
@@ -124,7 +121,8 @@ class InterfazGrafica:
 
         # Checkbutton para mostrar nombres de secciones
         seleccion_var = tk.BooleanVar()
-        seleccion_checkbutton = tk.Checkbutton(self.ventana, text="Mostrar Nombres de Secciones", variable=seleccion_var,
+        seleccion_checkbutton = tk.Checkbutton(self.ventana, text="Mostrar Nombres de Secciones",
+                                               variable=seleccion_var,
                                                command=mostrar_nombres_secciones)
         seleccion_checkbutton.grid(row=3, column=0, columnspan=2, pady=5)
 
@@ -153,14 +151,15 @@ class InterfazGrafica:
         # Llamada inicial a actualizar_desplazamiento
         actualizar_desplazamiento()
 
-
-
     def iniciar_interfaz(self):
         self.ventana.mainloop()
 
 
 def query():
+    estado['asistente'] = False
+    estado['query'] = True
     ventana = tk.Tk()
     interfaz = InterfazGrafica(ventana)
     interfaz.iniciar_interfaz()
-
+    estado['asistente'] = True
+    estado['query'] = False

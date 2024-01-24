@@ -7,13 +7,12 @@ from query import query
 
 def programa():
     nombre = 'Paulo'
-    #respuesta = 'modificar'
+    respuesta = 'modificar'
 
     while not estado['fin_hilo']:
         #decir(" 1) Aprendizaje\n 2) Pruebas\n 3) Juegos\n 4) Modificar\n 5) Salir")
-        del estado['fin_hilo']
-        respuesta = escuchar()
-        #respuesta = 'modificar'
+        #respuesta = escuchar()
+        respuesta = 'modificar'
         if respuesta == "aprendizaje":
             aprenderElseProbar()
         elif respuesta == "pruebas":
@@ -24,14 +23,10 @@ def programa():
             estado['jugando'] = True
             while not estado['asistente']:
                 time.sleep(1)
+            respuesta = "aprendizaje"
         elif respuesta == 'modificar':
-            estado['asistente'] = False
-            estado['query'] = True
-
             query()
-            estado['asistente'] = True
-            estado['query'] = False
-            #respuesta = 'juegos'
+            respuesta = 'juegos'
         elif respuesta == "salir":
             break
         else:

@@ -1,5 +1,3 @@
-import pygame
-
 from utils_audio import *
 from juegos import *
 
@@ -65,24 +63,26 @@ def aprender(seccion, subseccion=None):
         decir(dato)
         estado['asistente'] = False
         estado['aprendiendo'] = True
-        cargarimg(img)
+        cargarImg(img)
         time.sleep(3)
 
 
 def generar_mensaje_secciones(secciones):
     return "\n".join([f"{i + 1}) {seccion}" for i, seccion in enumerate(secciones)] + [f"{len(secciones) + 1}) Salir"])
+
+
 def aprenderElseProbar(aprendiendo=True):
     decir(f"Elegiste la opcion {"Aprendizaje" if aprendiendo else "Pruebas"}")
     while not estado['fin_hilo']:
         mensaje_pregunta = "Que seccion deseas aprender\n" if aprendiendo else "Deseas dar una prueba sobre\n"
         decir(mensaje_pregunta + generar_mensaje_secciones(aprendizaje))
-        #aqui cierro la ventana
+        # aqui cierro la ventana
         respuesta = escuchar()
         equivocado = True
         if not estado['fin_hilo']:
             for seccion in aprendizaje:
                 if not estado['fin_hilo']:
-                    if any(palabra in seccion for palabra in respuesta.split() if len(palabra) > 3):#escoger seccion
+                    if any(palabra in seccion for palabra in respuesta.split() if len(palabra) > 3):  # escoger seccion
                         equivocado = False
                         if not estado['fin_hilo']:
                             if isinstance(aprendizaje[seccion], dict) and len(seccion) > 1:
@@ -92,7 +92,8 @@ def aprenderElseProbar(aprendiendo=True):
                             break
                         else:
                             break
-                else: break
+                else:
+                    break
         if respuesta == 'salir':
             break
         elif equivocado:
@@ -102,26 +103,31 @@ def aprenderElseProbar(aprendiendo=True):
 def aprenderElseProbarSubseccion(seccion, aprendiendo=True):
     decir(f"Ahora aprenderas {seccion}" if aprendiendo else f"Escogiste {seccion}, empecemos con la prueba")
     while not estado['fin_hilo']:
-        decir(f"En cual subseccion deseas {'aprender'if aprendiendo else 'dar una prueba'}\n" + generar_mensaje_secciones(aprendizaje[seccion]))
+        decir(
+            f"En cual subseccion deseas {'aprender' if aprendiendo else 'dar una prueba'}\n" + generar_mensaje_secciones(
+                aprendizaje[seccion]))
         respuesta = escuchar()
         equivocado = True
         for subseccion in aprendizaje[seccion]:
             if not estado['fin_hilo']:
-                if any(palabra in subseccion for palabra in respuesta.split()):#escoger seccion
+                if any(palabra in subseccion for palabra in respuesta.split()):  # escoger seccion
                     equivocado = False
-                    aprender(seccion,subseccion) if aprendiendo else dictarpreguntas(seccion,subseccion)
-            else: break
+                    aprender(seccion, subseccion) if aprendiendo else dictarpreguntas(seccion, subseccion)
+            else:
+                break
         if respuesta == 'salir':
             break
         elif equivocado:
             decir("repite la opcion por favor")
 
-def cargarimg(img):
+
+def cargarImg(img):
     if not img == "":
         image_path = "res/imgs/" + img  # Ruta de la imagen que deseas abrir
         if not img.__contains__(".png"):
             image_path += ".png"
         img_path[0] = image_path
+
 
 class Interfaz:
     def __init__(self):
@@ -148,22 +154,32 @@ class Interfaz:
         self.pygTxt = self.fuente.render('PYG-4 Tu Asistente Virtual', True, WHITE)
         pygame.display.flip()
         self.modo = True
+
+
+def juego():
+    estado['asistente'] = False
+    estado['jugando'] = True
+    while not estado['asistente']:
+        time.sleep(1)
+
+
+
 def interfaz():
     ventana = Interfaz()
     ventana.__init__()
 
     def parrafo(altura):
-        if len(subTxt[0]) >0:
+        if len(subTxt[0]) > 0:
             oraciones = dividir_texto(subTxt[0], 38)
             for i, oracion in enumerate(oraciones):
                 txtAyuda = ventana.fuenteSub.render(oracion, True, BLACK)
                 screen.blit(txtAyuda, (185, altura + (17 * i)))
-    inactivo = False
+
     while not estado['termino']:
         ventana.__init__()
         screen = pygame.display.set_mode(ventana.sizeF)
+        inactivo = False
         while estado['asistente']:
-            inactivo = False
             pygame.display.set_icon(ventana.fondo)
             pygame.display.set_caption('PYG-4')
             for event in pygame.event.get():
@@ -215,11 +231,9 @@ def interfaz():
             screen.blit(ventana.pygTxt, (10, 10))
             pygame.display.flip()
         while estado['jugando']:
-            inactivo = True
             ahorcado()
             estado['asistente'] = True
         while estado['aprendiendo']:
-            inactivo = False
             imagen = pygame.image.load(img_path[0])
             size = (imagen.get_width(), imagen.get_height())
             screen = pygame.display.set_mode(size)
@@ -227,10 +241,9 @@ def interfaz():
             pygame.display.flip()
             time.sleep(3)
             estado['asistente'] = True
-            estado['aprendiendo']=False
+            estado['aprendiendo'] = False
         while estado['query']:
             if not inactivo:
                 pygame.quit()
                 print('sali')
                 inactivo = True
-
