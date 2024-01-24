@@ -104,23 +104,24 @@ def ahorcado():  # INTERFAZ grafica
         texto_secreto = fuente.render(palabra_secreta, True, BLACK)
         # print(palabra_secreta)
         letras_adivinadas = ["_"] * len(palabra_secreta)
-        estado['enPartida'] = False
+        estado['enPartida'] = True
         intentos = 0
 
         def munieco():
-            if intentos > 0 and not estado['enPartida']:
+            if intentos > 0 and estado['enPartida']:
                 circle(partes[0][0], partes[0][1])
                 if intentos > 1:
                     for i in range(1, intentos):
                         linea(partes[i][0], partes[i][1])
 
-        while not estado['enPartida']:
+        while estado['enPartida']:
             letra = None
             pantalla.blit(pizarra, (0, 0))
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    estado['enPartida'] = True
-                    sys.exit()
+                    estado['enPartida'] = False
+                    estado['jugando'] = False
+                    #sys.exit()
                 elif event.type == pygame.KEYUP:
                     letra = event.unicode
                 elif event.type == pygame.MOUSEBUTTONDOWN:
@@ -140,7 +141,7 @@ def ahorcado():  # INTERFAZ grafica
             if "_" not in letras_adivinadas:
                 texto_ganar = fuente.render("¡Ganaste!", True, BLACK)
                 pantalla.blit(texto_ganar, (140, 175))
-                estado['enPartida'] = True
+                estado['enPartida'] = False
                 pantalla.blit(texto_secreto, (170, 195))
                 pygame.display.flip()
                 repAudio("res/audio/victoria.mp3")
@@ -150,7 +151,7 @@ def ahorcado():  # INTERFAZ grafica
                     pantalla.blit(texto_perder, (140, 160))
                     pantalla.blit(texto_secreto, (140, 195))
                     repAudio("res/audio/derrota.mp3")
-                    estado['enPartida'] = True
+                    estado['enPartida'] = False
                     pygame.display.flip()
                     continue
                 else:
@@ -167,7 +168,5 @@ def ahorcado():  # INTERFAZ grafica
             clock.tick(15)
             pygame.display.flip()
         time.sleep(3)
-        if preguntar_continuar():
-            estado['jugando'] = True
-        else:
-            estado['jugando'] = False
+        if estado['jugando']:
+            estado['jugando'] = True if preguntar_continuar() else False

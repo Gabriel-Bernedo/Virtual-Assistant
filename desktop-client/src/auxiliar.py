@@ -1,3 +1,5 @@
+import pygame
+
 from utils_audio import *
 from juegos import *
 
@@ -79,13 +81,18 @@ def aprenderElseProbar(aprendiendo=True):
         equivocado = True
         if not estado['fin_hilo']:
             for seccion in aprendizaje:
-                if any(palabra in seccion for palabra in respuesta.split() if len(palabra) > 3):#escoger seccion
-                    equivocado = False
-                    if isinstance(aprendizaje[seccion], dict) and len(seccion) > 1:
-                        aprenderElseProbarSubseccion(seccion, aprendiendo)
-                    else:
-                        aprender(seccion) if aprendiendo else dictarpreguntas(seccion)
-                    break
+                if not estado['fin_hilo']:
+                    if any(palabra in seccion for palabra in respuesta.split() if len(palabra) > 3):#escoger seccion
+                        equivocado = False
+                        if not estado['fin_hilo']:
+                            if isinstance(aprendizaje[seccion], dict) and len(seccion) > 1:
+                                aprenderElseProbarSubseccion(seccion, aprendiendo)
+                            else:
+                                aprender(seccion) if aprendiendo else dictarpreguntas(seccion)
+                            break
+                        else:
+                            break
+                else: break
         if respuesta == 'salir':
             break
         elif equivocado:
@@ -99,9 +106,11 @@ def aprenderElseProbarSubseccion(seccion, aprendiendo=True):
         respuesta = escuchar()
         equivocado = True
         for subseccion in aprendizaje[seccion]:
-            if any(palabra in subseccion for palabra in respuesta.split()):#escoger seccion
-                equivocado = False
-                aprender(seccion,subseccion) if aprendiendo else dictarpreguntas(seccion,subseccion)
+            if not estado['fin_hilo']:
+                if any(palabra in subseccion for palabra in respuesta.split()):#escoger seccion
+                    equivocado = False
+                    aprender(seccion,subseccion) if aprendiendo else dictarpreguntas(seccion,subseccion)
+            else: break
         if respuesta == 'salir':
             break
         elif equivocado:
@@ -146,16 +155,17 @@ def interfaz():
             for i, oracion in enumerate(oraciones):
                 txtAyuda = fuenteSub.render(oracion, True, BLACK)
                 screen.blit(txtAyuda, (185, altura + (17 * i)))
-
+    inactivo = False
     while not estado['termino']:
+        pygame.init()
         screen = pygame.display.set_mode(sizeF)
         while estado['asistente']:
+            inactivo = False
             pygame.display.set_icon(fondo)
             pygame.display.set_caption('PYG-4')
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     estado['termino'], estado['asistente'] = True, False
-                    #sys.exit()
             screen.blit(fondo, (0, 0))
             if estado['hablando']:
                 ancho = 70
@@ -202,10 +212,11 @@ def interfaz():
             screen.blit(pygTxt, (10, 10))
             pygame.display.flip()
         while estado['jugando']:
+            inactivo = True
             ahorcado()
-            estado['jugando'] = False
             estado['asistente'] = True
         while estado['aprendiendo']:
+            inactivo = False
             imagen = pygame.image.load(img_path[0])
             size = (imagen.get_width(), imagen.get_height())
             screen = pygame.display.set_mode(size)
@@ -214,4 +225,9 @@ def interfaz():
             time.sleep(3)
             estado['asistente'] = True
             estado['aprendiendo']=False
-    pygame.quit()
+        while estado['query']:
+            if not inactivo:
+                pygame.quit()
+                print('sali')
+                inactivo = True
+
