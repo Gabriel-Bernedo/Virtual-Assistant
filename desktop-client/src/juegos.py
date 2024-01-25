@@ -16,7 +16,6 @@ GREEN = (0, 255, 0)
 RED = (255, 0, 0)
 BLUE = (0, 0, 255)
 CELESTE = (85, 201, 245)
-clock = pygame.time.Clock()
 palabras = rpts
 max_intentos = 6
 
@@ -97,6 +96,7 @@ def ahorcado():  # INTERFAZ grafica
                         return False
 
     while estado['jugando']:
+        clock = pygame.time.Clock()
         palabra_secreta = random.choice(palabras)
         img_ayuda = pygame.image.load(f'res/imgs/juegos/{palabra_secreta}.jpg')
         imagen_rect = img_ayuda.get_rect()

@@ -1,3 +1,4 @@
+import time
 import tkinter as tk
 from tkinter import ttk
 import json
@@ -163,3 +164,4 @@ def query():
     interfaz.iniciar_interfaz()
     estado['asistente'] = True
     estado['query'] = False
+    

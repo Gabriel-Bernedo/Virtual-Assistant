@@ -9,10 +9,11 @@ def programa():
     nombre = escuchar().capitalize()
     decir(f"Hola {nombre}. Mucho gusto.")
     decir(
-        f"{nombre} Ahora voy a explicarte sobre las opciones que tiene este programa. Tienes 3 opciones para escoger.")
-    decir("La opción Aprendizaje es donde podrás aprender todo con respecto a la Estructura de un computador. "
-          "La opción Pruebas es donde podrás poner en práctica lo que aprendiste mediante exámenes. "
-          "Y por último, la tercer opción, es Juegos, donde tambien podrás demostrar lo que aprendiste jugando.")
+        f"{nombre} Tienes 3 opciones para escoger.")
+    decir("En Aprendizaje te enseñare todo con respecto a la Estructura de un computador. "
+          "En Pruebas podrás poner en práctica tu conocimiento. "
+          "En Juegos, podrás entretenerte y practicar."
+          "Y en modificar, se pueden agregar secciones a la Base de datos")
     while not estado['fin_hilo']:
         decir("¿Qué opción eliges? ")
         decir(" 1) Aprendizaje\n 2) Pruebas\n 3) Juegos\n 4) Modificar\n 5) Salir")

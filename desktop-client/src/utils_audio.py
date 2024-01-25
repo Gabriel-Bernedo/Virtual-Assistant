@@ -63,7 +63,7 @@ def enviarAudio(reconocer=recognizer, microfono=microphone, tiempo_ruido=3):
     return respuesta
 
 def escuchar():
-    estado['escuchando'] = False
+    estado['hablando'] = False
     palabra = None
     while not estado['fin_hilo']:
         palabra = enviarAudio(recognizer, microphone)
@@ -74,6 +74,5 @@ def escuchar():
             decir("Algo no está bien. No puedo reconocer tu micrófono o no lo tienes enchufado.")
             exit(1)
         decir("No pude escucharte, ¿podrías repetirlo?",False)
-    estado['escuchando'] = False
     if palabra is not None:
         return palabra["mensaje"].lower()

@@ -131,17 +131,9 @@ def cargarImg(img):
 
 class Interfaz:
     def __init__(self):
+        self.clock = pygame.time.Clock()
         pygame.init()
         self.fondo = pygame.image.load('res/imgs/fondo.jpg')  # 600x600px
-
-        self.max_alto = 150
-        self.min_alto = 90
-
-        self.alto1 = self.max_alto
-        self.alto2 = self.min_alto
-
-        self.y1 = 140
-        self.y2 = 160
 
         self.sizeF = (self.fondo.get_width(), self.fondo.get_height())  # ancho,alto
         pygame.display.set_mode(self.sizeF)
@@ -153,7 +145,6 @@ class Interfaz:
         self.fuenteSub = pygame.font.SysFont('segoe print', 11)
         self.pygTxt = self.fuente.render('PYG-4 Tu Asistente Virtual', True, WHITE)
         pygame.display.flip()
-        self.modo = True
 
 
 def juego():
@@ -163,11 +154,7 @@ def juego():
         time.sleep(1)
 
 
-
 def interfaz():
-    ventana = Interfaz()
-    ventana.__init__()
-
     def parrafo(altura):
         if len(subTxt[0]) > 0:
             oraciones = dividir_texto(subTxt[0], 38)
@@ -175,10 +162,15 @@ def interfaz():
                 txtAyuda = ventana.fuenteSub.render(oracion, True, BLACK)
                 screen.blit(txtAyuda, (185, altura + (17 * i)))
 
+    max_alto, min_alto = 150, 90
+
+    alto1, alto2 = max_alto, min_alto
+
+    y1,y2 = 140, 160
     while not estado['termino']:
-        ventana.__init__()
+        ventana = Interfaz()
         screen = pygame.display.set_mode(ventana.sizeF)
-        inactivo = False
+        inactivo, modo = False, True
         while estado['asistente']:
             pygame.display.set_icon(ventana.fondo)
             pygame.display.set_caption('PYG-4')
@@ -188,46 +180,40 @@ def interfaz():
             screen.blit(ventana.fondo, (0, 0))
             if estado['hablando']:
                 ancho = 70
-                if ventana.modo:  # 185-120 = x,y 405 -> 220 -> 210
-                    ventana.alto1 -= 2
-                    ventana.alto2 += 2
-                    ventana.y1 += 1
-                    ventana.y2 -= 1
+                if modo:  # 185-120 = x,y 405 -> 220 -> 210
+                    alto1 -= 2
+                    alto2 += 2
+                    y1 += 1
+                    y2 -= 1
+                    if alto1 == min_alto:
+                        modo = not modo
 
-                    # print(alto1, alto2, y1)
-                    if ventana.alto1 == ventana.min_alto:
-                        ventana.modo = not ventana.modo
-
-                    pygame.draw.ellipse(screen, RED, (185, ventana.y1, ancho, ventana.alto1))
-                    pygame.draw.ellipse(screen, BLUE, (260, ventana.y2, ancho, ventana.alto2))
-                    pygame.draw.ellipse(screen, GREEN, (335, ventana.y1, ancho, ventana.alto1))
                 else:
-                    ventana.alto1 += 2
-                    ventana.alto2 -= 2
-                    ventana.y1 -= 1
-                    ventana.y2 += 1
+                    alto1 += 2
+                    alto2 -= 2
+                    y1 -= 1
+                    y2 += 1
 
-                    if ventana.alto1 == ventana.max_alto:
-                        ventana.modo = not ventana.modo
+                    if alto1 == max_alto:
+                        modo = not modo
 
-                    pygame.draw.ellipse(screen, RED, (185, ventana.y1, ancho, ventana.alto1))
-                    pygame.draw.ellipse(screen, BLUE, (260, ventana.y2, ancho, ventana.alto2))
-                    pygame.draw.ellipse(screen, GREEN, (335, ventana.y1, ancho, ventana.alto1))
+                pygame.draw.ellipse(screen, RED, (185, y1, ancho, alto1))
+                pygame.draw.ellipse(screen, BLUE, (260, y2, ancho, alto2))
+                pygame.draw.ellipse(screen, GREEN, (335, y1, ancho, alto1))
                 parrafo(285)
-                clock.tick(60)
-
+                ventana.clock.tick(60)
             elif estado['escuchando']:  # 120+150=270/2=135
-                if ventana.modo:  # 185-120 = x,y 405 -> 220 -> 2109
+                if modo:  # 185-120 = x,y 405 -> 220 -> 2109
                     pygame.draw.circle(screen, CELESTE, (295, 230), 80)
-                ventana.modo = not ventana.modo
+                modo = not modo
                 screen.blit(ventana.micro, (235, 170))
                 parrafo(305)
-                clock.tick(2)
+                ventana.clock.tick(2)
             else:
                 screen.blit(ventana.load[0], (235, 170))
                 ventana.load[0] = pygame.transform.rotate(ventana.load[0], 90)
                 parrafo(305)
-                clock.tick(1.5)
+                ventana.clock.tick(2)
             screen.blit(ventana.pygTxt, (10, 10))
             pygame.display.flip()
         while estado['jugando']:
@@ -245,5 +231,4 @@ def interfaz():
         while estado['query']:
             if not inactivo:
                 pygame.quit()
-                print('sali')
                 inactivo = True
