@@ -185,8 +185,6 @@ def interfaz():
                     alto2 += 2
                     y1 += 1
                     y2 -= 1
-                    if alto1 == min_alto:
-                        modo = not modo
 
                 else:
                     alto1 += 2
@@ -194,8 +192,7 @@ def interfaz():
                     y1 -= 1
                     y2 += 1
 
-                    if alto1 == max_alto:
-                        modo = not modo
+                modo = not modo if alto1 == max_alto or alto1 == min_alto else modo
 
                 pygame.draw.ellipse(screen, RED, (185, y1, ancho, alto1))
                 pygame.draw.ellipse(screen, BLUE, (260, y2, ancho, alto2))

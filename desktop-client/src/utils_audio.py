@@ -1,6 +1,7 @@
 import pyttsx3
 import speech_recognition as sr
 import pygame
+
 recognizer = sr.Recognizer()
 microphone = sr.Microphone()
 estado = {
@@ -17,7 +18,8 @@ estado = {
 }
 subTxt = ['']
 
-def decir(comando,cambiar=True):
+
+def decir(comando, cambiar=True):
     if not estado['fin_hilo']:
         estado['hablando'] = True
         subTxt[0] = comando if cambiar else subTxt[0]
@@ -25,12 +27,16 @@ def decir(comando,cambiar=True):
         palabra.say(comando)
         palabra.runAndWait()
         estado['hablando'] = False
+
+
 def repAudio(archivo_audio):
     pygame.mixer.init()
     pygame.mixer.music.load(archivo_audio)
     pygame.mixer.music.play()
     while pygame.mixer.music.get_busy():
-        continue
+        pygame.time.Clock().tick(10)
+    pygame.mixer.music.stop()
+
 
 def enviarAudio(reconocer=recognizer, microfono=microphone, tiempo_ruido=3):
     if not isinstance(reconocer, sr.Recognizer):
@@ -62,6 +68,7 @@ def enviarAudio(reconocer=recognizer, microfono=microphone, tiempo_ruido=3):
 
     return respuesta
 
+
 def escuchar():
     estado['hablando'] = False
     palabra = None
@@ -70,9 +77,10 @@ def escuchar():
         if palabra["mensaje"]:
             break
         if not palabra["suceso"]:
-            print("Algo no está bien. No puedo reconocer tu micrófono o no lo tienes enchufado. <", palabra["error"], ">")
+            print("Algo no está bien. No puedo reconocer tu micrófono o no lo tienes enchufado. <", palabra["error"],
+                  ">")
             decir("Algo no está bien. No puedo reconocer tu micrófono o no lo tienes enchufado.")
             exit(1)
-        decir("No pude escucharte, ¿podrías repetirlo?",False)
+        decir("No pude escucharte, ¿podrías repetirlo?", False)
     if palabra is not None:
         return palabra["mensaje"].lower()

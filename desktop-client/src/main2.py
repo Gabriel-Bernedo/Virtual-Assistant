@@ -6,15 +6,16 @@ from query import query
 
 def programa():
     nombre = 'Paulo'
-    respuesta = 'modificar'
+    #respuesta = 'modificar'
     while not estado['fin_hilo']:
-        respuesta = escuchar()
+        #respuesta = escuchar()
+        respuesta = 'juegos'
         if respuesta == "aprendizaje":
             aprenderElseProbar()
         elif respuesta == "pruebas":
             aprenderElseProbar(False)
         elif respuesta == "juegos":
-            decir("Ahora jugaras ahorcado",False)
+            #decir("Ahora jugaras ahorcado",False)
             juego()
         elif respuesta == 'modificar':
             query()

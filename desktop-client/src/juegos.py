@@ -29,7 +29,6 @@ partes = [
 
 ]
 
-# pygame.init()
 dest = [195, 25]
 
 
@@ -121,7 +120,6 @@ def ahorcado():  # INTERFAZ grafica
                 if event.type == pygame.QUIT:
                     estado['enPartida'] = False
                     estado['jugando'] = False
-                    #sys.exit()
                 elif event.type == pygame.KEYUP:
                     letra = event.unicode
                 elif event.type == pygame.MOUSEBUTTONDOWN:
@@ -140,23 +138,23 @@ def ahorcado():  # INTERFAZ grafica
                 pantalla.blit(img_ayuda, dest)
             if "_" not in letras_adivinadas:
                 texto_ganar = fuente.render("¡Ganaste!", True, BLACK)
-                pantalla.blit(texto_ganar, (140, 175))
+                pantalla.blit(texto_ganar, (170, 175))
                 estado['enPartida'] = False
                 pantalla.blit(texto_secreto, (170, 195))
                 pygame.display.flip()
                 repAudio("res/audio/victoria.mp3")
             else:
                 if intentos >= max_intentos:
-                    texto_perder = fuente.render("¡Perdiste! La palabra era: ", True, BLACK)
-                    pantalla.blit(texto_perder, (140, 160))
-                    pantalla.blit(texto_secreto, (140, 195))
+                    texto_perder = fuente.render("¡Perdiste! La palabra era: ", True, RED)
+                    pantalla.blit(texto_perder, (170, 160))
+                    pantalla.blit(texto_secreto, (170, 195))
                     repAudio("res/audio/derrota.mp3")
                     estado['enPartida'] = False
                     pygame.display.flip()
                     continue
                 else:
                     if letra is not None and letra.isalpha():
-                        #print(letra)
+                        # print(letra)
                         letra = letra.upper()
                         if letra not in palabra_secreta:
                             intentos += 1
@@ -167,6 +165,13 @@ def ahorcado():  # INTERFAZ grafica
                 pantalla.blit(texto_palabra, (170, 195))
             clock.tick(15)
             pygame.display.flip()
-        time.sleep(3)
+        #print('sali')
+        tiempo_finalizar = pygame.time.get_ticks() + 5000
+
+        while pygame.time.get_ticks() < tiempo_finalizar:
+            pygame.display.flip()
+            clock.tick(15)
+            #continue
+        #print('preguntando')
         if estado['jugando']:
             estado['jugando'] = True if preguntar_continuar() else False
