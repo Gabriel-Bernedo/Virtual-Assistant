@@ -14,7 +14,8 @@ estado = {
     'jugando': False,
     'ayuda': False,
     'query': False,
-    'fin_hilo': False
+    'fin_hilo': False,
+    'cartas':False
 }
 subTxt = ['']
 

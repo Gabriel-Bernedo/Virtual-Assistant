@@ -1,5 +1,5 @@
 from utils_audio import *
-from juegos import *
+from ahorcado import *
 
 with open('res/db/basedatos.json', 'r', encoding='utf-8') as archivo:
     datos = json.load(archivo)
