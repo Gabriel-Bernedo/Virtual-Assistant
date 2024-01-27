@@ -23,8 +23,21 @@ def programa():
         elif respuesta == "pruebas":
             aprenderElseProbar(False)
         elif respuesta == "juegos":
-            decir("Ahora jugaras ahorcado")
-            juego()
+            decir('Deseas jugar memoria o ahorcado?')
+            while not estado['f1in_hilo']:
+                respuesta = escuchar()
+                if respuesta == 'memoria':
+                    decir("Ahora jugaras memoria")
+                    juego(False)
+                    break
+                elif respuesta == 'ahorcado':
+                    decir("Ahora jugaras ahorcado")
+                    juego()
+                    break
+                elif respuesta == "salir":
+                    break
+                else:
+                    decir('Debe escoger un tipo de juego')
         elif respuesta == 'modificar':
             query()
         elif respuesta == "salir":

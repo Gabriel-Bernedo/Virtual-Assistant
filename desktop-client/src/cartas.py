@@ -1,6 +1,4 @@
-import pygame
-
-from auxiliar import *
+from ahorcado import *
 
 with open('res/db/cartas.json', 'r', encoding='utf-8') as archivo:
     cartasJson = json.load(archivo)
@@ -9,11 +7,9 @@ for carta in cartasJson:
     print(f'agregando: {carta}')
     db_cartas.append(carta)
 
-estado['cartas'] = True
 def cartas():  # INTERFAZ grafica CARTA
     pygame.init()
     fuente = pygame.font.SysFont('segoe print', 18)
-    minFont = pygame.font.SysFont('segoe print', 13)
     tablero = pygame.image.load('res/imgs/tablero.jpg')  # 1280x720px
     tamanio = (tablero.get_width(), tablero.get_height())
     pantalla = pygame.display.set_mode(tamanio)
@@ -143,7 +139,7 @@ def cartas():  # INTERFAZ grafica CARTA
     dibujar_tablero(cartas)
     cartas_seleccionadas = []
 
-    while estado['cartas']:
+    while estado['jugando']:
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -197,8 +193,7 @@ def cartas():  # INTERFAZ grafica CARTA
                     parrafo_cuadro(f"ADIVINASTE TODAS LAS CARTAS EN: {turnos} TURNOS", fuente, 200,
                                    (ANCHO_VENTANA - 200) / 2, pantalla.get_height() - (400))
                     pygame.display.flip()
+                    estado['jugando'] = False
+                    estado['cartas'] = False
 
-    estado['jugando'] = False
-    estado['cartas'] = False
-    estado['termino'] = True
-cartas()
+

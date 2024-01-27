@@ -1,5 +1,6 @@
 from utils_audio import *
 from ahorcado import *
+from cartas import *
 
 with open('res/db/basedatos.json', 'r', encoding='utf-8') as archivo:
     datos = json.load(archivo)
@@ -147,7 +148,9 @@ class Interfaz:
         pygame.display.flip()
 
 
-def juego():
+def juego(ahorcado=True):
+    if not ahorcado:
+        estado['cartas'] = True
     estado['asistente'] = False
     estado['jugando'] = True
     while not estado['asistente']:
@@ -192,7 +195,7 @@ def interfaz():
                     y1 -= 1
                     y2 += 1
 
-                modo = not modo if alto1 == max_alto or alto1 == min_alto else modo
+                modo = not modo if alto1 >= max_alto or alto1 <= min_alto else modo
 
                 pygame.draw.ellipse(screen, RED, (185, y1, ancho, alto1))
                 pygame.draw.ellipse(screen, BLUE, (260, y2, ancho, alto2))
@@ -214,7 +217,11 @@ def interfaz():
             screen.blit(ventana.pygTxt, (10, 10))
             pygame.display.flip()
         while estado['jugando']:
-            ahorcado()
+            print(estado['cartas'])
+            if estado['cartas']:
+                cartas()
+            else:
+                ahorcado()
             estado['asistente'] = True
         while estado['aprendiendo']:
             imagen = pygame.image.load(img_path[0])
