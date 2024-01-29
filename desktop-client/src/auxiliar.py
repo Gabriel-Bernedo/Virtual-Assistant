@@ -1,5 +1,6 @@
+import pygame
+
 from utils_audio import *
-from ahorcado import *
 from cartas import *
 
 with open('res/db/basedatos.json', 'r', encoding='utf-8') as archivo:
@@ -143,9 +144,13 @@ class Interfaz:
         self.load = [pygame.image.load('res/imgs/load.png').convert_alpha()]  # 140x140px
 
         self.fuente = pygame.font.SysFont('segoe print', 20)
-        self.fuenteSub = pygame.font.SysFont('segoe print', 11)
         self.pygTxt = self.fuente.render('PYG-4 Tu Asistente Virtual', True, WHITE)
+        self.fuenteSub = None
         pygame.display.flip()
+
+    def crearFuente(self, size):
+        self.fuenteSub = pygame.font.SysFont('Arial', size)
+        return self.fuenteSub
 
 
 def juego(ahorcado=True):
@@ -158,18 +163,24 @@ def juego(ahorcado=True):
 
 
 def interfaz():
-    def parrafo(altura):
-        if len(subTxt[0]) > 0:
-            oraciones = dividir_texto(subTxt[0], 38)
+    def parrafo():
+        sub(185, 305, subTxt[0], 38,13)
+
+    def log():
+        sub(20, 45, subTxt[1], 25,13)
+
+    def sub(x, y, txt, maxlong, size):
+        if len(txt) > 0:
+            oraciones = dividir_texto(txt, maxlong)
             for i, oracion in enumerate(oraciones):
-                txtAyuda = ventana.fuenteSub.render(oracion, True, BLACK)
-                screen.blit(txtAyuda, (185, altura + (17 * i)))
+                txtAyuda = ventana.crearFuente(size).render(oracion, True, BLACK)
+                screen.blit(txtAyuda, (x, y + (17 * i)))
 
     max_alto, min_alto = 150, 90
 
     alto1, alto2 = max_alto, min_alto
 
-    y1,y2 = 140, 160
+    y1, y2 = 140, 160
     while not estado['termino']:
         ventana = Interfaz()
         screen = pygame.display.set_mode(ventana.sizeF)
@@ -180,42 +191,44 @@ def interfaz():
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     estado['termino'], estado['asistente'] = True, False
-            screen.blit(ventana.fondo, (0, 0))
-            if estado['hablando']:
-                ancho = 70
-                if modo:  # 185-120 = x,y 405 -> 220 -> 210
-                    alto1 -= 2
-                    alto2 += 2
-                    y1 += 1
-                    y2 -= 1
+                    pygame.quit()
+                    break
+            if not estado['termino']:
+                screen.blit(ventana.fondo, (0, 0))
+                if estado['hablando']:
+                    ancho = 70
+                    if modo:  # 185-120 = x,y 405 -> 220 -> 210
+                        alto1 -= 2
+                        alto2 += 2
+                        y1 += 1
+                        y2 -= 1
 
+                    else:
+                        alto1 += 2
+                        alto2 -= 2
+                        y1 -= 1
+                        y2 += 1
+
+                    modo = not modo if alto1 >= max_alto or alto1 <= min_alto else modo
+
+                    pygame.draw.ellipse(screen, RED, (185, y1, ancho, alto1))
+                    pygame.draw.ellipse(screen, BLUE, (260, y2, ancho, alto2))
+                    pygame.draw.ellipse(screen, GREEN, (335, y1, ancho, alto1))
+                    ventana.clock.tick(60)
+                elif estado['escuchando']:  # 120+150=270/2=135
+                    if modo:  # 185-120 = x,y 405 -> 220 -> 2109
+                        pygame.draw.circle(screen, CELESTE, (295, 230), 80)
+                    modo = not modo
+                    screen.blit(ventana.micro, (235, 170))
+                    ventana.clock.tick(2)
                 else:
-                    alto1 += 2
-                    alto2 -= 2
-                    y1 -= 1
-                    y2 += 1
-
-                modo = not modo if alto1 >= max_alto or alto1 <= min_alto else modo
-
-                pygame.draw.ellipse(screen, RED, (185, y1, ancho, alto1))
-                pygame.draw.ellipse(screen, BLUE, (260, y2, ancho, alto2))
-                pygame.draw.ellipse(screen, GREEN, (335, y1, ancho, alto1))
-                parrafo(285)
-                ventana.clock.tick(60)
-            elif estado['escuchando']:  # 120+150=270/2=135
-                if modo:  # 185-120 = x,y 405 -> 220 -> 2109
-                    pygame.draw.circle(screen, CELESTE, (295, 230), 80)
-                modo = not modo
-                screen.blit(ventana.micro, (235, 170))
-                parrafo(305)
-                ventana.clock.tick(2)
-            else:
-                screen.blit(ventana.load[0], (235, 170))
-                ventana.load[0] = pygame.transform.rotate(ventana.load[0], 90)
-                parrafo(305)
-                ventana.clock.tick(2)
-            screen.blit(ventana.pygTxt, (10, 10))
-            pygame.display.flip()
+                    screen.blit(ventana.load[0], (235, 170))
+                    ventana.load[0] = pygame.transform.rotate(ventana.load[0], 90)
+                    ventana.clock.tick(2)
+                parrafo()
+                log()
+                screen.blit(ventana.pygTxt, (10, 10))
+                pygame.display.flip()
         while estado['jugando']:
             print(estado['cartas'])
             if estado['cartas']:
