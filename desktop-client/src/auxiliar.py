@@ -1,5 +1,3 @@
-import pygame
-
 from utils_audio import *
 from cartas import *
 
@@ -21,7 +19,7 @@ img_path = ['']
 
 def dictarpreguntas(seccion, subseccion=None):
     resul, arr = 0, preguntas[seccion]
-    if not subseccion is None:
+    if subseccion is not None:
         arr = arr[subseccion]
     for pregunta in arr:
         cont = 1
@@ -33,16 +31,16 @@ def dictarpreguntas(seccion, subseccion=None):
             cont += 1
         decir("Dicta el numero de opcion que creas que es correcta")
         while True:  # uno-dos
-            rpta = escuchar()
-            if rpta.isdigit() and int(rpta) > 0 and int(rpta) < cont:
-                if int(rpta) == resul:
+            rpta2 = escuchar()
+            if rpta2.isdigit() and 0 < int(rpta2) < cont:
+                if int(rpta2) == resul:
                     dicc['puntaje'] += 1
                     decir("respuesta correcta")
                 else:
                     decir("respuesta incorrecta")
                 break
-            elif rpta in dicc and dicc[rpta] > 0 and dicc[rpta] < cont:
-                if resul == dicc[rpta]:
+            elif rpta2 in dicc and 0 < dicc[rpta2] < cont:
+                if resul == dicc[rpta2]:
                     dicc['puntaje'] += 1
                     decir("respuesta correcta")
                 else:
@@ -56,7 +54,7 @@ def dictarpreguntas(seccion, subseccion=None):
 
 def aprender(seccion, subseccion=None):
     info, imgs = aprendizaje[seccion], imagenes[seccion]
-    if not subseccion == None:
+    if subseccion is not None:
         info = info[subseccion]
         imgs = imgs[subseccion]
     else:
@@ -153,8 +151,8 @@ class Interfaz:
         return self.fuenteSub
 
 
-def juego(ahorcado=True):
-    if not ahorcado:
+def juego(jahorcado=True):
+    if not jahorcado:
         estado['cartas'] = True
     estado['asistente'] = False
     estado['jugando'] = True
@@ -164,17 +162,30 @@ def juego(ahorcado=True):
 
 def interfaz():
     def parrafo():
-        sub(185, 305, subTxt[0], 38,13)
+        sub(185, 305, subTxt[0], 38, 13)
 
     def log():
-        sub(20, 45, subTxt[1], 25,13)
+        txt = subTxt[1]
+        if not len(txt) == 0:
+            i = sub(20, 45, txt[0], 25, 13)
+            for j in range(1, len(txt)):
+                i = sub(20, i, txt[j], 25, 13)
 
-    def sub(x, y, txt, maxlong, size):
+    def sub(x, y, txt, maxlong, tam):
+        if isinstance(txt,tuple):
+            if txt[1] == 1:
+                COLOR = WHITE
+            else: COLOR = BLACK
+            txt = txt[0]
+        else: COLOR = BLACK
         if len(txt) > 0:
             oraciones = dividir_texto(txt, maxlong)
+            cont = 0
             for i, oracion in enumerate(oraciones):
-                txtAyuda = ventana.crearFuente(size).render(oracion, True, BLACK)
+                txtAyuda = ventana.crearFuente(tam).render(oracion, True, COLOR)
                 screen.blit(txtAyuda, (x, y + (17 * i)))
+                cont = i
+            return y + (17 * (cont + 1))
 
     max_alto, min_alto = 150, 90
 

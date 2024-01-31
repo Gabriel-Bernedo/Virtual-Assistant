@@ -17,14 +17,15 @@ estado = {
     'fin_hilo': False,
     'cartas':False
 }
-subTxt = ['','']
+subTxt = ['',[]]
 
 
 def decir(comando, cambiar=True):
     if not estado['fin_hilo']:
         estado['hablando'] = True
-        subTxt[0] = comando if cambiar else subTxt[0]
-        subTxt[1] = subTxt[1]+comando if cambiar else subTxt[1]
+        if cambiar:
+            subTxt[0] = comando
+            subTxt[1].append((comando, 0))
         palabra = pyttsx3.init()
         palabra.say(comando)
         palabra.runAndWait()
@@ -87,5 +88,6 @@ def escuchar():
         if not estado['fin_hilo']:
             decir("No pude escucharte, ¿podrías repetirlo?", False)
     if palabra is not None:
+        subTxt[1].append((palabra["mensaje"].lower(), 1))
         return palabra["mensaje"].lower()
     else: return ''
