@@ -86,7 +86,7 @@ def escuchar():
             exit(1)
         if not estado['fin_hilo']:
             decir("No pude escucharte, ¿podrías repetirlo?", False)
-    if palabra is not None:
+    if palabra is not None or palabra is not ' ':
         subTxt[1].append((palabra["mensaje"].lower(), 1))
         return palabra["mensaje"].lower()
     else: return ''

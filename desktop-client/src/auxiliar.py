@@ -167,11 +167,14 @@ def interfaz():
     def log():
         txt = subTxt[1]
         if not len(txt) == 0:
-            i = sub(20, 45, txt[0], 25, 13)
-            for j in range(1, len(txt)):
+            i, max,j = sub(20, 45, txt[0], 25, 13), len(txt), 1
+            #for j in range(1, max):
+            while j < max:
                 i = sub(20, i, txt[j], 25, 13)
                 if i > 450:
                     subTxt[1].remove(subTxt[1][0])
+                max = len(txt)
+                j += 1
 
     def sub(x, y, txt, maxlong, tam):
         if isinstance(txt,tuple):
