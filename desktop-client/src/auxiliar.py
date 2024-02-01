@@ -72,7 +72,7 @@ def generar_mensaje_secciones(secciones):
 
 
 def aprenderElseProbar(aprendiendo=True):
-    decir(f"Elegiste la opcion {"Aprendizaje" if aprendiendo else "Pruebas"}")
+    decir(f"Elegiste la opcion {"Aprendizaje" if aprendiendo else "Pruebas"}", False)
     while not estado['fin_hilo']:
         mensaje_pregunta = "Que seccion deseas aprender\n" if aprendiendo else "Deseas dar una prueba sobre\n"
         decir(mensaje_pregunta + generar_mensaje_secciones(aprendizaje))
@@ -97,11 +97,11 @@ def aprenderElseProbar(aprendiendo=True):
         if respuesta == 'salir':
             break
         elif equivocado:
-            decir("repite la opcion por favor")
+            decir("repite la opcion por favor", False)
 
 
 def aprenderElseProbarSubseccion(seccion, aprendiendo=True):
-    decir(f"Ahora aprenderas {seccion}" if aprendiendo else f"Escogiste {seccion}, empecemos con la prueba")
+    decir(f"Ahora aprenderas {seccion}" if aprendiendo else f"Escogiste {seccion}, empecemos con la prueba", False)
     while not estado['fin_hilo']:
         decir(
             f"En cual subseccion deseas {'aprender' if aprendiendo else 'dar una prueba'}\n" + generar_mensaje_secciones(
@@ -170,6 +170,8 @@ def interfaz():
             i = sub(20, 45, txt[0], 25, 13)
             for j in range(1, len(txt)):
                 i = sub(20, i, txt[j], 25, 13)
+                if i > 450:
+                    subTxt[1].remove(subTxt[1][0])
 
     def sub(x, y, txt, maxlong, tam):
         if isinstance(txt,tuple):

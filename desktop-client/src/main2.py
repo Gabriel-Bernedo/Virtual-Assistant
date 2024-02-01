@@ -18,7 +18,7 @@ def programa():
             print('en juegos')
             while not estado['fin_hilo']:
                 #respuesta = escuchar()
-                respuesta = 'ahorcado'
+                respuesta = 'memoria'
                 if respuesta == 'memoria':
                     decir("Ahora jugaras memoria")
                     juego(False)

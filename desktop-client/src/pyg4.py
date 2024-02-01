@@ -24,7 +24,7 @@ def programa():
             aprenderElseProbar(False)
         elif respuesta == "juegos":
             decir('Deseas jugar memoria o ahorcado?')
-            while not estado['f1in_hilo']:
+            while not estado['fin_hilo']:
                 respuesta = escuchar()
                 if respuesta == 'memoria':
                     decir("Ahora jugaras memoria")

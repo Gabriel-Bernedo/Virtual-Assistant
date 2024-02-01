@@ -31,7 +31,6 @@ def decir(comando, cambiar=True):
         palabra.runAndWait()
         estado['hablando'] = False
 
-
 def repAudio(archivo_audio):
     pygame.mixer.init()
     pygame.mixer.music.load(archivo_audio)

@@ -4,7 +4,7 @@ with open('res/db/cartas.json', 'r', encoding='utf-8') as archivo:
     cartasJson = json.load(archivo)
 db_cartas = []
 for carta in cartasJson:
-    print(f'agregando: {carta}')
+    #print(f'agregando: {carta}')
     db_cartas.append(carta)
 
 def cartas():  # INTERFAZ grafica CARTA
@@ -77,9 +77,9 @@ def cartas():  # INTERFAZ grafica CARTA
         cartas = []
 
         # Agregar parejas de cartas al tablero
-        print(f'db_cartas: {db_cartas}')
+        #print(f'db_cartas: {db_cartas}')
         for i in range(n):
-            print(f'carta{i}: {db_cartas[i]}')
+            #print(f'carta{i}: {db_cartas[i]}')
             nombre_carta = db_cartas[i]
             descripcion_carta = cartasJson[nombre_carta]
 
@@ -105,7 +105,7 @@ def cartas():  # INTERFAZ grafica CARTA
 
         for carta in cartas:
             if carta.eliminada:
-                print(f"saltando carta {carta.nombre}")
+                #print(f"saltando carta {carta.nombre}")
                 x += ANCHO_CARTA + MARGEN
                 if x > ANCHO_VENTANA - ANCHO_CARTA - MARGEN:
                     x = MARGEN
@@ -144,7 +144,9 @@ def cartas():  # INTERFAZ grafica CARTA
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-                sys.exit()
+                estado['jugando'] = False
+                estado['cartas'] = False
+                pass
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 # Obtener posición del clic
                 pos = pygame.mouse.get_pos()
@@ -159,30 +161,30 @@ def cartas():  # INTERFAZ grafica CARTA
                     if not carta.mostrada:
                         if x >= carta_x and x <= carta_x + ANCHO_CARTA and y >= carta_y and y <= carta_y + ALTO_CARTA:
                             carta.mostrada = True
-                            print(carta.nombre)
+                            #print(carta.nombre)
                             cartas_seleccionadas.append(carta)
                             dibujar_tablero(cartas)
 
-                print(f'{cartas_seleccionadas}: {len(cartas_seleccionadas)}')
+                #print(f'{cartas_seleccionadas}: {len(cartas_seleccionadas)}')
                 # Lógica para comparar las cartas seleccionadas
                 if len(cartas_seleccionadas) == 2:
                     turnos += 1
-                    print(turnos)
+                    #print(turnos)
                     if cartas_seleccionadas[0].nombre == cartas_seleccionadas[1].nombre:
                         pygame.time.delay(1000)
-                        print(f'cartas encontradas de {cartas_seleccionadas[0].nombre}')
+                        #print(f'cartas encontradas de {cartas_seleccionadas[0].nombre}')
                         puntaje += 1
                         cartas_seleccionadas[0].eliminada = True
                         cartas_seleccionadas[1].eliminada = True
                         # Cartas iguales, manténlas mostradas
-                        print(puntaje)
+                        #print(puntaje)
                         pass
                     else:
                         # Cartas diferentes, ocúltalas nuevamente después de un breve tiempo
                         pygame.time.delay(1000)
                         for carta in cartas_seleccionadas:
                             carta.mostrada = False
-                            print(f'ocultando {carta.nombre}')
+                            #print(f'ocultando {carta.nombre}')
 
                     # Limpiar lista de cartas seleccionadas
                     cartas_seleccionadas = []
@@ -192,6 +194,7 @@ def cartas():  # INTERFAZ grafica CARTA
                     # Imprimir resultados, agregar el break
                     parrafo_cuadro(f"ADIVINASTE TODAS LAS CARTAS EN: {turnos} TURNOS", fuente, 200,
                                    (ANCHO_VENTANA - 200) / 2, pantalla.get_height() - (400))
+                    repAudio("res/audio/victoria.mp3")
                     pygame.display.flip()
                     estado['jugando'] = False
                     estado['cartas'] = False
